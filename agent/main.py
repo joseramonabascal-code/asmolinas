@@ -28,7 +28,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="Moli — Agente WhatsApp de As Molinas", version="1.0.0", lifespan=lifespan)
+app = FastAPI(title="Moli — Agente WhatsApp de As Molinas", version="1.1.0", lifespan=lifespan)
 
 
 @app.get("/")
