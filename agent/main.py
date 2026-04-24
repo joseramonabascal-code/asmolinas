@@ -35,6 +35,27 @@ async def health_check():
     return {"status": "ok", "agente": "Moli", "negocio": "As Molinas"}
 
 
+@app.get("/debug")
+async def debug():
+    import traceback
+    resultado = {}
+    try:
+        resultado["ANTHROPIC_API_KEY"] = bool(os.getenv("ANTHROPIC_API_KEY"))
+        resultado["WHAPI_TOKEN"] = bool(os.getenv("WHAPI_TOKEN"))
+        resultado["WHATSAPP_PROVIDER"] = os.getenv("WHATSAPP_PROVIDER")
+        resultado["DATABASE_URL"] = os.getenv("DATABASE_URL", "sqlite default")
+        from agent.memory import inicializar_db
+        await inicializar_db()
+        resultado["db"] = "ok"
+        from agent.brain import generar_respuesta
+        respuesta = await generar_respuesta("test", [])
+        resultado["claude"] = respuesta[:50]
+    except Exception as e:
+        resultado["error"] = f"{type(e).__name__}: {e}"
+        resultado["trace"] = traceback.format_exc()
+    return resultado
+
+
 @app.get("/webhook")
 async def webhook_verificacion(request: Request):
     resultado = await proveedor.validar_webhook(request)
