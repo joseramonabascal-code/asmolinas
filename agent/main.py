@@ -59,5 +59,6 @@ async def webhook_handler(request: Request):
             logger.info(f"Respuesta a {msg.telefono}: {respuesta}")
         return {"status": "ok"}
     except Exception as e:
-        logger.error(f"Error en webhook: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        import traceback
+        logger.error(f"Error en webhook: {e}\n{traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")
