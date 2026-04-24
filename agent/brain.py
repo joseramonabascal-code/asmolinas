@@ -65,9 +65,24 @@ async def generar_respuesta(mensaje: str, historial: list[dict]) -> str:
         return error_msg
 
 
+PHONE_RE = re.compile(r'(\+?[\d\s\-\(\)]{7,15})')
+
+
+def _extraer_telefono_regex(historial: list[dict]) -> str | None:
+    """Extrae un teléfono de los mensajes del cliente usando regex."""
+    for m in reversed(historial):
+        if m["role"] == "user":
+            match = PHONE_RE.search(m["content"])
+            if match:
+                digits = re.sub(r'\D', '', match.group())
+                if len(digits) >= 7:
+                    return digits
+    return None
+
+
 async def detectar_lead(historial: list[dict]) -> dict | None:
     """Detecta si se capturó un lead en la conversación. Retorna datos del lead o None."""
-    if len(historial) < 4:
+    if len(historial) < 2:
         return None
 
     # Convertir historial a texto para análisis
@@ -84,12 +99,20 @@ async def detectar_lead(historial: list[dict]) -> dict | None:
             messages=[{"role": "user", "content": conversacion}]
         )
         texto = response.content[0].text.strip()
+        logger.debug(f"Respuesta detector lead: {texto}")
         # Extraer JSON
         match = re.search(r'\{.*\}', texto, re.DOTALL)
         if match:
             datos = json.loads(match.group())
+            logger.info(f"Lead detector resultado: {datos}")
             if datos.get("lead_capturado") and datos.get("nombre") and datos.get("telefono"):
                 return datos
+            # Fallback: si Claude detectó nombre pero no teléfono, buscar con regex
+            if datos.get("lead_capturado") and datos.get("nombre"):
+                tel = _extraer_telefono_regex(historial)
+                if tel:
+                    datos["telefono"] = tel
+                    return datos
     except Exception as e:
         logger.error(f"Error detectando lead: {e}")
     return None
