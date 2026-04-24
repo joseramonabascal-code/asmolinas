@@ -6,9 +6,10 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import PlainTextResponse
 from dotenv import load_dotenv
 
-from agent.brain import generar_respuesta
+from agent.brain import generar_respuesta, detectar_lead
 from agent.memory import inicializar_db, guardar_mensaje, obtener_historial
 from agent.providers import obtener_proveedor
+from agent.tools import notificar_lead
 
 load_dotenv()
 
@@ -78,6 +79,18 @@ async def webhook_handler(request: Request):
             await guardar_mensaje(msg.telefono, "assistant", respuesta)
             await proveedor.enviar_mensaje(msg.telefono, respuesta)
             logger.info(f"Respuesta a {msg.telefono}: {respuesta}")
+
+            # Detectar si se capturó un lead y notificar al dueño
+            historial_actualizado = await obtener_historial(msg.telefono)
+            lead = await detectar_lead(historial_actualizado)
+            if lead:
+                logger.info(f"Lead capturado: {lead['nombre']} / {lead['telefono']}")
+                await notificar_lead(
+                    nombre=lead.get("nombre", ""),
+                    telefono=lead.get("telefono", ""),
+                    productos=lead.get("productos", ""),
+                    resumen=lead.get("resumen", ""),
+                )
         return {"status": "ok"}
     except Exception as e:
         import traceback
