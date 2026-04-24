@@ -36,6 +36,19 @@ async def health_check():
     return {"status": "ok", "agente": "Moli", "negocio": "As Molinas"}
 
 
+@app.get("/test-notificacion")
+async def test_notificacion():
+    """Dispara una notificación de prueba a los dueños para verificar que Whapi funciona."""
+    from agent.tools import notificar_lead
+    await notificar_lead(
+        nombre="Cliente de Prueba",
+        telefono="5512345678",
+        productos="Prueba del sistema",
+        resumen="Este es un mensaje de prueba para verificar que las notificaciones llegan correctamente.",
+    )
+    return {"status": "notificacion_enviada"}
+
+
 @app.get("/debug")
 async def debug():
     import traceback

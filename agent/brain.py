@@ -65,7 +65,8 @@ async def generar_respuesta(mensaje: str, historial: list[dict]) -> str:
         return error_msg
 
 
-PHONE_RE = re.compile(r'(\+?[\d\s\-\(\)]{7,15})')
+PHONE_RE = re.compile(r'\b(\+?[\d]{10,13})\b')
+NAME_KEYWORDS = ["me llamo", "soy", "mi nombre es", "habla", "te habla"]
 
 
 def _extraer_telefono_regex(historial: list[dict]) -> str | None:
@@ -75,8 +76,38 @@ def _extraer_telefono_regex(historial: list[dict]) -> str | None:
             match = PHONE_RE.search(m["content"])
             if match:
                 digits = re.sub(r'\D', '', match.group())
-                if len(digits) >= 7:
+                if 10 <= len(digits) <= 13:
                     return digits
+    return None
+
+
+def _detectar_lead_keywords(historial: list[dict]) -> dict | None:
+    """Detección rápida por palabras clave sin llamar a la IA."""
+    telefono = _extraer_telefono_regex(historial)
+    if not telefono:
+        return None
+    nombre = None
+    for m in historial:
+        if m["role"] != "user":
+            continue
+        texto = m["content"].lower()
+        for kw in NAME_KEYWORDS:
+            if kw in texto:
+                # Tomar las palabras después de la keyword como nombre
+                idx = texto.find(kw) + len(kw)
+                resto = m["content"][idx:].strip().split()
+                candidato = " ".join(resto[:3]).strip(".,")
+                if candidato:
+                    nombre = candidato
+                    break
+    if nombre and telefono:
+        return {
+            "lead_capturado": True,
+            "nombre": nombre,
+            "telefono": telefono,
+            "productos": "por confirmar",
+            "resumen": f"Lead capturado por detección de palabras clave. Tel: {telefono}",
+        }
     return None
 
 
@@ -91,6 +122,12 @@ async def detectar_lead(historial: list[dict]) -> dict | None:
         for m in historial[-10:]  # últimos 10 mensajes
     )
 
+    # Primero intentar detección por palabras clave (más rápida y confiable)
+    lead_kw = _detectar_lead_keywords(historial)
+    if lead_kw:
+        logger.info(f"Lead detectado por keywords: {lead_kw}")
+        return lead_kw
+
     try:
         response = await client.messages.create(
             model="claude-haiku-4-5-20251001",
@@ -100,14 +137,12 @@ async def detectar_lead(historial: list[dict]) -> dict | None:
         )
         texto = response.content[0].text.strip()
         logger.debug(f"Respuesta detector lead: {texto}")
-        # Extraer JSON
         match = re.search(r'\{.*\}', texto, re.DOTALL)
         if match:
             datos = json.loads(match.group())
             logger.info(f"Lead detector resultado: {datos}")
             if datos.get("lead_capturado") and datos.get("nombre") and datos.get("telefono"):
                 return datos
-            # Fallback: si Claude detectó nombre pero no teléfono, buscar con regex
             if datos.get("lead_capturado") and datos.get("nombre"):
                 tel = _extraer_telefono_regex(historial)
                 if tel:
