@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Especias, Tés y Vida Natural | AS MOLINAS</title>
+  <meta name="description" content="Aprende sobre especias, tés artesanales y vida saludable. Consejos de cocina, beneficios de hierbas y cómo sacarles el mayor provecho a tus productos naturales.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://asmolinas.com/blog.html">
+  <link rel="alternate" hreflang="es-MX" href="https://asmolinas.com/blog.html">
+  <meta property="og:title" content="Blog AS MOLINAS — Especias, Tés y Vida Natural">
+  <meta property="og:description" content="Consejos, recetas y beneficios de especias y productos naturales.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://asmolinas.com/blog.html">
+  <meta property="og:locale" content="es_MX">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog AS MOLINAS",
+    "description": "Artículos sobre especias, tés y productos naturales",
+    "url": "https://asmolinas.com/blog.html",
+    "publisher": {"@type": "Organization", "name": "AS MOLINAS", "url": "https://asmolinas.com"}
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --forest: #2D4A3E; --terracotta: #C4704B; --cream: #FBF8F3; --text: #3a3530; --muted: #6b5e52; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+    nav { background: var(--forest); padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    nav a { color: white; text-decoration: none; font-weight: 600; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { font-size: .88rem; opacity: .82; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta { background: var(--terracotta); padding: 8px 18px; border-radius: 20px; opacity: 1 !important; }
+    .hero-blog { background: var(--forest); color: white; padding: 64px 24px 48px; text-align: center; }
+    .hero-blog .label { font-size: .8rem; letter-spacing: 2px; text-transform: uppercase; opacity: .7; margin-bottom: 12px; }
+    .hero-blog h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 16px; }
+    .hero-blog p { opacity: .8; max-width: 480px; margin: 0 auto; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 64px 24px 80px; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px; }
+    .article-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,.07); transition: transform .2s, box-shadow .2s; display: flex; flex-direction: column; }
+    .article-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,.12); }
+    .article-card-img { height: 200px; overflow: hidden; }
+    .article-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .article-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .article-cat { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--terracotta); margin-bottom: 8px; }
+    .article-card h2 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--forest); margin-bottom: 10px; line-height: 1.3; }
+    .article-card p { font-size: .9rem; color: var(--muted); flex: 1; }
+    .article-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid #f0ebe2; font-size: .8rem; color: var(--muted); }
+    .article-read { color: var(--terracotta); font-weight: 600; text-decoration: none; }
+    .article-read:hover { text-decoration: underline; }
+    .wa-float { position: fixed; bottom: 28px; right: 28px; background: #25D366; color: white; border-radius: 50%; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,.2); z-index: 999; }
+    footer { background: var(--forest); color: rgba(255,255,255,.7); text-align: center; padding: 28px; font-size: .85rem; }
+    footer a { color: rgba(255,255,255,.9); }
+    footer .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" style="font-family:'DM Serif Display',serif;font-size:1.2rem;">🌿 AS <strong>MOLINAS</strong></a>
+  <ul class="nav-links">
+    <li><a href="/#catalogo">Catálogo</a></li>
+    <li><a href="/#nosotros">Nosotros</a></li>
+    <li><a href="/#contacto">Contacto</a></li>
+    <li><a href="blog.html" style="color:#ffd580">Blog</a></li>
+    <li><a href="https://wa.me/527481660295?text=Hola%2C%20quiero%20hacer%20un%20pedido" class="nav-cta">📱 Pedir ahora</a></li>
+  </ul>
+</nav>
+
+<div class="hero-blog">
+  <div class="label">Blog AS MOLINAS</div>
+  <h1>Especias, Tés y Vida Natural</h1>
+  <p>Consejos de cocina, beneficios de hierbas y cómo sacarles el mayor provecho a tus productos.</p>
+</div>
+
+<div class="container">
+  <div class="blog-grid">
+
+    <article class="article-card">
+      <div class="article-card-img">
+        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=75" alt="Especias mexicanas esenciales" loading="lazy" width="600" height="400">
+      </div>
+      <div class="article-card-body">
+        <div class="article-cat">🌶 Especias · Cocina Mexicana</div>
+        <h2>5 Especias Esenciales que Toda Cocina Mexicana Necesita</h2>
+        <p>Descubre las especias que no pueden faltar en tu alacena para preparar los sabores auténticos de México — desde moles hasta guisos cotidianos.</p>
+        <div class="article-meta">
+          <span>17 abr 2025 · 5 min lectura</span>
+          <a href="blog/articulo-1.html" class="article-read">Leer →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="article-card">
+      <div class="article-card-img">
+        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=600&q=75" alt="Especias bien conservadas" loading="lazy" width="600" height="400">
+      </div>
+      <div class="article-card-body">
+        <div class="article-cat">💡 Consejos · Almacenamiento</div>
+        <h2>Cómo Conservar tus Especias para que Duren Más</h2>
+        <p>El enemigo de tus especias no es el tiempo — es la luz, el calor y la humedad. Aprende a almacenarlas correctamente y duplica su vida útil.</p>
+        <div class="article-meta">
+          <span>17 abr 2025 · 4 min lectura</span>
+          <a href="blog/articulo-2.html" class="article-read">Leer →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="article-card">
+      <div class="article-card-img">
+        <img src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?w=600&q=75" alt="Cúrcuma en polvo y beneficios" loading="lazy" width="600" height="400">
+      </div>
+      <div class="article-card-body">
+        <div class="article-cat">🧬 Salud · Superfoods</div>
+        <h2>Beneficios de la Cúrcuma: Qué Dice la Ciencia</h2>
+        <p>La cúrcuma lleva siglos en la medicina ayurvédica. Hoy la ciencia moderna respalda muchos de sus beneficios. Te explicamos qué es real y cómo usarla.</p>
+        <div class="article-meta">
+          <span>17 abr 2025 · 6 min lectura</span>
+          <a href="blog/articulo-3.html" class="article-read">Leer →</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</div>
+
+<a href="https://wa.me/527481660295?text=Hola%2C%20vi%20el%20blog%20y%20quiero%20hacer%20un%20pedido" class="wa-float" aria-label="WhatsApp" target="_blank" rel="noopener">💬</a>
+
+<footer>
+  <div>© 2025 AS MOLINAS — Especias y productos naturales · Ciudad de México</div>
+  <div class="footer-links">
+    <a href="/">Inicio</a>
+    <a href="/#catalogo">Catálogo</a>
+    <a href="aviso-de-privacidad.html">Privacidad</a>
+    <a href="terminos.html">Términos</a>
+    <a href="envios.html">Envíos</a>
+  </div>
+</footer>
+
+</body>
+</html>

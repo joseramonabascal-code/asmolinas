@@ -1,814 +1,1409 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AS MOLINAS — Productos de Calidad</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<!--
-╔══════════════════════════════════════════════════════════╗
-║            CONFIGURACIÓN DE PAYPAL                       ║
-║  1. Ve a https://developer.paypal.com/dashboard/         ║
-║  2. Crea una App → Copia el "Client ID"                  ║
-║  3. Reemplaza TU_CLIENT_ID_AQUI con tu Client ID real    ║
-╚══════════════════════════════════════════════════════════╝
--->
-<script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID_AQUI&currency=MXN&locale=es_MX&intent=capture"></script>
+  <!-- SEO Meta Tags -->
+  <title>AS MOLINAS — Especias, Tés y Productos Naturales | Mayoreo y Menudeo CDMX</title>
+  <meta name="description" content="Venta de especias, tés artesanales, deshidratados y productos naturales a granel. Mayoreo y menudeo en CDMX y Área Metropolitana. 100% naturales, sin conservadores.">
+  <meta name="keywords" content="especias, tés artesanales, productos naturales, mayoreo, menudeo, CDMX, deshidratados, semillas, sal del Himalaya, granel, especias premium México">
+  <meta name="author" content="AS MOLINAS">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://asmolinas.com/">
+  <link rel="alternate" hreflang="es-MX" href="https://asmolinas.com/">
+  <link rel="alternate" hreflang="x-default" href="https://asmolinas.com/">
 
-<style>
-:root{
-  --verde:#2a5c24;--verde2:#3d7a35;--verde3:#5a9e50;
-  --verde-pale:#eaf4e8;--dorado:#c8901a;--dorado2:#e8a828;
-  --crema:#faf7f2;--cafe:#3d2b1a;--cafe2:#7a5535;--gris:#888;
-  --te-c:#3a7a30;--esp-c:#b05008;--mol-c:#9a7008;
-  --sal-c:#c05840;--des-c:#7030a0;--ot-c:#1870b0;
-  --r:16px;--sh:0 4px 24px rgba(42,92,36,.10);
-  --sh2:0 8px 40px rgba(42,92,36,.18);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Nunito',sans-serif;background:var(--crema);color:var(--cafe);overflow-x:hidden}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-thumb{background:var(--verde2);border-radius:3px}
+  <!-- Open Graph -->
+  <meta property="og:title" content="AS MOLINAS — Especias, Tés y Productos Naturales">
+  <meta property="og:description" content="Especias, tés y productos naturales de calidad premium. Mayoreo y menudeo en CDMX.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://asmolinas.com/">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="AS MOLINAS">
 
-/* NAV */
-nav{position:sticky;top:0;z-index:900;background:var(--verde);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 32px;height:66px;box-shadow:0 2px 16px rgba(0,0,0,.28)}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
-.brand-logo{width:44px;height:44px;background:rgba(255,255,255,.12);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:1.5rem}
-.brand-name{font-family:'Playfair Display',serif;color:#fff;font-size:1.3rem;font-weight:700;line-height:1.15}
-.brand-name small{display:block;font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:300;
-  letter-spacing:3px;color:rgba(255,255,255,.6);text-transform:uppercase}
-.nav-right{display:flex;align-items:center;gap:20px}
-.nav-link{color:rgba(255,255,255,.8);text-decoration:none;font-size:.83rem;font-weight:700;
-  letter-spacing:.8px;text-transform:uppercase;transition:color .2s}
-.nav-link:hover{color:#fff}
-.cart-btn{display:flex;align-items:center;gap:8px;background:var(--dorado);color:var(--cafe);
-  border:none;border-radius:30px;padding:9px 20px;font-family:'Nunito',sans-serif;
-  font-weight:800;font-size:.88rem;cursor:pointer;transition:all .2s;
-  box-shadow:0 2px 10px rgba(200,144,26,.35)}
-.cart-btn:hover{background:var(--dorado2);transform:scale(1.04)}
-.cart-count{background:var(--verde2);color:#fff;border-radius:50%;
-  width:22px;height:22px;display:flex;align-items:center;justify-content:center;
-  font-size:.72rem;font-weight:800;transition:transform .2s}
-.cart-count.bump{animation:bump .3s ease}
-@keyframes bump{0%{transform:scale(1)}50%{transform:scale(1.45)}100%{transform:scale(1)}}
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-/* HERO */
-.hero{background:linear-gradient(145deg,#1e4a18 0%,var(--verde2) 55%,#5a9e50 100%);
-  padding:68px 48px 78px;display:flex;align-items:center;
-  justify-content:center;gap:60px;flex-wrap:wrap;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at 70% 50%,rgba(255,255,255,.04) 0%,transparent 60%)}
-.hero-txt{position:relative;max-width:500px}
-.pill{display:inline-block;background:var(--dorado);color:var(--cafe);
-  font-size:.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;
-  padding:5px 16px;border-radius:20px;margin-bottom:18px}
-.hero h1{font-family:'Playfair Display',serif;color:#fff;
-  font-size:clamp(1.9rem,4vw,3rem);font-weight:900;line-height:1.15;margin-bottom:16px}
-.hero h1 em{font-style:italic;color:#f0d080}
-.hero p{color:rgba(255,255,255,.82);font-size:.98rem;line-height:1.78;margin-bottom:28px;max-width:430px}
-.hero-cta{display:inline-block;background:var(--dorado);color:var(--cafe);
-  padding:13px 34px;border-radius:35px;text-decoration:none;font-weight:800;font-size:.95rem;
-  box-shadow:0 4px 20px rgba(200,144,26,.4);transition:all .2s}
-.hero-cta:hover{transform:translateY(-3px);background:var(--dorado2)}
-.hero-img-wrap{flex-shrink:0}
-.hero-img{width:255px;height:255px;border-radius:50%;object-fit:cover;
-  border:6px solid rgba(255,255,255,.22);box-shadow:0 16px 60px rgba(0,0,0,.3);
-  animation:fl 5s ease-in-out infinite}
-@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  <!-- Structured Data (JSON-LD) LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "AS MOLINAS",
+    "description": "Venta de especias, tés artesanales, deshidratados y productos naturales a granel en CDMX.",
+    "url": "https://asmolinas.com",
+    "telephone": "+527481660295",
+    "email": "info@asmolinas.com",
+    "sameAs": ["https://instagram.com/asmolinas_especias"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ciudad de México",
+      "addressRegion": "CDMX",
+      "addressCountry": "MX"
+    },
+    "areaServed": "CDMX y Área Metropolitana",
+    "priceRange": "$$",
+    "openingHours": "Mo-Sa 09:00-19:00",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Catálogo AS MOLINAS",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Canela en raja", "description": "Canela ceylan premium, aroma intenso"}, "price": "180", "priceCurrency": "MXN"},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Manzanilla premium", "description": "Flor entera, cosecha reciente"}, "price": "180", "priceCurrency": "MXN"},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Sal del Himalaya fina", "description": "Sal rosa molida fina, 84 minerales"}, "price": "85", "priceCurrency": "MXN"},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Arándano deshidratado", "description": "Fruta entera, sabor dulce-ácido"}, "price": "90", "priceCurrency": "MXN"}
+      ]
+    }
+  }
+  </script>
+  <!-- Structured Data Kits/Bundles -->
+  <script type="application/ld+json">
+  [
+    {"@context":"https://schema.org","@type":"Product","name":"Kit Cocina Mexicana","description":"Chile ancho + guajillo + comino + orégano, 250g cada uno. Especias esenciales de cocina mexicana.","brand":{"@type":"Brand","name":"AS MOLINAS"},"offers":{"@type":"Offer","price":"199","priceCurrency":"MXN","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"AS MOLINAS"}}},
+    {"@context":"https://schema.org","@type":"Product","name":"Kit Repostería","description":"Canela + vainilla + nuez + almendra, 250g cada uno. Todo para tu cocina dulce.","brand":{"@type":"Brand","name":"AS MOLINAS"},"offers":{"@type":"Offer","price":"249","priceCurrency":"MXN","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"AS MOLINAS"}}},
+    {"@context":"https://schema.org","@type":"Product","name":"Kit Tés Relajantes","description":"Manzanilla + lavanda + pasiflora, 100g cada uno.","brand":{"@type":"Brand","name":"AS MOLINAS"},"offers":{"@type":"Offer","price":"179","priceCurrency":"MXN","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"AS MOLINAS"}}},
+    {"@context":"https://schema.org","@type":"Product","name":"Kit Superfoods","description":"Chía + quinoa + cúrcuma + jengibre, 250g cada uno.","brand":{"@type":"Brand","name":"AS MOLINAS"},"offers":{"@type":"Offer","price":"229","priceCurrency":"MXN","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"AS MOLINAS"}}},
+    {"@context":"https://schema.org","@type":"Product","name":"Paquete Prueba","description":"5 especias bestseller en sobres de 100g. Ideal para conocer nuestra calidad.","brand":{"@type":"Brand","name":"AS MOLINAS"},"offers":{"@type":"Offer","price":"149","priceCurrency":"MXN","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"AS MOLINAS"}}}
+  ]
+  </script>
 
-/* TRUST */
-.trust{background:var(--dorado);display:flex;justify-content:center;align-items:center;
-  gap:36px;padding:13px 30px;flex-wrap:wrap}
-.ti{display:flex;align-items:center;gap:7px;color:var(--cafe);font-weight:800;font-size:.8rem;letter-spacing:.4px}
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TDZPL9W4');</script>
+  <!-- End Google Tag Manager -->
 
-/* SECTION HEAD */
-.sec-head{text-align:center;padding:56px 20px 36px}
-.sec-head h2{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.4rem);
-  font-weight:900;color:var(--verde);margin-bottom:10px}
-.sec-head p{color:var(--gris);font-size:.93rem;max-width:480px;margin:0 auto;line-height:1.65}
-.rule{width:56px;height:3px;background:var(--dorado);border-radius:2px;margin:12px auto 0}
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XZ2B1533P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XZ2B1533P');
+  </script>
 
-/* FILTER */
-.fbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;padding:0 20px}
-.fbtn{padding:7px 20px;border-radius:22px;border:2px solid var(--verde);background:transparent;
-  color:var(--verde);font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;
-  letter-spacing:.5px;cursor:pointer;transition:all .2s}
-.fbtn.active,.fbtn:hover{background:var(--verde);color:#fff}
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* GRID */
-.pgrid-wrap{max-width:1240px;margin:0 auto;padding:0 20px 80px}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:24px}
-.pcard{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);
-  transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;position:relative}
-.pcard:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
-.pcard-badge{position:absolute;top:12px;left:12px;z-index:2;
-  font-size:.67rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;
-  padding:4px 12px;border-radius:12px;color:#fff}
-.pcard-img{height:192px;overflow:hidden;background:var(--verde-pale);
-  display:flex;align-items:center;justify-content:center;font-size:3.5rem}
-.pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.pcard:hover .pcard-img img{transform:scale(1.07)}
-.pcard-body{padding:18px;flex:1;display:flex;flex-direction:column}
-.pcard-cat{font-size:.67rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
-.pcard-name{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:700;
-  color:var(--cafe);margin-bottom:6px;line-height:1.3}
-.pcard-desc{font-size:.81rem;color:var(--gris);line-height:1.55;margin-bottom:14px;flex:1}
-.size-lbl{font-size:.72rem;font-weight:700;color:var(--cafe2);margin-bottom:6px;
-  text-transform:uppercase;letter-spacing:.8px}
-.sizes{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
-.sopt{padding:5px 10px;border-radius:10px;border:1.5px solid #ddd;background:transparent;
-  font-family:'Nunito',sans-serif;font-size:.77rem;font-weight:700;cursor:pointer;
-  transition:all .18s;color:var(--cafe2)}
-.sopt.sel{border-color:var(--verde);background:var(--verde);color:#fff}
-.sopt:hover:not(.sel){border-color:var(--verde2);color:var(--verde2)}
-.pfoot{display:flex;align-items:center;justify-content:space-between;
-  border-top:1px solid var(--verde-pale);padding-top:13px}
-.pprice{font-family:'Playfair Display',serif;font-size:1.28rem;font-weight:900;color:var(--verde)}
-.peso{font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;vertical-align:1px}
+    :root {
+      --c-forest: #2D4A3E;
+      --c-forest-deep: #1B3028;
+      --c-sage: #7A9E8E;
+      --c-sage-light: #A8C5B6;
+      --c-cream: #FBF8F3;
+      --c-warm: #F5EDE3;
+      --c-sand: #E8DDD0;
+      --c-terracotta: #C4704B;
+      --c-terracotta-dark: #A85A38;
+      --c-gold: #C9A96E;
+      --c-text: #2C2C2C;
+      --c-text-light: #6B6B6B;
+      --c-white: #FFFFFF;
+      --ff-display: 'DM Serif Display', Georgia, serif;
+      --ff-body: 'DM Sans', -apple-system, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
 
-.add-btn{background:var(--verde);color:#fff;border:none;border-radius:22px;
-  padding:9px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;
-  cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .2s}
-.add-btn:hover{background:var(--verde2);transform:scale(1.05)}
-.add-btn.flash{background:var(--dorado);color:var(--cafe)}
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
-/* CAT COLORS */
-.cat-te .pcard-badge{background:var(--te-c)}.cat-te .pcard-cat{color:var(--te-c)}
-.cat-especias .pcard-badge{background:var(--esp-c)}.cat-especias .pcard-cat{color:var(--esp-c)}
-.cat-molidos .pcard-badge{background:var(--mol-c)}.cat-molidos .pcard-cat{color:var(--mol-c)}
-.cat-sal .pcard-badge{background:var(--sal-c)}.cat-sal .pcard-cat{color:var(--sal-c)}
-.cat-deshidratados .pcard-badge{background:var(--des-c)}.cat-deshidratados .pcard-cat{color:var(--des-c)}
-.cat-otros .pcard-badge{background:var(--ot-c)}.cat-otros .pcard-cat{color:var(--ot-c)}
+    body {
+      font-family: var(--ff-body);
+      color: var(--c-text);
+      background: var(--c-cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-/* ─── CART ─── */
-.c-overlay{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1800;
-  opacity:0;pointer-events:none;transition:opacity .3s}
-.c-overlay.open{opacity:1;pointer-events:all}
-.c-side{position:fixed;top:0;right:-440px;width:420px;max-width:96vw;height:100vh;
-  background:#fff;z-index:1900;display:flex;flex-direction:column;
-  box-shadow:-6px 0 40px rgba(0,0,0,.2);transition:right .35s cubic-bezier(.4,0,.2,1)}
-.c-side.open{right:0}
-.c-head{background:var(--verde);color:#fff;padding:20px 22px;
-  display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.c-head h3{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:700}
-.c-close{background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:50%;
-  width:34px;height:34px;font-size:1.05rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:background .2s}
-.c-close:hover{background:rgba(255,255,255,.3)}
-.c-items{flex:1;overflow-y:auto;padding:14px;min-height:0}
-.c-empty{text-align:center;padding:55px 20px;color:var(--gris)}
-.c-empty-icon{font-size:2.8rem;margin-bottom:12px}
-.c-item{display:flex;gap:12px;align-items:flex-start;
-  padding:13px 0;border-bottom:1px solid #f0ece6}
-.c-item-img{width:60px;height:60px;border-radius:10px;background:var(--verde-pale);
-  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
-  flex-shrink:0;overflow:hidden}
-.c-item-img img{width:100%;height:100%;object-fit:cover}
-.c-item-info{flex:1}
-.c-item-name{font-family:'Playfair Display',serif;font-size:.91rem;font-weight:700;
-  color:var(--cafe);margin-bottom:2px;line-height:1.3}
-.c-item-size{font-size:.73rem;color:var(--gris);margin-bottom:3px}
-.c-item-price{color:var(--verde);font-weight:800;font-size:.93rem}
-.qty-row{display:flex;align-items:center;gap:8px;margin-top:7px}
-.qbtn{width:26px;height:26px;border-radius:50%;border:2px solid var(--verde);background:transparent;
-  color:var(--verde);font-size:.9rem;font-weight:800;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1}
-.qbtn:hover{background:var(--verde);color:#fff}
-.qnum{font-weight:800;min-width:20px;text-align:center;font-size:.9rem}
-.c-item-del{background:none;border:none;color:#ccc;font-size:1.1rem;cursor:pointer;
-  padding:0 4px;transition:color .15s;align-self:center}
-.c-item-del:hover{color:#e05555}
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
 
-/* ─── CART FOOTER — always visible at bottom ─── */
-.c-foot{
-  flex-shrink:0;
-  padding:16px 22px 18px;
-  border-top:2px solid var(--verde-pale);
-  background:#fff;
-  position:relative;
-  z-index:10;
-}
-.c-rows{margin-bottom:12px}
-.c-row{display:flex;justify-content:space-between;align-items:center;
-  font-size:.86rem;margin-bottom:5px;color:var(--gris)}
-.c-row span:last-child{font-weight:700;color:var(--cafe2)}
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-/* TOTAL — prominente */
-.c-total-box{
-  display:flex;justify-content:space-between;align-items:center;
-  background:var(--verde-pale);
-  border:2px solid var(--verde);
-  border-radius:12px;
-  padding:12px 16px;
-  margin-bottom:14px;
-}
-.c-total-lbl{
-  font-family:'Nunito',sans-serif;
-  font-size:.82rem;font-weight:800;
-  color:var(--verde);text-transform:uppercase;letter-spacing:1px;
-}
-.c-total-val{
-  font-family:'Playfair Display',serif;
-  font-size:1.45rem;font-weight:900;
-  color:var(--verde);
-}
-#paypal-btn-wrap{min-height:50px}
-.pp-note{font-size:.7rem;color:var(--gris);text-align:center;margin-top:8px;line-height:1.5}
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-/* ABOUT */
-.about{background:var(--verde);padding:70px 48px;
-  display:flex;gap:56px;align-items:center;justify-content:center;flex-wrap:wrap}
-.about-txt h2{font-family:'Playfair Display',serif;color:#fff;
-  font-size:clamp(1.7rem,3vw,2.2rem);font-weight:900;margin-bottom:16px;line-height:1.2}
-.about-txt h2 em{color:#f0d080;font-style:italic}
-.about-txt p{color:rgba(255,255,255,.80);line-height:1.78;margin-bottom:12px;
-  font-size:.95rem;max-width:480px}
-.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;max-width:480px}
-.feat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);
-  border-radius:13px;padding:16px}
-.feat-icon{font-size:1.4rem;margin-bottom:6px}
-.feat h4{color:#fff;font-weight:800;font-size:.86rem;margin-bottom:3px}
-.feat p{color:rgba(255,255,255,.60);font-size:.76rem;margin:0;line-height:1.4}
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-/* CONTACT */
-.contact{background:var(--crema);padding:68px 40px;text-align:center}
-.contact h2{font-family:'Playfair Display',serif;font-size:1.85rem;color:var(--verde);margin-bottom:10px}
-.contact p{color:var(--gris);margin-bottom:28px;font-size:.93rem}
-.contact-cards{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;max-width:700px;margin:0 auto}
-.ccard{background:#fff;border-radius:14px;padding:22px 28px;box-shadow:var(--sh);
-  flex:1;min-width:170px;transition:transform .2s}
-.ccard:hover{transform:translateY(-4px)}
-.ccard .icon{font-size:1.8rem;margin-bottom:8px}
-.ccard a{color:var(--verde);text-decoration:none;font-weight:800;font-size:.88rem;display:block}
-.ccard small{color:var(--gris);font-size:.76rem;margin-top:4px;display:block}
+    /* ========== NAVBAR ========== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(251,248,243,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s;
+    }
+    .navbar.scrolled { box-shadow: var(--shadow-md); }
 
-/* FOOTER */
-footer{background:var(--cafe);padding:34px;text-align:center;
-  color:rgba(255,255,255,.50);font-size:.82rem}
-footer strong{color:#f0d080}
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-/* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;
-  transform:translateX(-50%) translateY(90px);
-  background:var(--verde);color:#fff;padding:11px 26px;border-radius:28px;
-  font-weight:800;font-size:.87rem;z-index:3000;
-  box-shadow:0 6px 24px rgba(0,0,0,.22);transition:transform .3s;pointer-events:none}
-.toast.show{transform:translateX(-50%) translateY(0)}
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      color: var(--c-forest);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo span { color: var(--c-terracotta); }
 
-@media(max-width:780px){
-  nav{padding:0 16px}
-  .nav-right .nav-link{display:none}
-  .hero{padding:46px 20px 55px;gap:28px;text-align:center}
-  .hero p{margin:0 auto 24px}
-  .hero-img{width:175px;height:175px}
-  .about{padding:52px 20px;gap:28px}
-  .feat-grid{grid-template-columns:1fr}
-  .c-side{width:100vw}
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--c-text-light);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--c-forest); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--c-terracotta);
+      transition: width 0.3s var(--ease-out);
+    }
+    .nav-links a:hover::after { width: 100%; }
 
-/* ── FOOTER LEGAL LINKS ── */
-.footer-legal{margin-top:18px;display:flex;align-items:center;justify-content:center;
-  gap:10px;flex-wrap:wrap}
-.legal-link{background:none;border:none;color:rgba(255,255,255,.55);
-  font-family:'Nunito',sans-serif;font-size:.78rem;cursor:pointer;
-  text-decoration:underline;text-underline-offset:3px;padding:2px 0;
-  transition:color .2s}
-.legal-link:hover{color:var(--dorado2)}
-.legal-sep{color:rgba(255,255,255,.25);font-size:.8rem}
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--c-forest);
+      color: var(--c-white) !important;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: var(--c-forest-deep); transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
 
-/* ── MODAL ── */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);
-  z-index:4000;opacity:0;pointer-events:none;transition:opacity .3s}
-.modal-overlay.open{opacity:1;pointer-events:all}
-.modal-box{position:fixed;top:50%;left:50%;
-  transform:translate(-50%,-48%) scale(.97);
-  width:min(720px,94vw);max-height:82vh;
-  background:#fff;border-radius:20px;
-  z-index:4001;display:flex;flex-direction:column;
-  box-shadow:0 20px 80px rgba(0,0,0,.3);
-  opacity:0;pointer-events:none;
-  transition:opacity .3s,transform .3s}
-.modal-box.open{opacity:1;pointer-events:all;
-  transform:translate(-50%,-50%) scale(1)}
-.modal-header{padding:22px 28px 16px;
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:2px solid var(--verde-pale);flex-shrink:0}
-.modal-header h2{font-family:'Playfair Display',serif;
-  font-size:1.35rem;font-weight:700;color:var(--verde)}
-.modal-close{background:var(--verde-pale);border:none;color:var(--verde);
-  border-radius:50%;width:34px;height:34px;font-size:1rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s;flex-shrink:0}
-.modal-close:hover{background:var(--verde);color:#fff}
-.modal-body{flex:1;overflow-y:auto;padding:24px 28px;
-  font-size:.9rem;line-height:1.78;color:var(--cafe)}
-.modal-body h3{font-family:'Playfair Display',serif;font-size:1.05rem;
-  color:var(--verde);margin:22px 0 8px;font-weight:700}
-.modal-body h3:first-child{margin-top:0}
-.modal-body p{margin-bottom:10px}
-.modal-body ul{padding-left:20px;margin-bottom:10px}
-.modal-body ul li{margin-bottom:6px}
-.modal-body strong{color:var(--cafe)}
-.modal-footer-bar{padding:14px 28px;border-top:1px solid var(--verde-pale);
-  display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;background:#fafaf8;border-radius:0 0 20px 20px}
-.modal-footer-bar small{color:var(--gris);font-size:.72rem}
-.modal-close-btn{background:var(--verde);color:#fff;border:none;
-  border-radius:22px;padding:9px 24px;font-family:'Nunito',sans-serif;
-  font-weight:800;font-size:.85rem;cursor:pointer;transition:background .2s}
-.modal-close-btn:hover{background:var(--verde2)}
-@media(max-width:600px){
-  .modal-body{padding:18px 18px}
-  .modal-header{padding:18px 18px 14px}
-  .modal-footer-bar{padding:12px 18px;flex-direction:column;gap:10px;text-align:center}
-}
+    /* Mobile menu */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 32px; height: 32px;
+      position: relative;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--c-forest);
+      position: absolute;
+      left: 5px;
+      transition: 0.3s var(--ease-out);
+    }
+    .nav-toggle span:nth-child(1) { top: 9px; }
+    .nav-toggle span:nth-child(2) { top: 15px; }
+    .nav-toggle span:nth-child(3) { top: 21px; }
+    .nav-toggle.active span:nth-child(1) { top: 15px; transform: rotate(45deg); }
+    .nav-toggle.active span:nth-child(2) { opacity: 0; }
+    .nav-toggle.active span:nth-child(3) { top: 15px; transform: rotate(-45deg); }
 
-</style>
+    /* ========== HERO ========== */
+    .hero {
+      padding: 120px 0 80px;
+      background: linear-gradient(165deg, var(--c-cream) 0%, var(--c-warm) 50%, var(--c-sand) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,112,75,0.08), transparent 70%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(45,74,62,0.08);
+      color: var(--c-forest);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      color: var(--c-forest-deep);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--c-terracotta);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--c-text-light);
+      max-width: 480px;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: var(--ff-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out);
+    }
+    .btn-primary {
+      background: var(--c-terracotta);
+      color: var(--c-white);
+    }
+    .btn-primary:hover { background: var(--c-terracotta-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(196,112,75,0.3); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--c-forest);
+      border: 2px solid var(--c-sage-light);
+    }
+    .btn-outline:hover { border-color: var(--c-forest); background: rgba(45,74,62,0.04); }
+
+    .hero-visual {
+      position: relative;
+    }
+    .hero-img-wrapper {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+    .hero-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-float-badge {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      background: var(--c-white);
+      padding: 12px 18px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--c-forest);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .hero-stat strong {
+      display: block;
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      color: var(--c-forest);
+    }
+    .hero-stat span {
+      font-size: 0.8rem;
+      color: var(--c-text-light);
+    }
+
+    /* ========== CATEGORIES ========== */
+    .categories {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c-terracotta);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--c-forest-deep);
+      margin-bottom: 10px;
+    }
+    .section-subtitle {
+      color: var(--c-text-light);
+      font-size: 0.95rem;
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .cat-card {
+      background: var(--c-white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .cat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .cat-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+    .cat-card-body {
+      padding: 16px;
+      text-align: center;
+    }
+    .cat-card-body h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--c-forest);
+    }
+    .cat-card-body p {
+      font-size: 0.78rem;
+      color: var(--c-text-light);
+      margin-top: 4px;
+    }
+
+    /* ========== PRODUCTS / CATALOG ========== */
+    .catalog {
+      padding: 80px 0;
+      background: var(--c-warm);
+    }
+
+    /* Filter tabs */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 1.5px solid var(--c-sage-light);
+      background: var(--c-white);
+      font-family: var(--ff-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--c-text-light);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--c-forest);
+      color: var(--c-white);
+      border-color: var(--c-forest);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--c-white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    }
+    .product-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .product-card-img {
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s var(--ease-out);
+    }
+    .product-card:hover .product-card-img img { transform: scale(1.05); }
+
+    .product-tag {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--c-terracotta);
+      color: var(--c-white);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .product-card-body {
+      padding: 18px;
+    }
+    .product-card-body h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--c-forest-deep);
+      margin-bottom: 4px;
+    }
+    .product-card-body .product-desc {
+      font-size: 0.82rem;
+      color: var(--c-text-light);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    .product-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .product-price {
+      font-family: var(--ff-display);
+      font-size: 1.2rem;
+      color: var(--c-terracotta);
+    }
+    .product-price small {
+      font-family: var(--ff-body);
+      font-size: 0.72rem;
+      color: var(--c-text-light);
+      font-weight: 400;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 40px;
+    }
+    .page-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--c-sage-light);
+      background: var(--c-white);
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--c-text-light);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-btn:hover, .page-btn.active {
+      background: var(--c-forest);
+      color: var(--c-white);
+      border-color: var(--c-forest);
+    }
+
+    /* ========== TRUST / BENEFITS ========== */
+    .trust {
+      padding: 80px 0;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .trust-card {
+      text-align: center;
+      padding: 32px 20px;
+      border-radius: var(--radius);
+      background: var(--c-white);
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .trust-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .trust-icon {
+      width: 52px; height: 52px;
+      margin: 0 auto 16px;
+      background: rgba(45,74,62,0.06);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .trust-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--c-forest);
+      margin-bottom: 6px;
+    }
+    .trust-card p {
+      font-size: 0.82rem;
+      color: var(--c-text-light);
+      line-height: 1.5;
+    }
+
+    /* ========== TESTIMONIALS ========== */
+    .testimonials {
+      padding: 80px 0;
+      background: var(--c-forest-deep);
+      color: var(--c-white);
+    }
+    .testimonials .section-label { color: var(--c-gold); }
+    .testimonials .section-title { color: var(--c-white); }
+    .testimonials .section-subtitle { color: var(--c-sage-light); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .testimonial-stars {
+      color: var(--c-gold);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+    .testimonial-card p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--c-sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--c-white);
+    }
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+    .testimonial-role {
+      font-size: 0.75rem;
+      color: var(--c-sage-light);
+    }
+
+    /* ========== MISSION ========== */
+    .mission {
+      padding: 80px 0;
+    }
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .mission-card {
+      background: var(--c-white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .mission-card h3 {
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      color: var(--c-forest);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .mission-card p {
+      font-size: 0.92rem;
+      color: var(--c-text-light);
+      line-height: 1.7;
+    }
+
+    /* ========== CONTACT / CTA ========== */
+    .contact {
+      padding: 80px 0;
+      background: linear-gradient(165deg, var(--c-warm), var(--c-sand));
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      font-family: var(--ff-display);
+      font-size: 2rem;
+      color: var(--c-forest-deep);
+      margin-bottom: 14px;
+    }
+    .contact-info > p {
+      color: var(--c-text-light);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .contact-channels {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-channel {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--c-white);
+      padding: 18px 22px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact-channel:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+    .contact-channel-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .contact-channel-icon.wa { background: #25D366; color: white; }
+    .contact-channel-icon.email { background: var(--c-terracotta); color: white; }
+    .contact-channel-icon.ig { background: linear-gradient(135deg,#F58529,#DD2A7B,#8134AF); color: white; }
+    .contact-channel-text strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--c-forest);
+    }
+    .contact-channel-text span {
+      font-size: 0.8rem;
+      color: var(--c-text-light);
+    }
+
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: var(--c-forest-deep);
+      color: rgba(255,255,255,0.7);
+      padding: 48px 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand {
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      color: var(--c-white);
+      margin-bottom: 12px;
+    }
+    .footer-brand span { color: var(--c-terracotta); }
+    .footer p { font-size: 0.85rem; line-height: 1.6; }
+    .footer h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--c-white);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: 10px; }
+    .footer ul a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .footer ul a:hover { color: var(--c-white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+    .footer-bottom a {
+      color: rgba(255,255,255,0.5);
+      margin-left: 20px;
+      transition: color 0.2s;
+    }
+    .footer-bottom a:hover { color: var(--c-white); }
+
+    /* ========== FLOATING WHATSAPP ========== */
+    .wa-float {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+      z-index: 90;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: pulse-wa 2s infinite;
+    }
+    .wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,0.45); }
+
+    @keyframes pulse-wa {
+      0%, 100% { box-shadow: 0 4px 16px rgba(37,211,102,0.35); }
+      50% { box-shadow: 0 4px 24px rgba(37,211,102,0.55); }
+    }
+
+    /* Cookie banner */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--c-forest-deep);
+      color: rgba(255,255,255,0.85);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 0.85rem;
+      z-index: 200;
+      transform: translateY(100%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .cookie-banner.show { transform: translateY(0); }
+    .cookie-banner button {
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-family: var(--ff-body);
+      font-weight: 600;
+      font-size: 0.82rem;
+      cursor: pointer;
+      border: none;
+      transition: 0.2s;
+    }
+    .cookie-accept { background: var(--c-terracotta); color: white; }
+    .cookie-decline { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2) !important; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { order: -1; max-width: 480px; margin: 0 auto; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .mission-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: var(--c-cream);
+        padding: 24px;
+        gap: 18px;
+        box-shadow: var(--shadow-md);
+      }
+      .hero { padding: 100px 0 60px; }
+      .hero-stats { gap: 20px; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .footer-bottom a { margin-left: 10px; }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .hero-actions { flex-direction: column; }
+      .hero-stats { flex-direction: column; gap: 16px; }
+      .cookie-banner { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    /* ===== DISCOUNT BANNER ===== */
+    .discount-banner {
+      background: var(--c-forest);
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      font-size: .85rem;
+      font-weight: 500;
+    }
+    .discount-banner-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .discount-sep { opacity: .4; }
+    .discount-item strong { color: #ffd580; }
+
+    /* ===== KITS FILTER BUTTON ===== */
+    .filter-btn-kits { border-color: var(--c-terracotta); color: var(--c-terracotta); }
+    .filter-btn-kits.active, .filter-btn-kits:hover { background: var(--c-terracotta); color: white; border-color: var(--c-terracotta); }
+
+    @media (max-width: 480px) {
+      .discount-banner-inner { flex-direction: column; gap: 6px; }
+      .discount-sep { display: none; }
+    }
+  </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDZPL9W4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-<nav>
-  <a href="#" class="brand">
-    <div class="brand-logo">🌿</div>
-    <div class="brand-name">AS MOLINAS<small>Productos de Calidad</small></div>
-  </a>
-  <div class="nav-right">
-    <a href="#productos" class="nav-link">Productos</a>
-    <a href="#nosotros" class="nav-link">Nosotros</a>
-    <a href="#contacto" class="nav-link">Contacto</a>
-    <button class="cart-btn" onclick="openCart()">
-      🛒 Carrito <span class="cart-count" id="cartCount">0</span>
-    </button>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="hero-txt">
-    <div class="pill">🌱 Del campo a tu mesa</div>
-    <h1>Especias, tés y<br><em>frutos secos</em><br>premium</h1>
-    <p>Semillas, especias, tés artesanales y deshidratados seleccionados con cuidado. Sabores auténticos, directamente del mejor origen.</p>
-    <a href="#productos" class="hero-cta">Explorar productos →</a>
-  </div>
-  <div class="hero-img-wrap">
-    <img class="hero-img"
-      src="https://media.canva.com/v2/image-resize/format:JPG/height:600/quality:85/uri:ifs%3A%2F%2FM%2Fa355b2fb-ff3f-48c2-8d27-3ab6c5c5ea78/watermark:F/width:600?csig=AAAAAAAAAAAAAAAAAAAAAPufVwipoofmLOXGqPhqfGy4M5YC481rEuGskT2ZAcpc&exp=1774551968&osig=AAAAAAAAAAAAAAAAAAAAALjoQzy2M63IlD3X_R3AS2WE0sXEHwZfq6nH2zjQYfTV&signer=media-rpc&x-canva-quality=thumbnail"
-      onerror="this.style.display='none'"
-      alt="Especias AS MOLINAS">
-  </div>
-</section>
-
-<div class="trust">
-  <div class="ti">✅ 100% Natural</div>
-  <div class="ti">🚚 Envío a todo México</div>
-  <div class="ti">⭐ Selección Premium</div>
-  <div class="ti">🔒 Pago seguro PayPal</div>
-  <div class="ti">📦 Empaque sellado</div>
-</div>
-
-<section id="productos">
-  <div class="sec-head">
-    <h2>Nuestros Productos</h2>
-    <p>Elige tu presentación: 100g · 250g · 500g · 1 kilo — Precios en pesos mexicanos</p>
-    <div class="rule"></div>
-  </div>
-  <div class="pgrid-wrap">
-    <div class="fbar" id="fbar"></div>
-    <div class="pgrid" id="pgrid"></div>
-  </div>
-</section>
-
-<section class="about" id="nosotros">
-  <div class="about-txt">
-    <h2>Calidad que se <em>siente</em><br>al probarlo</h2>
-    <p>Trabajamos directamente con productores locales comprometidos con prácticas sustentables, garantizando frescura y sabor auténticos en cada producto.</p>
-    <p>Cada lote pasa por un cuidadoso proceso de selección, empacado al vacío y enviado a tu hogar conservando todo el aroma y sabor natural.</p>
-    <div class="feat-grid">
-      <div class="feat"><div class="feat-icon">🌱</div><h4>Sin Aditivos</h4><p>100% naturales, sin conservadores</p></div>
-      <div class="feat"><div class="feat-icon">🤝</div><h4>Comercio Justo</h4><p>Apoyo a productores mexicanos</p></div>
-      <div class="feat"><div class="feat-icon">📦</div><h4>Empaque Sellado</h4><p>Al vacío para máxima frescura</p></div>
-      <div class="feat"><div class="feat-icon">🚚</div><h4>Entrega 3-5 días</h4><p>A todo México por paquetería</p></div>
+  <!-- ======= NAVBAR ======= -->
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="AS MOLINAS inicio">🌿 AS <span>MOLINAS</span></a>
+      <button class="nav-toggle" aria-label="Abrir menú" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#testimonios">Opiniones</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="https://wa.me/527481660295?text=Hola%2C%20quiero%20hacer%20un%20pedido" class="nav-cta">📱 Pedir ahora</a></li>
+      </ul>
     </div>
-  </div>
-</section>
+  </nav>
 
-<section class="contact" id="contacto">
-  <h2>¿Tienes alguna pregunta?</h2>
-  <p>Estamos para ayudarte en lo que necesites.</p>
-  <div class="contact-cards">
-    <div class="ccard">
-      <div class="icon">📱</div>
-      <a href="https://wa.me/521TUNUMERO" target="_blank">WhatsApp</a>
-      <small>Respuesta inmediata</small>
-    </div>
-    <div class="ccard">
-      <div class="icon">📧</div>
-      <a href="mailto:ventas@asmolinas.com">ventas@asmolinas.com</a>
-      <small>Respuesta en 24 hrs</small>
-    </div>
-    <div class="ccard">
-      <div class="icon">📍</div>
-      <a href="#">México</a>
-      <small>Envíos a toda la república</small>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <strong>AS MOLINAS</strong> — Productos de Calidad Natural<br>
-  <small style="display:block;margin-top:8px">© 2025 AS MOLINAS. Todos los derechos reservados.</small>
-  <div class="footer-legal">
-    <button class="legal-link" onclick="openModal('privacidad')">Aviso de Privacidad</button>
-    <span class="legal-sep">·</span>
-    <button class="legal-link" onclick="openModal('terminos')">Términos y Condiciones</button>
-    <span class="legal-sep">·</span>
-    <button class="legal-link" onclick="openModal('cookies')">Política de Cookies</button>
-    <span class="legal-sep">·</span>
-    <button class="legal-link" onclick="openModal('entregas')">Política de Entregas</button>
-  </div>
-</footer>
-
-<!-- MODALS -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
-<div class="modal-box" id="modalBox">
-  <div class="modal-header">
-    <h2 id="modalTitle"></h2>
-    <button class="modal-close" onclick="closeModal()">✕</button>
-  </div>
-  <div class="modal-body" id="modalBody"></div>
-  <div class="modal-footer-bar">
-    <small>Última actualización: enero 2025 — AS MOLINAS</small>
-    <button class="modal-close-btn" onclick="closeModal()">Cerrar</button>
-  </div>
-</div>
-
-<!-- CART -->
-<div class="c-overlay" id="cOverlay" onclick="closeCart()"></div>
-<div class="c-side" id="cSide">
-  <div class="c-head">
-    <h3>🛒 Tu Carrito</h3>
-    <button class="c-close" onclick="closeCart()">✕</button>
-  </div>
-
-  <div class="c-items" id="cItems"></div>
-
-  <div class="c-foot" id="cFoot">
-    <div class="c-rows">
-      <div class="c-row">
-        <span>Subtotal</span>
-        <span id="cSub"><span class="peso">$</span>0.00</span>
-      </div>
-      <div class="c-row">
-        <span>Envío</span>
-        <span style="color:var(--te-c)">Se calcula al pagar</span>
-      </div>
-    </div>
-
-    <!-- TOTAL BOX — siempre visible -->
-    <div class="c-total-box">
-      <span class="c-total-lbl">Total a pagar</span>
-      <div>
-        <span class="c-total-val" id="cTotalVal"><span class="peso">$</span>0.00</span>
-        
-      </div>
-    </div>
-
-    <div id="paypal-btn-wrap"></div>
-    <p class="pp-note">🔒 Pago 100% seguro con PayPal. Aceptamos tarjetas y saldo PayPal.</p>
-  </div>
-</div>
-
-<div class="toast" id="toast">✓ <span id="toastMsg">Producto agregado</span></div>
-
-<script>
-/* ══════════════════════════════════════════
-   IMÁGENES REALES DE CANVA
-   (Las URLs se renuevan automáticamente;
-    para una web definitiva, sube las fotos
-    a tu servidor o usa un CDN permanente)
-══════════════════════════════════════════ */
-const CANVA_IMGS = {
-  // TÉS
-  te05: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2F0d7b5e33-8d43-4a79-b968-57b974a0f1f0/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAJq0DhvpkmptsyBltSOVVpbYsQCBIwZaSBKjO7xlMgf2&exp=1774552468&osig=AAAAAAAAAAAAAAAAAAAAABWwzLQkftenXRvuvrnkbGsSmEJnUUt799LR1Xbv0hUB&signer=media-rpc&x-canva-quality=thumbnail',
-  // ESPECIAS
-  es02: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2F881f9ea1-b3ce-480e-8fd8-40474e5d6ca9/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAI7ZLQMnHiU1LvRXXBioSzDNSCFp9MvQ6GEDvAhof_Tt&exp=1774553815&osig=AAAAAAAAAAAAAAAAAAAAAHTDSgdaghMK2cBwP0ewEjGcFeHJoWpChEarsDuHA2Nr&signer=media-rpc&x-canva-quality=thumbnail',
-  es05: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2Fa355b2fb-ff3f-48c2-8d27-3ab6c5c5ea78/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAPufVwipoofmLOXGqPhqfGy4M5YC481rEuGskT2ZAcpc&exp=1774551968&osig=AAAAAAAAAAAAAAAAAAAAALjoQzy2M63IlD3X_R3AS2WE0sXEHwZfq6nH2zjQYfTV&signer=media-rpc&x-canva-quality=thumbnail',
-  es07: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2Fd90810a9-b09f-4f77-bddc-fa48de845b4a/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAAvzIPQkT1C98rhiR0ZwRBWowT-Qfhle_1IkQJMgu-9P&exp=1774554141&osig=AAAAAAAAAAAAAAAAAAAAAPslh6xEpzjA2Twl2aQjuG4cr2wwqN6En-8LomgqrDIx&signer=media-rpc&x-canva-quality=thumbnail',
-  es08: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2F6807dbd5-e1be-476f-91cc-3636e3db2e04/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAIk8zZ-HABnTLUbA7wggZ9GzMC8DT7TDPgAVQkyblpeh&exp=1774550953&osig=AAAAAAAAAAAAAAAAAAAAAHSJT99y3TPo3l2PeJtjW82Qr7gcF7BFXu1dzwYVznCc&signer=media-rpc&x-canva-quality=thumbnail',
-  es11: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2F80864094-65fd-45ed-9191-bbf7f10acc46/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAKJ2_9I7VyXgPfzwC9qP9Lnyh6qDjfA5TAwl_khPKX5x&exp=1774553185&osig=AAAAAAAAAAAAAAAAAAAAAJIRvctHPH-OF8ZtUQDPOT3unF0acZqVUZOLICG8S_Nc&signer=media-rpc&x-canva-quality=thumbnail',
-  es12: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2F6da1afd8-2938-4b2f-9d39-9f41a5269c85/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAAThZQ-KkokqerB-HEviH1FlE6gOeXlYkcN_4lrcSy_9&exp=1774552200&osig=AAAAAAAAAAAAAAAAAAAAABrqt4-SrVDpDlW_t8-qgKB3AGv73rzgaMmMv9_YqHP-&signer=media-rpc&x-canva-quality=thumbnail',
-  // MOLIDOS
-  mo02: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2F42f30ae1-707b-40e2-b730-0917a023b116/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAC6dvEaOtwjGFFEspUgKjg6D4yyvvyQ18O4uAPQ15GvM&exp=1774551362&osig=AAAAAAAAAAAAAAAAAAAAAMoSk29fPSzXwweTiTqEsDghK1azQxoOvZGIzxns8w0F&signer=media-rpc&x-canva-quality=thumbnail',
-  mo05: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2Fa355b2fb-ff3f-48c2-8d27-3ab6c5c5ea78/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAPufVwipoofmLOXGqPhqfGy4M5YC481rEuGskT2ZAcpc&exp=1774551968&osig=AAAAAAAAAAAAAAAAAAAAALjoQzy2M63IlD3X_R3AS2WE0sXEHwZfq6nH2zjQYfTV&signer=media-rpc&x-canva-quality=thumbnail',
-  mo06: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2F59353073-814c-4286-9bcf-14e5730cb146/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAACmplxU0vWVheN3t_YwNy8GtiAgH4EFKkxKu-Ljtwgh2&exp=1774553573&osig=AAAAAAAAAAAAAAAAAAAAAO6C6cRvSGZ6qAmhoU3A38g6yQcju6KSHEi7E4xY37vU&signer=media-rpc&x-canva-quality=thumbnail',
-  // SAL
-  sa01: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2Fbf0cfe00-5774-40bd-8486-b634834551d0/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAIH8idhEIHFzfD8kHaI63AlmSTBCoSa-E82JEMmcnozp&exp=1774553138&osig=AAAAAAAAAAAAAAAAAAAAAAThni2BfgfSayVkU3xMzv2EAQc6CNdZ5k8sw9bfDLRm&signer=media-rpc&x-canva-quality=thumbnail',
-  sa02: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2Fbf0cfe00-5774-40bd-8486-b634834551d0/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAIH8idhEIHFzfD8kHaI63AlmSTBCoSa-E82JEMmcnozp&exp=1774553138&osig=AAAAAAAAAAAAAAAAAAAAAAThni2BfgfSayVkU3xMzv2EAQc6CNdZ5k8sw9bfDLRm&signer=media-rpc&x-canva-quality=thumbnail',
-  // DESHIDRATADOS
-  de01: 'https://media.canva.com/v2/image-resize/format:JPG/height:400/quality:85/uri:ifs%3A%2F%2FM%2F2307a54a-2c0a-4d4b-852e-19883c36c32f/watermark:F/width:400?csig=AAAAAAAAAAAAAAAAAAAAAMFqqnJyD2pwHOFRSKynhtW940du5O7_PFgA-B7u7Enz&exp=1774550791&osig=AAAAAAAAAAAAAAAAAAAAAPoLSZBIqrt7TITu2fpj8y-FXjUiqHaUgY1Tuj1dcYIH&signer=media-rpc&x-canva-quality=thumbnail',
-};
-
-/* Fallback images per category */
-const CAT_FALLBACK = {
-  te:           'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=480&q=80',
-  especias:     'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=480&q=80',
-  molidos:      'https://images.unsplash.com/photo-1599909366692-af8e11af4e01?w=480&q=80',
-  sal:          'https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?w=480&q=80',
-  deshidratados:'https://images.unsplash.com/photo-1622480916113-9000ac49b79d?w=480&q=80',
-  otros:        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=480&q=80',
-};
-
-function getImg(id, cat){ return CANVA_IMGS[id] || CAT_FALLBACK[cat] || ''; }
-
-/* ══════════════════════════════════════════
-   CATÁLOGO
-══════════════════════════════════════════ */
-const CAT = [
-  {id:'te01',cat:'te',cl:'Té',     name:'Té Rojo',               emoji:'🍵',pKilo:240,  desc:'Rico en antioxidantes, ideal para relajarse y descansar.'},
-  {id:'te02',cat:'te',cl:'Té',     name:'Té Negro',              emoji:'🍵',pKilo:240,  desc:'Clásico té negro de intenso aroma y sabor robusto.'},
-  {id:'te03',cat:'te',cl:'Té',     name:'Té Blanco',             emoji:'🍵',pKilo:276,  desc:'El más delicado. Suave, ligeramente dulce y muy aromático.'},
-  {id:'te04',cat:'te',cl:'Té',     name:'Té de Jazmín',          emoji:'🌸',pKilo:240,  desc:'Floral y suave. Perfecto para cualquier momento del día.'},
-  {id:'te05',cat:'te',cl:'Té',     name:'Flor de Manzanilla',    emoji:'🌼',pKilo:312,  desc:'Relajante natural, ideal para tomar antes de dormir.'},
-  {id:'te06',cat:'te',cl:'Té',     name:'Té Verde Gunpowder',    emoji:'🍃',pKilo:150,  desc:'Hojas enrolladas de sabor intenso y fresco.'},
-  {id:'te07',cat:'te',cl:'Té',     name:'Té Matcha Ceremonial',  emoji:'🍵',pKilo:1116, desc:'Matcha de grado ceremonial, calidad premium.'},
-
-  {id:'es01',cat:'especias',cl:'Especias',name:'Albahaca',        emoji:'🌿',pKilo:150,  desc:'Fresca y aromática. Esencial en la cocina italiana.'},
-  {id:'es02',cat:'especias',cl:'Especias',name:'Anís Estrella',   emoji:'⭐',pKilo:128.4,desc:'Dulce y anisado. Para panes, galletas y té digestivo.'},
-  {id:'es03',cat:'especias',cl:'Especias',name:'Cilantro Hoja',   emoji:'🌿',pKilo:150,  desc:'Sabor intenso, indispensable en la cocina mexicana.'},
-  {id:'es04',cat:'especias',cl:'Especias',name:'Clavo',           emoji:'🔴',pKilo:312,  desc:'Muy aromático y cálido. Para guisos, ponches y postres.'},
-  {id:'es05',cat:'especias',cl:'Especias',name:'Comino',          emoji:'🟡',pKilo:162,  desc:'La esencia de los guisos mexicanos y platos árabes.'},
-  {id:'es06',cat:'especias',cl:'Especias',name:'Jengibre Entero', emoji:'🫚',pKilo:156,  desc:'Raíz fresca deshidratada. Picante, digestiva y medicinal.'},
-  {id:'es07',cat:'especias',cl:'Especias',name:'Laurel',          emoji:'🍃',pKilo:150,  desc:'Hojas aromáticas para caldos y marinados.'},
-  {id:'es08',cat:'especias',cl:'Especias',name:'Orégano',         emoji:'🌿',pKilo:144,  desc:'Perfuma cualquier salsa, pizza o guiso.'},
-  {id:'es09',cat:'especias',cl:'Especias',name:'Perejil',         emoji:'🌿',pKilo:150,  desc:'Fresco y versátil. Realza el sabor de cualquier platillo.'},
-  {id:'es10',cat:'especias',cl:'Especias',name:'Pimienta Chica',  emoji:'⚫',pKilo:246,  desc:'Pimienta fina de sabor profundo y picante equilibrado.'},
-  {id:'es11',cat:'especias',cl:'Especias',name:'Pimienta Gorda',  emoji:'⚫',pKilo:222,  desc:'Allspice. Aroma a canela, nuez moscada y clavo en uno.'},
-  {id:'es12',cat:'especias',cl:'Especias',name:'Romero',          emoji:'🌿',pKilo:156,  desc:'Herbal y resinoso. Ideal para marinar carnes y panes.'},
-  {id:'es13',cat:'especias',cl:'Especias',name:'Tomillo',         emoji:'🌿',pKilo:156,  desc:'Fragante y sutil. Eleva sopas, carnes y guisos.'},
-  {id:'es14',cat:'especias',cl:'Especias',name:'Jamaica Importada',emoji:'🌺',pKilo:126, desc:'Flor ácida y vibrante, rica en vitamina C.'},
-
-  {id:'mo01',cat:'molidos',cl:'Molidos',name:'Ajo Molido',             emoji:'🧄',pKilo:102,  desc:'Práctico y concentrado. Todo el sabor del ajo.'},
-  {id:'mo02',cat:'molidos',cl:'Molidos',name:'Canela Molida',          emoji:'🟤',pKilo:98.4, desc:'Dulce y cálida. Para atoles, postres y bebidas.'},
-  {id:'mo03',cat:'molidos',cl:'Molidos',name:'Cebolla Molida',         emoji:'🧅',pKilo:150,  desc:'Sazona sin necesidad de cortar.'},
-  {id:'mo04',cat:'molidos',cl:'Molidos',name:'Chile Guajillo Molido',  emoji:'🌶️',pKilo:180, desc:'Color intenso y sabor frutal. Base de los moles.'},
-  {id:'mo05',cat:'molidos',cl:'Molidos',name:'Comino Molido',          emoji:'🟡',pKilo:126,  desc:'Sabor cálido y profundo en polvo, listo para usar.'},
-  {id:'mo06',cat:'molidos',cl:'Molidos',name:'Cúrcuma',                emoji:'🟠',pKilo:138,  desc:'Antiinflamatoria y colorida. El superalimento dorado.'},
-  {id:'mo07',cat:'molidos',cl:'Molidos',name:'Jengibre Molido',        emoji:'🟡',pKilo:150,  desc:'Picante y digestivo. Para cocina y bebidas.'},
-  {id:'mo08',cat:'molidos',cl:'Molidos',name:'Pimentón Dulce (Paprika)',emoji:'🔴',pKilo:138, desc:'Ahumado y colorido. Esencial en la cocina española.'},
-  {id:'mo09',cat:'molidos',cl:'Molidos',name:'Pimienta Negra Molida',  emoji:'⚫',pKilo:180,  desc:'La reina de las especias en polvo.'},
-
-  {id:'sa01',cat:'sal',cl:'Sal',name:'Sal Himalaya 1kg',emoji:'🌸',pKilo:93.6,desc:'Sal rosa del Himalaya en presentación económica.'},
-  {id:'sa02',cat:'sal',cl:'Sal',name:'Sal del Himalaya',emoji:'🌸',pKilo:90,  desc:'Sal rosa pura, rica en 84 minerales esenciales.'},
-
-  {id:'de01',cat:'deshidratados',cl:'Deshidratados',name:'Arándano Deshidratado',emoji:'🫐',pKilo:168,desc:'Dulce y ácido. Perfecto para yogurt, ensaladas y snack.'},
-  {id:'de02',cat:'deshidratados',cl:'Deshidratados',name:'Piña Deshidratada',    emoji:'🍍',pKilo:462,desc:'Tropical y dulce. Sin azúcar añadida, 100% natural.'},
-  {id:'de03',cat:'deshidratados',cl:'Deshidratados',name:'Naranja Deshidratada', emoji:'🍊',pKilo:480,desc:'Rodajas aromáticas para decorar bebidas y postres.'},
-  {id:'de04',cat:'deshidratados',cl:'Deshidratados',name:'Limón Deshidratado',   emoji:'🍋',pKilo:546,desc:'Ácido e intenso. Ideal para tés y decoración gourmet.'},
-  {id:'de05',cat:'deshidratados',cl:'Deshidratados',name:'Toronja Deshidratada', emoji:'🍊',pKilo:546,desc:'Amarga y aromática. Para infusiones y cócteles.'},
-
-  {id:'ot01',cat:'otros',cl:'Otros',name:'Bicarbonato',emoji:'🧪',pKilo:82.8,desc:'Uso alimenticio. Para cocina saludable y limpieza del hogar.'},
-];
-
-const SIZES=[
-  {label:'100 g',key:'0.10',f:0.10},
-  {label:'250 g',key:'0.25',f:0.25},
-  {label:'500 g',key:'0.50',f:0.50},
-  {label:'1 kg', key:'1.00',f:1.00},
-];
-
-/* Format price in MXN — signo de peso mexicano */
-function fmt(n){ return '<span class="peso">$</span>' + n.toFixed(2); }
-function calcP(pKilo, f){ return Math.round(pKilo * f * 100) / 100; }
-
-let cart=[], selS={}, ppRendered=false;
-
-function init(){
-  const bar=document.getElementById('fbar');
-  const cats=[{k:'todos',l:'Todos'},{k:'te',l:'Tés'},{k:'especias',l:'Especias'},
-    {k:'molidos',l:'Molidos'},{k:'sal',l:'Sal'},{k:'deshidratados',l:'Deshidratados'},{k:'otros',l:'Otros'}];
-  bar.innerHTML=cats.map(c=>`<button class="fbtn ${c.k==='todos'?'active':''}"
-    onclick="filterP('${c.k}',this)">${c.l}</button>`).join('');
-  renderProds('todos');
-  refreshCartFooter();
-}
-
-function filterP(cat,btn){
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderProds(cat);
-}
-
-function renderProds(cat){
-  const grid=document.getElementById('pgrid');
-  const list=cat==='todos'?CAT:CAT.filter(p=>p.cat===cat);
-  grid.innerHTML=list.map(p=>{
-    const sk=selS[p.id]||'0.25';
-    const sz=SIZES.find(s=>s.key===sk)||SIZES[1];
-    const price=calcP(p.pKilo,sz.f);
-    const imgSrc=getImg(p.id,p.cat);
-    return`<div class="pcard cat-${p.cat}" id="card-${p.id}">
-      <div class="pcard-badge">${p.cl}</div>
-      <div class="pcard-img">
-        <img src="${imgSrc}" alt="${p.name}"
-          onerror="this.parentElement.innerHTML='<span>${p.emoji}</span>'">
-      </div>
-      <div class="pcard-body">
-        <div class="pcard-cat">${p.cl}</div>
-        <div class="pcard-name">${p.name}</div>
-        <div class="pcard-desc">${p.desc}</div>
-        <div class="size-lbl">Presentación</div>
-        <div class="sizes">
-          ${SIZES.map(s=>`<button class="sopt ${s.key===sk?'sel':''}"
-            onclick="selSize('${p.id}','${s.key}',this)">${s.label}</button>`).join('')}
+  <!-- ======= HERO ======= -->
+  <header class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="fade-up">
+          <div class="hero-badge">🌱 Del campo a tu mesa</div>
+          <h1>Especias, tés y <em>productos naturales</em> de calidad premium</h1>
+          <p class="hero-desc">Semillas, especias, tés artesanales y deshidratados seleccionados con cuidado. Mayoreo y menudeo con envío en CDMX y Área Metropolitana.</p>
+          <div class="hero-actions">
+            <a href="https://wa.me/527481660295?text=Hola%2C%20quiero%20hacer%20un%20pedido" class="btn btn-primary">Pedir por WhatsApp →</a>
+            <a href="#catalogo" class="btn btn-outline">Ver catálogo</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><strong>100%</strong><span>Natural</span></div>
+            <div class="hero-stat"><strong>+50</strong><span>Productos</span></div>
+            <div class="hero-stat"><strong>1-3 días</strong><span>Entrega CDMX</span></div>
+          </div>
         </div>
-        <div class="pfoot">
-          <div class="pprice" id="pr-${p.id}">${fmt(price)}</div>
-          <button class="add-btn" id="btn-${p.id}" onclick="addCart('${p.id}')">
-            + Agregar
-          </button>
+        <div class="hero-visual fade-up" style="transition-delay:0.15s">
+          <div class="hero-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80" alt="Especias premium AS MOLINAS - variedad de especias naturales" loading="eager" width="600" height="450">
+            <div class="hero-float-badge">✅ 100% Sin conservadores</div>
+          </div>
         </div>
       </div>
-    </div>`;
-  }).join('');
-}
+    </div>
+  </header>
 
-function selSize(id,sk,btn){
-  selS[id]=sk;
-  const card=document.getElementById('card-'+id);
-  if(!card)return;
-  card.querySelectorAll('.sopt').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-  const p=CAT.find(x=>x.id===id);
-  const sz=SIZES.find(s=>s.key===sk);
-  document.getElementById('pr-'+id).innerHTML=`${fmt(calcP(p.pKilo,sz.f))}`;
-}
+  <!-- ======= DISCOUNT BANNER ======= -->
+  <div class="discount-banner" role="banner" aria-label="Promociones">
+    <div class="discount-banner-inner">
+      <span class="discount-item">🚚 Pedidos <strong>+$500</strong> = envío gratis en CDMX</span>
+      <span class="discount-sep">|</span>
+      <span class="discount-item">🎁 Pedidos <strong>+$1,000</strong> = 10% de descuento</span>
+      <span class="discount-sep">|</span>
+      <span class="discount-item">📦 Mayoreo desde $2,000 — precios especiales</span>
+    </div>
+  </div>
 
-function addCart(id){
-  const p=CAT.find(x=>x.id===id);
-  const sk=selS[id]||'0.25';
-  const sz=SIZES.find(s=>s.key===sk);
-  const price=calcP(p.pKilo,sz.f);
-  const key=id+'_'+sk;
-  const ex=cart.find(i=>i.key===key);
-  if(ex) ex.qty++;
-  else cart.push({key,id,sk,name:p.name,szLbl:sz.label,price,emoji:p.emoji,img:getImg(id,p.cat)});
-  renderCartItems();
-  refreshCartFooter();
-  updateBadge();
-  flashBtn(id);
-  showToast(`${p.name} (${sz.label}) agregado 🎉`);
-  openCart();
-}
-
-function delItem(key){
-  cart=cart.filter(i=>i.key!==key);
-  ppRendered=false;
-  renderCartItems();
-  refreshCartFooter();
-  updateBadge();
-}
-
-function chgQty(key,d){
-  const it=cart.find(i=>i.key===key);
-  if(!it)return;
-  it.qty+=d;
-  if(it.qty<=0){ delItem(key); return; }
-  renderCartItems();
-  refreshCartFooter();
-  updateBadge();
-}
-
-/* Renders ONLY the scrollable items list */
-function renderCartItems(){
-  const el=document.getElementById('cItems');
-  if(!cart.length){
-    el.innerHTML=`<div class="c-empty">
-      <div class="c-empty-icon">🛒</div>
-      <p>Tu carrito está vacío.<br><br>
-      <a href="#productos" onclick="closeCart()" style="color:var(--verde);font-weight:800;text-decoration:none">→ Ver productos</a></p>
-    </div>`;
-    return;
-  }
-  el.innerHTML=cart.map(i=>`
-    <div class="c-item">
-      <div class="c-item-img">
-        <img src="${i.img}" alt="${i.name}"
-          onerror="this.parentElement.innerHTML='<span style=font-size:1.4rem>${i.emoji}</span>'">
+  <!-- ======= CATEGORIES ======= -->
+  <section class="categories" id="productos">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Categorías</div>
+        <h2 class="section-title">Nuestros Productos</h2>
+        <p class="section-subtitle">Seleccionados con cuidado, directamente del mejor origen</p>
       </div>
-      <div class="c-item-info">
-        <div class="c-item-name">${i.name}</div>
-        <div class="c-item-size">${i.szLbl}</div>
-        <div class="c-item-price">${fmt(i.price)} c/u</div>
-        <div class="qty-row">
-          <button class="qbtn" onclick="chgQty('${i.key}',-1)">−</button>
-          <span class="qnum">${i.qty}</span>
-          <button class="qbtn" onclick="chgQty('${i.key}',1)">+</button>
+      <div class="cat-grid">
+        <a href="#catalogo" class="cat-card fade-up" onclick="filterProducts('especias')">
+          <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=75" alt="Especias premium" loading="lazy" width="400" height="280">
+          <div class="cat-card-body"><h3>Especias</h3><p>Pimienta, comino, canela y más</p></div>
+        </a>
+        <a href="#catalogo" class="cat-card fade-up" style="transition-delay:0.05s" onclick="filterProducts('tes')">
+          <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=75" alt="Tés artesanales" loading="lazy" width="400" height="280">
+          <div class="cat-card-body"><h3>Tés Artesanales</h3><p>Manzanilla, hierbabuena, mezclas</p></div>
+        </a>
+        <a href="#catalogo" class="cat-card fade-up" style="transition-delay:0.1s" onclick="filterProducts('deshidratados')">
+          <img src="https://images.unsplash.com/photo-1622480916113-9000ac49b79d?w=400&q=75" alt="Frutas deshidratadas" loading="lazy" width="400" height="280">
+          <div class="cat-card-body"><h3>Deshidratados</h3><p>Mango, arándano, fresa, piña</p></div>
+        </a>
+        <a href="#catalogo" class="cat-card fade-up" style="transition-delay:0.15s" onclick="filterProducts('semillas')">
+          <img src="https://images.unsplash.com/photo-1599909366692-af8e11af4e01?w=400&q=75" alt="Semillas y molidos" loading="lazy" width="400" height="280">
+          <div class="cat-card-body"><h3>Semillas y Molidos</h3><p>Ajonjolí, linaza, chía</p></div>
+        </a>
+        <a href="#catalogo" class="cat-card fade-up" style="transition-delay:0.2s" onclick="filterProducts('sales')">
+          <img src="https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?w=400&q=75" alt="Sal del Himalaya" loading="lazy" width="400" height="280">
+          <div class="cat-card-body"><h3>Sales Gourmet</h3><p>Sal del Himalaya, sal de mar</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= CATALOG WITH PRICES ======= -->
+  <section class="catalog" id="catalogo">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Catálogo</div>
+        <h2 class="section-title">Productos y Precios</h2>
+        <p class="section-subtitle">Precios en MXN · Mayoreo y menudeo · Pedido mínimo $300</p>
+      </div>
+
+      <div class="filter-bar fade-up">
+        <button class="filter-btn active" onclick="filterProducts('todos')">Todos</button>
+        <button class="filter-btn" onclick="filterProducts('especias')">Especias</button>
+        <button class="filter-btn" onclick="filterProducts('tes')">Tés</button>
+        <button class="filter-btn" onclick="filterProducts('deshidratados')">Deshidratados</button>
+        <button class="filter-btn" onclick="filterProducts('semillas')">Semillas</button>
+        <button class="filter-btn" onclick="filterProducts('sales')">Sales</button>
+        <button class="filter-btn filter-btn-kits" onclick="filterProducts('kits')">🎁 Kits</button>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- Products rendered by JS -->
+      </div>
+
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </section>
+
+  <!-- ======= TRUST BADGES ======= -->
+  <section class="trust">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-card fade-up">
+          <div class="trust-icon">🌱</div>
+          <h4>100% Natural</h4>
+          <p>Sin conservadores, colorantes ni aditivos artificiales.</p>
+        </div>
+        <div class="trust-card fade-up" style="transition-delay:0.05s">
+          <div class="trust-icon">🤝</div>
+          <h4>Comercio Justo</h4>
+          <p>Trabajamos directo con productores mexicanos.</p>
+        </div>
+        <div class="trust-card fade-up" style="transition-delay:0.1s">
+          <div class="trust-icon">📦</div>
+          <h4>Empaque Sellado</h4>
+          <p>Conserva aroma y frescura hasta tu puerta.</p>
+        </div>
+        <div class="trust-card fade-up" style="transition-delay:0.15s">
+          <div class="trust-icon">🚚</div>
+          <h4>Entrega 1-3 días</h4>
+          <p>CDMX y Área Metropolitana. Envíos foráneos disponibles.</p>
         </div>
       </div>
-      <button class="c-item-del" onclick="delItem('${i.key}')" title="Eliminar">🗑</button>
-    </div>`).join('');
-}
+    </div>
+  </section>
 
-/* Updates ONLY the footer totals & PayPal — never touches the items list */
-function refreshCartFooter(){
-  const total=cart.reduce((s,i)=>s+i.price*i.qty, 0);
-  const sub=document.getElementById('cSub');
-  const val=document.getElementById('cTotalVal');
-  if(sub) sub.innerHTML = fmt(total);
-  if(val) val.innerHTML = fmt(total);
-  renderPP(total);
-}
+  <!-- ======= TESTIMONIALS ======= -->
+  <section class="testimonials" id="testimonios">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Opiniones</div>
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        <p class="section-subtitle">+200 clientes satisfechos en CDMX</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"La calidad de las especias es increíble, se nota la frescura. El envío llegó al día siguiente y muy bien empacado."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MR</div>
+            <div><div class="testimonial-name">María R.</div><div class="testimonial-role">Clienta frecuente · Coyoacán</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up" style="transition-delay:0.08s">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Compro por mayoreo para mi restaurante. Los precios son excelentes y la atención por WhatsApp es rápida y amable."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">CL</div>
+            <div><div class="testimonial-name">Carlos L.</div><div class="testimonial-role">Restaurantero · Roma Norte</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up" style="transition-delay:0.16s">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Los tés artesanales son mi favorito. El de manzanilla con lavanda es delicioso. Ya no compro en otro lado."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AP</div>
+            <div><div class="testimonial-name">Ana P.</div><div class="testimonial-role">Clienta · Polanco</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-function updateBadge(){
-  const n=cart.reduce((s,i)=>s+i.qty,0);
-  const b=document.getElementById('cartCount');
-  b.textContent=n;
-  b.classList.remove('bump');
-  void b.offsetWidth;
-  b.classList.add('bump');
-}
+  <!-- ======= MISSION ======= -->
+  <section class="mission" id="nosotros">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Nosotros</div>
+        <h2 class="section-title">Nuestra Filosofía</h2>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-card fade-up">
+          <h3>🌱 Misión</h3>
+          <p>Llevar al hogar de cada familia mexicana especias, tés y productos naturales de la más alta calidad, seleccionados directamente en origen con respeto al campo y a los productores. Creemos que comer bien empieza por ingredientes honestos, frescos y sin artificios.</p>
+        </div>
+        <div class="mission-card fade-up" style="transition-delay:0.08s">
+          <h3>✨ Visión</h3>
+          <p>Ser la marca de referencia en México para la venta de especias y productos naturales a granel, reconocida por su autenticidad, transparencia y compromiso con el bienestar de las personas y el medio ambiente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-function flashBtn(id){
-  const btn=document.getElementById('btn-'+id);
-  if(!btn)return;
-  btn.classList.add('flash');btn.textContent='✓ Agregado';
-  setTimeout(()=>{btn.classList.remove('flash');btn.innerHTML='+ Agregar';},1400);
-}
+  <!-- ======= CONTACT ======= -->
+  <section class="contact" id="contacto">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info fade-up">
+          <h2>¿Listo para ordenar?</h2>
+          <p>Haz tu pedido por WhatsApp o llena el formulario y te respondemos en minutos. Pedido mínimo $300 MXN.</p>
+          <div class="contact-channels">
+            <a href="https://wa.me/527481660295?text=Hola%2C%20quiero%20hacer%20un%20pedido" class="contact-channel">
+              <div class="contact-channel-icon wa">💬</div>
+              <div class="contact-channel-text"><strong>WhatsApp</strong><span>748 166 0295 · Respuesta inmediata</span></div>
+            </a>
+            <a href="mailto:info@asmolinas.com" class="contact-channel">
+              <div class="contact-channel-icon email">✉</div>
+              <div class="contact-channel-text"><strong>Correo</strong><span>info@asmolinas.com</span></div>
+            </a>
+            <a href="https://instagram.com/asmolinas_especias" target="_blank" rel="noopener" class="contact-channel">
+              <div class="contact-channel-icon ig">📸</div>
+              <div class="contact-channel-text"><strong>Instagram</strong><span>@asmolinas_especias</span></div>
+            </a>
+          </div>
+        </div>
+        <div class="contact-wa-cta fade-up" style="transition-delay:0.1s; background:var(--c-white); border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-md); text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;">
+          <div style="font-size:3rem">💬</div>
+          <h3 style="font-family:var(--ff-display); font-size:1.4rem; color:var(--c-forest)">Escríbenos directamente</h3>
+          <p style="font-size:0.9rem; color:var(--c-text-light); max-width:320px; line-height:1.6">Dinos qué productos te interesan y cuánto necesitas. Te respondemos en minutos con disponibilidad y precios.</p>
+          <a href="https://wa.me/527481660295?text=Hola%2C%20quiero%20hacer%20un%20pedido" class="btn btn-primary" style="margin-top:8px">Pedir por WhatsApp →</a>
+          <p style="font-size:0.78rem; color:var(--c-text-light)">748 166 0295 · Lun–Sáb 9am–7pm</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-/* PAYPAL */
-function renderPP(total){
-  const wrap=document.getElementById('paypal-btn-wrap');
-  if(!wrap)return;
-  if(total<=0){ wrap.innerHTML=''; ppRendered=false; return; }
-  if(ppRendered) return;
-  wrap.innerHTML='';
+  <!-- ======= FOOTER ======= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">🌿 AS <span>MOLINAS</span></div>
+          <p>Especias, tés y productos naturales de calidad premium. Del campo a tu mesa.</p>
+        </div>
+        <div>
+          <h4>Productos</h4>
+          <ul>
+            <li><a href="#catalogo">Especias</a></li>
+            <li><a href="#catalogo">Tés Artesanales</a></li>
+            <li><a href="#catalogo">Deshidratados</a></li>
+            <li><a href="#catalogo">Semillas</a></li>
+            <li><a href="#catalogo">Sales Gourmet</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#testimonios">Opiniones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="aviso-de-privacidad.html">Aviso de Privacidad</a></li>
+            <li><a href="terminos.html">Términos y Condiciones</a></li>
+            <li><a href="envios.html">Política de Entregas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Blog</h4>
+          <ul>
+            <li><a href="blog.html">Artículos y consejos</a></li>
+            <li><a href="blog/articulo-1.html">5 especias esenciales</a></li>
+            <li><a href="blog/articulo-2.html">Conservar especias</a></li>
+            <li><a href="blog/articulo-3.html">Beneficios de la cúrcuma</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 AS MOLINAS. Todos los derechos reservados. Ciudad de México.</span>
+        <div>
+          <a href="aviso-de-privacidad.html">Aviso de Privacidad</a>
+          <a href="terminos.html">Términos</a>
+          <a href="envios.html">Envíos</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-  if(typeof paypal==='undefined'){
-    wrap.innerHTML=`<div style="background:#fff8e6;border:1.5px dashed var(--dorado);
-      border-radius:10px;padding:14px;text-align:center;font-size:.78rem;color:var(--cafe2);line-height:1.6">
-      ⚠️ <strong>Activa PayPal para cobrar</strong><br>
-      Reemplaza <code style="background:#f0e8d0;padding:1px 5px;border-radius:4px">TU_CLIENT_ID_AQUI</code>
-      en el archivo HTML con tu Client ID de PayPal Business.
-    </div>`;
-    return;
-  }
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/527481660295?text=Hola%2C%20quiero%20información%20sobre%20sus%20productos" class="wa-float" aria-label="Contactar por WhatsApp" target="_blank" rel="noopener">💬</a>
 
-  ppRendered=true;
-  paypal.Buttons({
-    style:{layout:'vertical',color:'gold',shape:'pill',label:'pay',height:44},
-    createOrder(data,actions){
-      const t=cart.reduce((s,i)=>s+i.price*i.qty,0);
-      return actions.order.create({
-        purchase_units:[{
-          description:'AS MOLINAS — Productos Naturales',
-          amount:{
-            value:t.toFixed(2),currency_code:'MXN',
-            breakdown:{item_total:{value:t.toFixed(2),currency_code:'MXN'}}
-          },
-          items:cart.map(i=>({
-            name:`${i.name} (${i.szLbl})`,
-            quantity:String(i.qty),
-            unit_amount:{value:i.price.toFixed(2),currency_code:'MXN'}
-          }))
-        }]
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <span>Usamos cookies para mejorar tu experiencia. <a href="aviso-de-privacidad.html" style="color:white;text-decoration:underline">Más info</a></span>
+    <button class="cookie-accept" onclick="acceptCookies()">Aceptar</button>
+    <button class="cookie-decline" onclick="declineCookies()">Rechazar</button>
+  </div>
+
+  <script>
+    // ===== PRODUCT DATA =====
+    const products = [
+      // Especias
+      { name: "Canela en raja", desc: "Canela ceylan premium, aroma intenso", price: 180, unit: "kg", cat: "especias", tag: "Popular" },
+      { name: "Canela molida", desc: "Molida fina, ideal para repostería", price: 190, unit: "kg", cat: "especias", tag: "" },
+      { name: "Pimienta negra entera", desc: "Grano entero seleccionado", price: 220, unit: "kg", cat: "especias", tag: "" },
+      { name: "Pimienta negra molida", desc: "Molida gruesa, sabor intenso", price: 230, unit: "kg", cat: "especias", tag: "" },
+      { name: "Comino entero", desc: "Semilla entera de alta calidad", price: 160, unit: "kg", cat: "especias", tag: "" },
+      { name: "Chile ancho seco", desc: "Deshidratado, limpio y seleccionado", price: 140, unit: "kg", cat: "especias", tag: "" },
+      { name: "Chile guajillo seco", desc: "Seleccionado, color rojo intenso", price: 130, unit: "kg", cat: "especias", tag: "" },
+      { name: "Orégano molido", desc: "Orégano mexicano, aroma fresco", price: 120, unit: "kg", cat: "especias", tag: "" },
+      { name: "Clavo de olor", desc: "Grano entero, muy aromático", price: 350, unit: "kg", cat: "especias", tag: "Premium" },
+      { name: "Cúrcuma en polvo", desc: "Raíz molida, color dorado intenso", price: 170, unit: "kg", cat: "especias", tag: "" },
+
+      // Tés
+      { name: "Manzanilla premium", desc: "Flor entera, cosecha reciente", price: 180, unit: "kg", cat: "tes", tag: "Popular" },
+      { name: "Hierbabuena", desc: "Hojas secas, aroma refrescante", price: 140, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té de limón", desc: "Hojas de limón natural", price: 120, unit: "kg", cat: "tes", tag: "" },
+      { name: "Moringa", desc: "Hojas secas, alto valor nutricional", price: 250, unit: "kg", cat: "tes", tag: "Superfood" },
+      { name: "Flor de Jamaica", desc: "Flor entera, ideal para agua fresca", price: 130, unit: "kg", cat: "tes", tag: "" },
+      { name: "Mezcla relajante", desc: "Manzanilla, lavanda y pasiflora", price: 220, unit: "kg", cat: "tes", tag: "Nuevo" },
+
+      // Deshidratados
+      { name: "Arándano deshidratado", desc: "Fruta entera, sabor dulce-ácido", price: 90, unit: "kg", cat: "deshidratados", tag: "Popular" },
+      { name: "Mango rodaja", desc: "Rodajas deshidratadas, sin azúcar", price: 135, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Mango cubo", desc: "Cubos deshidratados, snack natural", price: 135, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Fresa deshidratada", desc: "Rodaja entera, color intenso", price: 200, unit: "kg", cat: "deshidratados", tag: "Premium" },
+      { name: "Piña rodaja", desc: "Rodajas naturales deshidratadas", price: 180, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Piña cubo", desc: "Cubos prácticos para granola", price: 135, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Papaya deshidratada", desc: "Trozos dulces y suaves", price: 110, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Manzana rodaja", desc: "Rodajas crujientes, sin azúcar", price: 120, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Cereza deshidratada", desc: "Sabor intenso, ideal repostería", price: 170, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Orejón (chabacano)", desc: "Chabacano deshidratado premium", price: 250, unit: "kg", cat: "deshidratados", tag: "Premium" },
+
+      // Semillas
+      { name: "Almendra natural", desc: "Entera con cutícula, seleccionada", price: 190, unit: "kg", cat: "semillas", tag: "Popular" },
+      { name: "Almendra fileteada", desc: "Corte fino para repostería", price: 200, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Almendra sin cutícula", desc: "Pelada, lista para usar", price: 200, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Nuez de la India", desc: "Cashew entero, tostado natural", price: 210, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Avellana", desc: "Entera con cutícula, grado premium", price: 370, unit: "kg", cat: "semillas", tag: "Premium" },
+      { name: "Ajonjolí natural", desc: "Semilla limpia, ideal para pan", price: 65, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Coco rallado", desc: "Rallado fino, sin azúcar", price: 80, unit: "kg", cat: "semillas", tag: "" },
+
+      // Sales
+      { name: "Sal del Himalaya fina", desc: "Sal rosa molida fina, 84 minerales", price: 85, unit: "kg", cat: "sales", tag: "Popular" },
+      { name: "Sal del Himalaya gruesa", desc: "Grano grueso, ideal para molino", price: 80, unit: "kg", cat: "sales", tag: "" },
+      { name: "Sal de mar gruesa", desc: "Cosechada naturalmente, sin refinar", price: 45, unit: "kg", cat: "sales", tag: "" },
+
+      // Kits / Bundles
+      { name: "Kit Cocina Mexicana", desc: "Chile ancho + guajillo + comino + orégano · 250g c/u", price: 199, unit: "kit", cat: "kits", tag: "⭐ Bestseller" },
+      { name: "Kit Repostería", desc: "Canela + vainilla + nuez + almendra · 250g c/u", price: 249, unit: "kit", cat: "kits", tag: "🍰 Repostería" },
+      { name: "Kit Tés Relajantes", desc: "Manzanilla + lavanda + pasiflora · 100g c/u", price: 179, unit: "kit", cat: "kits", tag: "😴 Relax" },
+      { name: "Kit Superfoods", desc: "Chía + quinoa + cúrcuma + jengibre · 250g c/u", price: 229, unit: "kit", cat: "kits", tag: "💪 Salud" },
+      { name: "Paquete Prueba", desc: "5 especias bestseller en sobres de 100g · ¡Ideal para conocernos!", price: 149, unit: "paq", cat: "kits", tag: "🎁 Prueba" },
+    ];
+
+    // ===== PRODUCT IMAGE MAPPING =====
+    const catImages = {
+      especias: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=70",
+      tes: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=70",
+      deshidratados: "https://images.unsplash.com/photo-1622480916113-9000ac49b79d?w=400&q=70",
+      semillas: "https://images.unsplash.com/photo-1599909366692-af8e11af4e01?w=400&q=70",
+      sales: "https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?w=400&q=70",
+      kits: "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?w=400&q=70",
+    };
+
+    // ===== STATE =====
+    let currentFilter = 'todos';
+    let currentPage = 1;
+    const perPage = 8;
+
+    // ===== RENDER PRODUCTS =====
+    function filterProducts(cat) {
+      currentFilter = cat;
+      currentPage = 1;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b.textContent.toLowerCase().includes(cat === 'todos' ? 'todos' : cat.substring(0,3)));
       });
-    },
-    onApprove(data,actions){
-      return actions.order.capture().then(d=>{
-        const name=d.payer.name.given_name;
-        cart=[];ppRendered=false;
-        renderCartItems();refreshCartFooter();updateBadge();closeCart();
-        setTimeout(()=>alert(`✅ ¡Gracias, ${name}!\n\nPago recibido. Te enviaremos confirmación por correo.\n\n🌿 AS MOLINAS te agradece tu preferencia.`),200);
-      });
-    },
-    onError(e){ console.error(e); alert('Error en el pago. Por favor intenta nuevamente.'); }
-  }).render('#paypal-btn-wrap');
-}
+      renderProducts();
+    }
 
-function openCart(){
-  document.getElementById('cSide').classList.add('open');
-  document.getElementById('cOverlay').classList.add('open');
-}
-function closeCart(){
-  document.getElementById('cSide').classList.remove('open');
-  document.getElementById('cOverlay').classList.remove('open');
-}
+    function renderProducts() {
+      const filtered = currentFilter === 'todos' ? products : products.filter(p => p.cat === currentFilter);
+      const totalPages = Math.ceil(filtered.length / perPage);
+      const start = (currentPage - 1) * perPage;
+      const pageProducts = filtered.slice(start, start + perPage);
 
-let _tt;
-function showToast(msg){
-  const t=document.getElementById('toast');
-  document.getElementById('toastMsg').textContent=msg;
-  t.classList.add('show');
-  clearTimeout(_tt);
-  _tt=setTimeout(()=>t.classList.remove('show'),2800);
-}
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = pageProducts.map(p => `
+        <div class="product-card fade-up visible" data-cat="${p.cat}">
+          <div class="product-card-img">
+            <img src="${catImages[p.cat]}" alt="${p.name}" loading="lazy" width="400" height="280">
+            ${p.tag ? `<span class="product-tag">${p.tag}</span>` : ''}
+          </div>
+          <div class="product-card-body">
+            <h4>${p.name}</h4>
+            <p class="product-desc">${p.desc}</p>
+            <div class="product-price">$${p.price} <small>MXN/${p.unit}</small></div>
+          </div>
+        </div>
+      `).join('');
 
-init();
-</script>
+      // Pagination
+      const pag = document.getElementById('pagination');
+      if (totalPages <= 1) { pag.innerHTML = ''; return; }
+      pag.innerHTML = Array.from({length: totalPages}, (_, i) =>
+        `<button class="page-btn ${i+1===currentPage?'active':''}" onclick="goPage(${i+1})">${i+1}</button>`
+      ).join('');
+    }
+
+    function goPage(n) {
+      currentPage = n;
+      renderProducts();
+      document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ===== SCROLL ANIMATIONS =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ===== NAVBAR SCROLL =====
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // ===== COOKIE BANNER =====
+    if (!localStorage.getItem('cookies_set')) {
+      setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 2000);
+    }
+    function acceptCookies() {
+      localStorage.setItem('cookies_set', 'accepted');
+      document.getElementById('cookieBanner').classList.remove('show');
+    }
+    function declineCookies() {
+      localStorage.setItem('cookies_set', 'declined');
+      document.getElementById('cookieBanner').classList.remove('show');
+    }
+
+    // ===== INIT =====
+    renderProducts();
+  </script>
+
 </body>
 </html>
