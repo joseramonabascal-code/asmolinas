@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /assets/catalogo-asmolinas.pdf
 Disallow: /as_molinas_tienda_6.html
+Disallow: /assets/gen_catalog.py
 
 Sitemap: https://asmolinas.com/sitemap.xml
