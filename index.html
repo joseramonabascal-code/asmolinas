@@ -7,7 +7,7 @@
 
   <!-- SEO Meta Tags -->
   <title>AS MOLINAS — Especias, Tés y Productos Naturales | Mayoreo y Menudeo CDMX</title>
-  <meta name="description" content="Venta de especias, tés artesanales, deshidratados y productos naturales a granel. Mayoreo y menudeo en CDMX y Área Metropolitana. 100% naturales, sin conservadores.">
+  <meta name="description" content="Especias y tés premium mexicanos. 100% natural, envío a todo México. Achiote, epazote, canela artesanal.">
   <meta name="keywords" content="especias, tés artesanales, productos naturales, mayoreo, menudeo, CDMX, deshidratados, semillas, sal del Himalaya, granel, especias premium México">
   <meta name="author" content="AS MOLINAS">
   <meta name="robots" content="index, follow">
@@ -43,16 +43,54 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80" fetchpriority="high">
 
-  <!-- Structured Data (JSON-LD) LocalBusiness -->
+  <!-- Schema: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AS MOLINAS",
+    "url": "https://asmolinas.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://asmolinas.com/favicon.svg",
+      "width": 100,
+      "height": 100
+    },
+    "description": "Especias y tés premium mexicanos. 100% natural, sin conservadores. Mayoreo y menudeo en CDMX y Área Metropolitana.",
+    "telephone": "+527481660295",
+    "email": "info@asmolinas.com",
+    "foundingDate": "2024",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ciudad de México",
+      "addressRegion": "CDMX",
+      "addressCountry": "MX"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+527481660295",
+      "contactType": "customer service",
+      "areaServed": "MX",
+      "availableLanguage": "Spanish",
+      "hoursAvailable": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "19:00"}
+    },
+    "sameAs": [
+      "https://instagram.com/asmolinas_especias",
+      "https://wa.me/527481660295"
+    ]
+  }
+  </script>
+  <!-- Schema: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "AS MOLINAS",
-    "description": "Venta de especias, tés artesanales, deshidratados y productos naturales a granel en CDMX.",
+    "description": "Especias y tés premium mexicanos. 100% natural, envío a todo México. Achiote, epazote, canela artesanal.",
     "url": "https://asmolinas.com",
     "telephone": "+527481660295",
     "email": "info@asmolinas.com",
+    "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=1200&q=85",
     "sameAs": ["https://instagram.com/asmolinas_especias"],
     "address": {
       "@type": "PostalAddress",
@@ -60,7 +98,11 @@
       "addressRegion": "CDMX",
       "addressCountry": "MX"
     },
-    "areaServed": "CDMX y Área Metropolitana",
+    "geo": {"@type": "GeoCoordinates", "latitude": "19.4326", "longitude": "-99.1332"},
+    "areaServed": [
+      {"@type": "City", "name": "Ciudad de México"},
+      {"@type": "State", "name": "Estado de México"}
+    ],
     "priceRange": "$$",
     "openingHours": "Mo-Sa 09:00-19:00",
     "hasOfferCatalog": {
@@ -70,9 +112,45 @@
         {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Canela en raja", "description": "Canela ceylan premium, aroma intenso"}, "price": "180", "priceCurrency": "MXN"},
         {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Manzanilla premium", "description": "Flor entera, cosecha reciente"}, "price": "180", "priceCurrency": "MXN"},
         {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Sal del Himalaya fina", "description": "Sal rosa molida fina, 84 minerales"}, "price": "85", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Arándano deshidratado", "description": "Fruta entera, sabor dulce-ácido"}, "price": "90", "priceCurrency": "MXN"}
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Arándano deshidratado", "description": "Fruta entera, sabor dulce-ácido"}, "price": "90", "priceCurrency": "MXN"},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Moringa", "description": "Hojas secas, alto valor nutricional, superfood"}, "price": "250", "priceCurrency": "MXN"},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Flor de Jamaica", "description": "Flor entera, ideal para agua fresca"}, "price": "130", "priceCurrency": "MXN"}
       ]
     }
+  }
+  </script>
+  <!-- Schema: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Venden achiote y epazote frescos?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Sí. AS MOLINAS ofrece achiote en pasta y epazote deshidratado de alta calidad, 100% naturales sin conservadores. Disponible por kilo o en porciones menores a través de WhatsApp."}
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuál es el precio de la canela artesanal?",
+        "acceptedAnswer": {"@type": "Answer", "text": "La canela en raja (canela de Ceylan premium) tiene un precio de $180 MXN/kg. La canela molida fina para repostería está a $190 MXN/kg. Ambas son 100% naturales, sin conservadores."}
+      },
+      {
+        "@type": "Question",
+        "name": "¿Hacen envíos a toda la República Mexicana?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Sí. Hacemos envíos a todo México vía Estafeta, DHL o FedEx. Para CDMX y Área Metropolitana la entrega es en 1-3 días hábiles con envío gratis en pedidos mayores a $500 MXN."}
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuál es el pedido mínimo?",
+        "acceptedAnswer": {"@type": "Answer", "text": "El pedido mínimo es de $300 MXN. Para envío gratis dentro de CDMX y Área Metropolitana, el pedido mínimo es de $500 MXN."}
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo hago un pedido?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Realizamos pedidos directamente por WhatsApp al 748 166 0295 o por el formulario del sitio. Confirmamos disponibilidad, enviamos el total y coordinamos la entrega. Lunes a sábado de 9 AM a 7 PM."}
+      }
+    ]
   }
   </script>
   <!-- Structured Data Kits/Bundles -->
@@ -997,7 +1075,7 @@
       <div class="hero-grid">
         <div class="fade-up">
           <div class="hero-badge">🌱 Del campo a tu mesa</div>
-          <h1>Especias, tés y <em>productos naturales</em> de calidad premium</h1>
+          <h1>Especias <em>Premium</em> Mexicanas | Achiote, Epazote, Canela</h1>
           <p class="hero-desc">Semillas, especias, tés artesanales y deshidratados seleccionados con cuidado. Mayoreo y menudeo con envío en CDMX y Área Metropolitana.</p>
           <div class="hero-actions">
             <a href="https://wa.me/527481660295?text=Hola%2C%20quiero%20hacer%20un%20pedido" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Pedir por WhatsApp</a>
@@ -1011,7 +1089,7 @@
         </div>
         <div class="hero-visual fade-up" style="transition-delay:0.15s">
           <div class="hero-img-wrapper">
-            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80" alt="Especias premium AS MOLINAS - variedad de especias naturales" loading="eager" width="600" height="450">
+            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80" alt="Especias premium mexicanas AS MOLINAS — achiote, epazote, canela en raja y más" loading="eager" width="600" height="450">
             <div class="hero-float-badge">✅ 100% Sin conservadores</div>
           </div>
         </div>
@@ -1040,23 +1118,23 @@
       </div>
       <div class="cat-grid">
         <a href="#catalogo" class="cat-card fade-up" onclick="filterProducts('especias')">
-          <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=75" alt="Especias premium" loading="lazy" width="400" height="280">
+          <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=75" alt="Especias mexicanas premium a granel — canela, comino, clavo AS MOLINAS" loading="lazy" width="400" height="280">
           <div class="cat-card-body"><h3>Especias</h3><p>Pimienta, comino, canela y más</p></div>
         </a>
         <a href="#catalogo" class="cat-card fade-up" style="transition-delay:0.05s" onclick="filterProducts('tes')">
-          <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=75" alt="Tés artesanales" loading="lazy" width="400" height="280">
+          <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=75" alt="Tés artesanales mexicanos — manzanilla, flor de Jamaica, moringa AS MOLINAS" loading="lazy" width="400" height="280">
           <div class="cat-card-body"><h3>Tés Artesanales</h3><p>Manzanilla, hierbabuena, mezclas</p></div>
         </a>
         <a href="#catalogo" class="cat-card fade-up" style="transition-delay:0.1s" onclick="filterProducts('deshidratados')">
-          <img src="https://images.unsplash.com/photo-1622480916113-9000ac49b79d?w=400&q=75" alt="Frutas deshidratadas" loading="lazy" width="400" height="280">
+          <img src="https://images.unsplash.com/photo-1622480916113-9000ac49b79d?w=400&q=75" alt="Frutas deshidratadas naturales sin azúcar — mango, fresa, arándano AS MOLINAS" loading="lazy" width="400" height="280">
           <div class="cat-card-body"><h3>Deshidratados</h3><p>Mango, arándano, fresa, piña</p></div>
         </a>
         <a href="#catalogo" class="cat-card fade-up" style="transition-delay:0.15s" onclick="filterProducts('semillas')">
-          <img src="https://images.unsplash.com/photo-1599909366692-af8e11af4e01?w=400&q=75" alt="Semillas y molidos" loading="lazy" width="400" height="280">
+          <img src="https://images.unsplash.com/photo-1599909366692-af8e11af4e01?w=400&q=75" alt="Semillas y nueces premium — almendra, avellana, nuez de la India AS MOLINAS" loading="lazy" width="400" height="280">
           <div class="cat-card-body"><h3>Semillas y Molidos</h3><p>Ajonjolí, linaza, chía</p></div>
         </a>
         <a href="#catalogo" class="cat-card fade-up" style="transition-delay:0.2s" onclick="filterProducts('sales')">
-          <img src="https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?w=400&q=75" alt="Sal del Himalaya" loading="lazy" width="400" height="280">
+          <img src="https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?w=400&q=75" alt="Sal del Himalaya rosa fina y gruesa 84 minerales AS MOLINAS" loading="lazy" width="400" height="280">
           <div class="cat-card-body"><h3>Sales Gourmet</h3><p>Sal del Himalaya, sal de mar</p></div>
         </a>
       </div>
