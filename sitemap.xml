@@ -54,28 +54,28 @@
   </url>
 
   <url>
-    <loc>https://asmolinas.com/blog/articulo-1.html</loc>
-    <lastmod>2026-04-25</lastmod>
+    <loc>https://asmolinas.com/blog/especias-esenciales-cocina-mexicana.html</loc>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://asmolinas.com/blog/articulo-2.html</loc>
-    <lastmod>2026-04-25</lastmod>
+    <loc>https://asmolinas.com/blog/como-conservar-especias-mas-tiempo.html</loc>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://asmolinas.com/blog/articulo-3.html</loc>
-    <lastmod>2026-04-25</lastmod>
+    <loc>https://asmolinas.com/blog/beneficios-curcuma-que-dice-la-ciencia.html</loc>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.80</priority>
   </url>
 
-  <!-- Páginas de redirección (articulo-4 a 8) excluidas del sitemap
-       — tienen canonical a los artículos reales de arriba -->
+  <!-- Stubs de redirección excluidos del sitemap (articulo-1..8)
+       — todos tienen canonical a sus URLs reales con keywords -->
 
   <url>
     <loc>https://asmolinas.com/envios.html</loc>

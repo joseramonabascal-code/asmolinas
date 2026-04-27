@@ -7,6 +7,9 @@ Disallow: /as_molinas_tienda_6.html
 Disallow: /assets/gen_catalog.py
 
 # Páginas de redirección — evitar gasto de crawl budget
+Disallow: /blog/articulo-1.html
+Disallow: /blog/articulo-2.html
+Disallow: /blog/articulo-3.html
 Disallow: /blog/articulo-4.html
 Disallow: /blog/articulo-5.html
 Disallow: /blog/articulo-6.html
