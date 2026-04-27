@@ -1,7 +1,21 @@
 User-agent: *
 Allow: /
 Allow: /assets/catalogo-asmolinas.pdf
+
+# Páginas internas / borrador — no indexar
 Disallow: /as_molinas_tienda_6.html
 Disallow: /assets/gen_catalog.py
+
+# Páginas de redirección — evitar gasto de crawl budget
+Disallow: /blog/articulo-4.html
+Disallow: /blog/articulo-5.html
+Disallow: /blog/articulo-6.html
+Disallow: /blog/articulo-7.html
+Disallow: /blog/articulo-8.html
+
+# WordPress internals (precaución si migran)
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /?s=
 
 Sitemap: https://asmolinas.com/sitemap.xml
