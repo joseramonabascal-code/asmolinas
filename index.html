@@ -847,6 +847,91 @@
       color: var(--c-sage-light);
     }
 
+    /* ========== B2B SECTION ========== */
+    .b2b-section {
+      padding: 80px 0;
+      background: var(--c-warm);
+    }
+    .b2b-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .b2b-card {
+      background: var(--c-white);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+      border-top: 4px solid var(--c-terracotta);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .b2b-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .b2b-icon {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .b2b-card h3 {
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      color: var(--c-forest);
+      margin-bottom: 10px;
+    }
+    .b2b-card > p {
+      font-size: 0.9rem;
+      color: var(--c-text-light);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .b2b-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .b2b-list li {
+      font-size: 0.85rem;
+      color: var(--c-text);
+      padding-left: 18px;
+      position: relative;
+    }
+    .b2b-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--c-terracotta);
+      font-weight: 700;
+    }
+    .b2b-cta {
+      text-align: center;
+      padding: 36px 24px;
+      background: var(--c-forest);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .b2b-cta-text {
+      color: rgba(255,255,255,.9);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    .b2b-cta-text strong { color: var(--c-gold); }
+    @media (max-width: 1024px) {
+      .b2b-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .b2b-grid { grid-template-columns: 1fr; }
+      .b2b-cta { flex-direction: column; gap: 16px; }
+    }
+
     /* ========== MISSION ========== */
     .mission {
       padding: 80px 0;
@@ -1156,6 +1241,8 @@
       <span class="discount-item">🎁 Pedidos <strong>+$1,000</strong> = 10% de descuento</span>
       <span class="discount-sep">|</span>
       <span class="discount-item">📦 Mayoreo desde $2,000 — precios especiales</span>
+      <span class="discount-sep">|</span>
+      <span class="discount-item">🏨 Atendemos <strong>Hoteles, Restaurantes y Spas</strong></span>
     </div>
   </div>
 
@@ -1243,6 +1330,56 @@
           <h4>Entrega 1-3 días</h4>
           <p>CDMX y Área Metropolitana. Envíos foráneos disponibles.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= B2B: HOTELES, RESTAURANTES Y SPAS ======= -->
+  <section class="b2b-section" id="mayoreo" aria-label="Servicio para hoteles, restaurantes y spas">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Servicio B2B</div>
+        <h2 class="section-title">Atendemos Hoteles, Restaurantes y Spas</h2>
+        <p class="section-subtitle">Precios especiales por volumen · Facturación · Entrega programada</p>
+      </div>
+      <div class="b2b-grid">
+        <div class="b2b-card fade-up">
+          <div class="b2b-icon">🏨</div>
+          <h3>Hoteles</h3>
+          <p>Surtimos las cocinas y spas de hoteles boutique y cadenas. Entrega semanal o quincenal con factura. Especias, tés y productos para aromaterapia.</p>
+          <ul class="b2b-list">
+            <li>Hierbas para amenidades y spa</li>
+            <li>Especias para cocina de autor</li>
+            <li>Tés artesanales para habitaciones</li>
+          </ul>
+        </div>
+        <div class="b2b-card fade-up" style="transition-delay:0.08s">
+          <div class="b2b-icon">🍽️</div>
+          <h3>Restaurantes</h3>
+          <p>Desde fondas y cantinas hasta cocinas de alta gastronomía. Abastecemos especias frescas en presentaciones de 500 g, 1 kg y 5 kg con pedido mínimo desde $1,500 MXN.</p>
+          <ul class="b2b-list">
+            <li>Achiote, epazote, canela Ceylon</li>
+            <li>Chiles secos seleccionados</li>
+            <li>Mezclas de especias a la medida</li>
+          </ul>
+        </div>
+        <div class="b2b-card fade-up" style="transition-delay:0.16s">
+          <div class="b2b-icon">🧖</div>
+          <h3>Spas &amp; Wellness</h3>
+          <p>Plantas, flores y raíces secas para aromaterapia, sales de baño y tratamientos corporales. Productos 100% naturales certificados libres de pesticidas.</p>
+          <ul class="b2b-list">
+            <li>Lavanda, manzanilla, rosas secas</li>
+            <li>Sales minerales e infusiones</li>
+            <li>Moringa y superfoods para menús wellness</li>
+          </ul>
+        </div>
+      </div>
+      <div class="b2b-cta fade-up">
+        <p class="b2b-cta-text">¿Eres comprador para un negocio? <strong>Cotiza en menos de 2 horas.</strong></p>
+        <a href="https://wa.me/527481660295?text=Hola%20AS%20MOLINAS%2C%20me%20interesa%20una%20cotización%20para%20mi%20negocio%20(hotel%2Frestaurante%2Fspa)"
+           class="btn btn-primary" target="_blank" rel="noopener">
+          💬 Solicitar cotización B2B
+        </a>
       </div>
     </div>
   </section>
