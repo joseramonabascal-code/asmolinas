@@ -1,0 +1,348 @@
+======================================================================
+  CFO FINANCIERO PERSONAL — REPORTE EJECUTIVO
+  Periodo: 01/05/2026 — 25/05/2026
+  Generado: 25/05/2026 02:12
+======================================================================
+
+======================================================================
+  RESUMEN EJECUTIVO
+======================================================================
+
+  Ingresos:            $   53,500.00
+  Gastos totales:      $   50,460.80
+  Flujo libre:         $    3,039.20
+  Tasa de ahorro:              5.7%
+  Score financiero:          66/100 (Riesgo moderado)
+
+  Anomalias detectadas:   1
+  Suscripciones activas:  16
+  Oportunidades ahorro:   31
+  Ahorro potencial anual: $  113,940.60
+
+======================================================================
+  ESTADO FINANCIERO PERSONAL
+======================================================================
+
+  Concepto                                 Monto  % Ingreso
+  ------------------------------ --------------- ----------
+  Ingreso neto                   $     53,500.00     100.0%
+  (-) Gasto fijo                 $     21,418.00      40.0%
+  (-) Gasto variable             $     13,829.30      25.8%
+  (-) Gasto discrecional         $      7,302.00      13.6%
+  (-) Gasto financiero           $      5,500.00      10.3%
+  (-) Gasto hormiga              $        699.50       1.3%
+  (-) Suscripciones              $      1,712.00       3.2%
+  ------------------------------ --------------- ----------
+  = FLUJO LIBRE                  $      3,039.20       5.7%
+
+======================================================================
+  ANALISIS POR CATEGORIA
+======================================================================
+
+  Categoria                           Monto  % Ingreso    % Gasto
+  ------------------------- --------------- ---------- ----------
+  vivienda                  $     16,919.00      31.6%      33.5%
+  alimentacion              $      9,895.30      18.5%      19.6%
+  deuda                     $      5,500.00      10.3%      10.9%
+  seguros                   $      4,200.00       7.9%       8.3%
+  restaurantes              $      3,202.00       6.0%       6.3%
+  ropa_y_calzado            $      3,200.00       6.0%       6.3%
+  transferencias            $      3,000.00       5.6%       5.9%
+  suscripciones_digitales   $      1,712.00       3.2%       3.4%
+  entretenimiento           $      1,340.00       2.5%       2.7%
+  transporte                $        626.50       1.2%       1.2%
+  salud                     $        567.00       1.1%       1.1%
+  educacion                 $        299.00       0.6%       0.6%
+
+--- Top 10 comercios por gasto ---
+
+  #    Comercio                              Total   Txns
+  ---- ------------------------------ ------------ ------
+  1    RENTA DEPARTAMENTO MAYO        $  12,000.00      1
+  2    PAGO TARJETA CREDITO BBVA      $   5,500.00      1
+  3    COSTCO COMPRA MENSUAL          $   4,500.00      1
+  4    SEGURO GNP AUTO                $   4,200.00      2
+  5    WALMART SUPER                  $   3,245.80      1
+  6    LIVERPOOL COMPRA               $   3,200.00      1
+  7    TRANSFERENCIA MAMA             $   3,000.00      1
+  8    GASOLINA PEMEX                 $   2,050.00      2
+  9    SORIANA SUPER                  $   1,890.00      1
+  10   CFE LUZ MAYO                   $   1,850.00      1
+
+======================================================================
+  MAPEO DE SUSCRIPCIONES
+======================================================================
+
+  Servicio                       $/Mes        $/Ano  Cobros Recomendacion  
+  ------------------------- ---------- ------------ ------- ---------------
+  Gimnasio                  $   499.00 $   5,988.00       1 Cancelar       
+    > Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.
+  ChatGPT Plus              $   399.00 $   4,788.00       1 Cancelar       
+    > Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.
+  Platzi                    $   299.00 $   3,588.00       1 Cancelar       
+    > Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.
+  Netflix                   $   219.00 $   2,628.00       1 Cancelar       
+    > Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.
+  Dropbox                   $   199.00 $   2,388.00       1 Cancelar       
+    > Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.
+  Figma                     $   199.00 $   2,388.00       1 Cancelar       
+    > Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.
+  Disney+                   $   159.00 $   1,908.00       1 Cancelar       
+    > Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.
+  HBO Max                   $   149.00 $   1,788.00       1 Cancelar       
+    > Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.
+  Canva Pro                 $   129.00 $   1,548.00       1 Cancelar       
+    > Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.
+  Spotify                   $   115.00 $   1,380.00       1 Cancelar       
+    > Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.
+  Amazon Prime              $    99.00 $   1,188.00       1 Mantener       
+    > Parece un servicio activo con uso regular.
+  Apple Music               $    99.00 $   1,188.00       1 Mantener       
+    > Parece un servicio activo con uso regular.
+  Notion                    $    80.00 $     960.00       1 Mantener       
+    > Parece un servicio activo con uso regular.
+  YouTube Music             $    79.00 $     948.00       1 Mantener       
+    > Parece un servicio activo con uso regular.
+  Paramount+                $    79.00 $     948.00       1 Mantener       
+    > Parece un servicio activo con uso regular.
+  iCloud+                   $    29.00 $     348.00       1 Mantener       
+    > Parece un servicio activo con uso regular.
+  ------------------------- ---------- ------------
+  TOTAL                     $ 2,831.00 $  33,972.00
+
+======================================================================
+  DUPLICADOS Y ANOMALIAS
+======================================================================
+
+  Tipo                            Impacto/Mes  Impacto/Ano Riesgo  
+  ------------------------------ ------------ ------------ --------
+  Monto inusualmente alto        $  12,000.00 $  12,000.00 MEDIO   
+    $12,000.00 en 'RENTA DEPARTAMENTO MAYO' el 2026-05-01 (promedio: $1,051.27)
+    Accion: Verificar que este cargo sea legítimo
+
+
+======================================================================
+  BENCHMARK FINANCIERO
+======================================================================
+
+  Categoria              Actual   Limite    Ideal Estado             Exceso
+  -------------------- -------- -------- -------- ------------ ------------
+  Vivienda                31.6%      30%      25% EXCEDIDO     $        869
+  Alimentación            18.5%      15%      12% EXCEDIDO     $      1,870
+  Deuda / Financiero      10.3%      20%      10% Aceptable              $0
+  Seguros                  7.9%       5%       3% EXCEDIDO     $      1,525
+  Restaurantes             6.0%       5%       3% EXCEDIDO     $        527
+  Ropa y calzado           6.0%       5%       3% EXCEDIDO     $        525
+  Suscripciones            3.2%       3%       2% EXCEDIDO     $        107
+  Entretenimiento          2.5%      10%       5% OK                     $0
+  Transporte               1.2%      10%       8% OK                     $0
+  Salud                    1.1%       5%       3% OK                     $0
+  Educación                0.6%      10%       5% OK                     $0
+
+--- Tasa de ahorro ---
+
+  Tasa actual:     5.7%
+  Estado:          Insuficiente
+  Meta ideal:      $10,700/mes (20% del ingreso)
+  Faltante:        $7,661/mes para llegar al ideal
+
+--- Fondo de emergencia ---
+
+  Gasto fijo mensual:     $21,418
+  Fondo minimo (3 meses): $64,254
+  Fondo ideal (6 meses):  $128,508
+  Tiempo para fondo 3m:   21 meses ahorrando $3,039/mes
+  Tiempo para fondo 6m:   42 meses
+
+======================================================================
+  OPORTUNIDADES DE AHORRO (Mayor a menor impacto)
+======================================================================
+
+  #    Descripcion                              $/Mes        $/Ano Dificultad Impacto 
+  ---- ----------------------------------- ---------- ------------ ---------- --------
+  1    Reducir gasto en Alimentación al benchmark (15%) $    1,870 $     22,444 Media      Alto    
+       Alto impacto + Difícil → Plan estratégico
+       Accion: Alimentación: gastas 18.5% vs límite de 15%. Exceso: $1,870/mes.
+
+  2    Reducir gasto en Seguros al benchmark (5%) $    1,525 $     18,300 Media      Alto    
+       Alto impacto + Difícil → Plan estratégico
+       Accion: Seguros: gastas 7.9% vs límite de 5%. Exceso: $1,525/mes.
+
+  3    Reducir gasto en Vivienda al benchmark (30%) $      869 $     10,428 Media      Medio   
+       Bajo impacto + Difícil → Ignorar
+       Accion: Vivienda: gastas 31.6% vs límite de 30%. Exceso: $869/mes.
+
+  4    Reducir gasto en Restaurantes al benchmark (5%) $      527 $      6,324 Media      Medio   
+       Bajo impacto + Difícil → Ignorar
+       Accion: Restaurantes: gastas 6.0% vs límite de 5%. Exceso: $527/mes.
+
+  5    Reducir gasto en Ropa y calzado al benchmark (5%) $      525 $      6,300 Media      Medio   
+       Bajo impacto + Difícil → Ignorar
+       Accion: Ropa y calzado: gastas 6.0% vs límite de 5%. Exceso: $525/mes.
+
+  6    Cancelar Gimnasio                   $      499 $      5,988 Fácil      Alto    
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Cancelar suscripción de Gimnasio (Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.)
+
+  7    Cancelar ChatGPT Plus               $      399 $      4,788 Fácil      Alto    
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Cancelar suscripción de ChatGPT Plus (Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.)
+
+  8    Reducir gasto hormiga a la mitad    $      350 $      4,197 Media      Medio   
+       Bajo impacto + Fácil → Optimización secundaria
+       Accion: Gasto hormiga actual: $700/mes. Reducir compras menores a $100.
+
+  9    Cancelar Platzi                     $      299 $      3,588 Fácil      Alto    
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Cancelar suscripción de Platzi (Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.)
+
+  10   Cancelar Netflix                    $      219 $      2,628 Fácil      Alto    
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Cancelar suscripción de Netflix (Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.)
+
+  11   Cancelar Dropbox                    $      199 $      2,388 Fácil      Medio   
+       Bajo impacto + Fácil → Optimización secundaria
+       Accion: Cancelar suscripción de Dropbox (Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.)
+
+  12   Cancelar Figma                      $      199 $      2,388 Fácil      Medio   
+       Bajo impacto + Fácil → Optimización secundaria
+       Accion: Cancelar suscripción de Figma (Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.)
+
+  13   Cancelar Disney+                    $      159 $      1,908 Fácil      Medio   
+       Bajo impacto + Fácil → Optimización secundaria
+       Accion: Cancelar suscripción de Disney+ (Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.)
+
+  14   Eliminar redundancia: Netflix + Disney+ $      159 $      1,908 Fácil      Alto    
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de streaming: Netflix ($219/mes) y Disney+ ($159/mes)
+
+  15   Cancelar HBO Max                    $      149 $      1,788 Fácil      Medio   
+       Bajo impacto + Fácil → Optimización secundaria
+       Accion: Cancelar suscripción de HBO Max (Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.)
+
+  16   Eliminar redundancia: Netflix + HBO Max $      149 $      1,788 Fácil      Alto    
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de streaming: Netflix ($219/mes) y HBO Max ($149/mes)
+
+  17   Eliminar redundancia: Disney+ + HBO Max $      149 $      1,788 Fácil      Alto    
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de streaming: Disney+ ($159/mes) y HBO Max ($149/mes)
+
+  18   Cancelar Canva Pro                  $      129 $      1,548 Fácil      Medio   
+       Bajo impacto + Fácil → Optimización secundaria
+       Accion: Cancelar suscripción de Canva Pro (Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.)
+
+  19   Cancelar Spotify                    $      115 $      1,380 Fácil      Medio   
+       Bajo impacto + Fácil → Optimización secundaria
+       Accion: Cancelar suscripción de Spotify (Solo 1 cobro detectado. Posiblemente poco uso — evaluar cancelación.)
+
+  20   Reducir gasto en Suscripciones al benchmark (3%) $      107 $      1,284 Media      Medio   
+       Bajo impacto + Difícil → Ignorar
+       Accion: Suscripciones: gastas 3.2% vs límite de 3%. Exceso: $107/mes.
+
+  21   Eliminar redundancia: Netflix + Amazon Prime $       99 $      1,188 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de streaming: Netflix ($219/mes) y Amazon Prime ($99/mes)
+
+  22   Eliminar redundancia: Disney+ + Amazon Prime $       99 $      1,188 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de streaming: Disney+ ($159/mes) y Amazon Prime ($99/mes)
+
+  23   Eliminar redundancia: HBO Max + Amazon Prime $       99 $      1,188 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de streaming: HBO Max ($149/mes) y Amazon Prime ($99/mes)
+
+  24   Eliminar redundancia: Spotify + Apple Music $       99 $      1,188 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de musica: Spotify ($115/mes) y Apple Music ($99/mes)
+
+  25   Eliminar redundancia: Netflix + Paramount+ $       79 $        948 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de streaming: Netflix ($219/mes) y Paramount+ ($79/mes)
+
+  26   Eliminar redundancia: Disney+ + Paramount+ $       79 $        948 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de streaming: Disney+ ($159/mes) y Paramount+ ($79/mes)
+
+  27   Eliminar redundancia: HBO Max + Paramount+ $       79 $        948 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de streaming: HBO Max ($149/mes) y Paramount+ ($79/mes)
+
+  28   Eliminar redundancia: Amazon Prime + Paramount+ $       79 $        948 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de streaming: Amazon Prime ($99/mes) y Paramount+ ($79/mes)
+
+  29   Eliminar redundancia: Spotify + YouTube Music $       79 $        948 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de musica: Spotify ($115/mes) y YouTube Music ($79/mes)
+
+  30   Eliminar redundancia: Apple Music + YouTube Music $       79 $        948 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de musica: Apple Music ($99/mes) y YouTube Music ($79/mes)
+
+  31   Eliminar redundancia: Dropbox + iCloud+ $       29 $        348 Fácil      Medio   
+       Alto impacto + Fácil → Ejecutar hoy
+       Accion: Quedarte con uno solo. Servicios similares de almacenamiento: Dropbox ($199/mes) y iCloud+ ($29/mes)
+
+  AHORRO POTENCIAL TOTAL: $9,495/mes = $113,941/ano
+
+======================================================================
+  PLAN DE ACCION CFO
+======================================================================
+
+
+--- Ejecutar HOY ---
+
+  [ ] Cancelar Gimnasio (ahorro: $499/mes)
+  [ ] Cancelar ChatGPT Plus (ahorro: $399/mes)
+  [ ] Cancelar Platzi (ahorro: $299/mes)
+  [ ] Cancelar Netflix (ahorro: $219/mes)
+  [ ] Cancelar Dropbox (ahorro: $199/mes)
+  [ ] Cancelar Figma (ahorro: $199/mes)
+  [ ] Cancelar Disney+ (ahorro: $159/mes)
+  [ ] Eliminar redundancia: Netflix + Disney+ (ahorro: $159/mes)
+  [ ] Cancelar HBO Max (ahorro: $149/mes)
+  [ ] Eliminar redundancia: Netflix + HBO Max (ahorro: $149/mes)
+  [ ] Eliminar redundancia: Disney+ + HBO Max (ahorro: $149/mes)
+  [ ] Cancelar Canva Pro (ahorro: $129/mes)
+  [ ] Cancelar Spotify (ahorro: $115/mes)
+  [ ] Eliminar redundancia: Netflix + Amazon Prime (ahorro: $99/mes)
+  [ ] Eliminar redundancia: Disney+ + Amazon Prime (ahorro: $99/mes)
+  [ ] Eliminar redundancia: HBO Max + Amazon Prime (ahorro: $99/mes)
+  [ ] Eliminar redundancia: Spotify + Apple Music (ahorro: $99/mes)
+  [ ] Eliminar redundancia: Netflix + Paramount+ (ahorro: $79/mes)
+  [ ] Eliminar redundancia: Disney+ + Paramount+ (ahorro: $79/mes)
+  [ ] Eliminar redundancia: HBO Max + Paramount+ (ahorro: $79/mes)
+  [ ] Eliminar redundancia: Amazon Prime + Paramount+ (ahorro: $79/mes)
+  [ ] Eliminar redundancia: Spotify + YouTube Music (ahorro: $79/mes)
+  [ ] Eliminar redundancia: Apple Music + YouTube Music (ahorro: $79/mes)
+  [ ] Eliminar redundancia: Dropbox + iCloud+ (ahorro: $29/mes)
+
+--- Este mes ---
+
+  [ ] Reducir gasto en Alimentación al benchmark (15%) (ahorro: $1,870/mes)
+  [ ] Reducir gasto en Seguros al benchmark (5%) (ahorro: $1,525/mes)
+  [ ] Reducir gasto en Vivienda al benchmark (30%) (ahorro: $869/mes)
+  [ ] Reducir gasto en Restaurantes al benchmark (5%) (ahorro: $527/mes)
+  [ ] Reducir gasto en Ropa y calzado al benchmark (5%) (ahorro: $525/mes)
+  [ ] Reducir gasto hormiga a la mitad (ahorro: $350/mes)
+  [ ] Reducir gasto en Suscripciones al benchmark (3%) (ahorro: $107/mes)
+
+--- Plan estrategico ---
+
+
+======================================================================
+  SCORE FINANCIERO PERSONAL
+======================================================================
+
+  Score: 66/100 — Riesgo moderado
+
+  [#################################.................]
+
+  Escala:
+  90-100 = Excelente | 80-89 = Muy sano | 70-79 = Mejorable
+  60-69 = Riesgo moderado | <60 = Riesgo financiero
+
+======================================================================
+  Reporte generado por CFO Financiero Personal v1.0
+======================================================================
