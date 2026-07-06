@@ -1926,6 +1926,34 @@
 
     // ===== INIT =====
     renderProducts();
+
+    // ===== DISPONIBILIDAD DESDE INTRANET =====
+    // El intranet (Vercel) expone /api/public/productos con [{nombre, activo, stock}].
+    // Si hay producto (activo && stock > 0) se muestra en el catálogo; si el API
+    // no responde o el producto no está en la lista, se muestra igual (fallback seguro).
+    const INTRANET_API = ""; // ej: "https://intranet.asmolinas.com" — se activa tras el deploy
+    (async function sincronizarDisponibilidad() {
+      if (!INTRANET_API) return;
+      try {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort(), 4000);
+        const r = await fetch(INTRANET_API + "/api/public/productos", { signal: ctrl.signal });
+        clearTimeout(t);
+        if (!r.ok) return;
+        const lista = await r.json();
+        const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
+        const agotados = new Set(
+          lista.filter(p => !p.activo || (typeof p.stock === "number" && p.stock <= 0))
+               .map(p => norm(p.nombre))
+        );
+        if (!agotados.size) return;
+        for (let i = products.length - 1; i >= 0; i--) {
+          if (agotados.has(norm(products[i].name))) products.splice(i, 1);
+        }
+        currentPage = 1;
+        renderProducts();
+      } catch (e) { /* sin conexión al intranet: catálogo estático completo */ }
+    })();
   </script>
 
   <!-- ===== BOTÓN FLOTANTE WHATSAPP ===== -->
