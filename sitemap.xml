@@ -4,10 +4,17 @@
 
   <url>
     <loc>https://asmolinas.com/</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://asmolinas.com/"/>
+  </url>
+
+  <url>
+    <loc>https://asmolinas.com/mayoreo.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
   </url>
 
   <url>
