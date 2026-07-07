@@ -1078,6 +1078,26 @@
       transition: color 0.2s;
     }
     .footer-bottom a:hover { color: var(--c-white); }
+    /* Libra el botón flotante de WhatsApp (abajo-derecha) */
+    .footer-bottom > div { padding-right: 96px; }
+    .footer-bottom a.footer-intranet {
+      display: inline-block;
+      border: 1.5px solid rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.85);
+      padding: 9px 20px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .footer-bottom a.footer-intranet:hover {
+      background: var(--c-white);
+      color: var(--c-forest);
+      border-color: var(--c-white);
+    }
+    @media (max-width: 640px) {
+      .footer-bottom > div { padding-right: 0; padding-bottom: 84px; }
+    }
 
     /* Cookie banner */
     .cookie-banner {
@@ -1644,7 +1664,7 @@
           <a href="aviso-de-privacidad.html">Aviso de Privacidad</a>
           <a href="terminos.html">Términos</a>
           <a href="envios.html">Envíos</a>
-          <a href="https://intranet.asmolinas.com" target="_blank" rel="noopener nofollow">Intranet</a>
+          <a href="https://intranet.asmolinas.com" target="_blank" rel="noopener nofollow" class="footer-intranet">🔒 Intranet</a>
         </div>
       </div>
     </div>
