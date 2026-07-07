@@ -1953,7 +1953,7 @@
     // El intranet (Vercel) expone /api/public/productos con [{nombre, activo, stock}].
     // Si hay producto (activo && stock > 0) se muestra en el catálogo; si el API
     // no responde o el producto no está en la lista, se muestra igual (fallback seguro).
-    const INTRANET_API = "https://asmolinas-intranet.vercel.app"; // cambiar a https://intranet.asmolinas.com cuando el DNS esté listo
+    const INTRANET_API = "https://intranet.asmolinas.com"; // dominio propio del intranet
     (async function sincronizarDisponibilidad() {
       if (!INTRANET_API) return;
       try {
