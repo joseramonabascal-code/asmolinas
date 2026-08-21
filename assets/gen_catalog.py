@@ -1,4 +1,16 @@
 from fpdf import FPDF
+from collections import defaultdict
+
+# ============================================================
+# AS MOLINAS — Generador de Catalogo PDF de Mayoreo
+# ============================================================
+# Estructura de precios: 4 rangos de volumen por producto
+#   10-19.9 kg   → Entrada
+#   20-24.9 kg   → Intermedio
+#   25-399.9 kg  → Bulto cerrado (25 kg)
+#   400 kg+      → Mayoreo
+# Precios se dejan como [PRECIO_PENDIENTE] hasta llenarlos.
+# ============================================================
 
 FOREST  = (45, 74, 62)
 TERRA   = (196, 112, 75)
@@ -6,58 +18,61 @@ CREAM   = (251, 248, 243)
 WHITE   = (255, 255, 255)
 MUTED   = (107, 107, 107)
 LIGHT   = (232, 221, 208)
+GOLD    = (212, 160, 23)
 
 CATS = {
-    "Especias":      (TERRA,  "Especias y Chiles"),
-    "Tes":           ((58,122,48),  "Tés Artesanales"),
-    "Deshidratados": ((112,48,160), "Deshidratados"),
-    "Semillas":      ((160,112,8),  "Semillas y Nueces"),
-    "Sales":         ((192,88,64),  "Sales Gourmet"),
-    "Kits":          (FOREST, "Kits y Paquetes"),
+    "Especias":      (TERRA,           "Especias y Chiles"),
+    "Tes":           ((58, 122, 48),   "Tes Artesanales"),
+    "Deshidratados": ((112, 48, 160),  "Deshidratados"),
+    "Semillas":      ((160, 112, 8),   "Semillas y Nueces"),
+    "Sales":         ((192, 88, 64),   "Sales Gourmet"),
+    "Superfoods":    (FOREST,          "Superfoods"),
 }
 
+# Placeholder que se muestra en el PDF hasta que llenes precios reales
+PP = "[PRECIO_PENDIENTE]"
+
+# Cada producto: (nombre, descripcion, categoria, tag)
+# Los precios se calculan al render como 4 columnas con placeholder
 products = [
-    ("Canela en raja",         "Canela ceylan premium, aroma intenso",       180, "kg", "Especias",      "Popular"),
-    ("Canela molida",          "Molida fina, ideal para reposteria",          190, "kg", "Especias",      ""),
-    ("Pimienta negra entera",  "Grano entero seleccionado",                   220, "kg", "Especias",      ""),
-    ("Pimienta negra molida",  "Molida gruesa, sabor intenso",                230, "kg", "Especias",      ""),
-    ("Comino entero",          "Semilla entera de alta calidad",              160, "kg", "Especias",      ""),
-    ("Chile ancho seco",       "Deshidratado, limpio y seleccionado",         140, "kg", "Especias",      ""),
-    ("Chile guajillo seco",    "Seleccionado, color rojo intenso",            130, "kg", "Especias",      ""),
-    ("Oregano molido",         "Oregano mexicano, aroma fresco",              120, "kg", "Especias",      ""),
-    ("Clavo de olor",          "Grano entero, muy aromatico",                 350, "kg", "Especias",      "Premium"),
-    ("Curcuma en polvo",       "Raiz molida, color dorado intenso",           170, "kg", "Especias",      ""),
-    ("Manzanilla premium",     "Flor entera, cosecha reciente",               180, "kg", "Tes",           "Popular"),
-    ("Hierbabuena",            "Hojas secas, aroma refrescante",              140, "kg", "Tes",           ""),
-    ("Te de limon",            "Hojas de limon natural",                      120, "kg", "Tes",           ""),
-    ("Moringa",                "Hojas secas, alto valor nutricional",         250, "kg", "Tes",           "Superfood"),
-    ("Flor de Jamaica",        "Flor entera, ideal para agua fresca",         130, "kg", "Tes",           ""),
-    ("Mezcla relajante",       "Manzanilla, lavanda y pasiflora",             220, "kg", "Tes",           "Nuevo"),
-    ("Arandano deshidratado",  "Fruta entera, sabor dulce-acido",             90,  "kg", "Deshidratados", "Popular"),
-    ("Mango rodaja",           "Rodajas deshidratadas, sin azucar",           135, "kg", "Deshidratados", ""),
-    ("Mango cubo",             "Cubos deshidratados, snack natural",          135, "kg", "Deshidratados", ""),
-    ("Fresa deshidratada",     "Rodaja entera, color intenso",                200, "kg", "Deshidratados", "Premium"),
-    ("Pina rodaja",            "Rodajas naturales deshidratadas",             180, "kg", "Deshidratados", ""),
-    ("Pina cubo",              "Cubos practicos para granola",                135, "kg", "Deshidratados", ""),
-    ("Papaya deshidratada",    "Trozos dulces y suaves",                      110, "kg", "Deshidratados", ""),
-    ("Manzana rodaja",         "Rodajas crujientes, sin azucar",              120, "kg", "Deshidratados", ""),
-    ("Cereza deshidratada",    "Sabor intenso, ideal reposteria",             170, "kg", "Deshidratados", ""),
-    ("Orejon (chabacano)",     "Chabacano deshidratado premium",              250, "kg", "Deshidratados", "Premium"),
-    ("Almendra natural",       "Entera con cuticula, seleccionada",           190, "kg", "Semillas",      "Popular"),
-    ("Almendra fileteada",     "Corte fino para reposteria",                  200, "kg", "Semillas",      ""),
-    ("Almendra sin cuticula",  "Pelada, lista para usar",                     200, "kg", "Semillas",      ""),
-    ("Nuez de la India",       "Cashew entero, tostado natural",              210, "kg", "Semillas",      ""),
-    ("Avellana",               "Entera con cuticula, grado premium",          370, "kg", "Semillas",      "Premium"),
-    ("Ajonjoli natural",       "Semilla limpia, ideal para pan",              65,  "kg", "Semillas",      ""),
-    ("Coco rallado",           "Rallado fino, sin azucar",                    80,  "kg", "Semillas",      ""),
-    ("Sal del Himalaya fina",  "Sal rosa molida fina, 84 minerales",          85,  "kg", "Sales",         "Popular"),
-    ("Sal del Himalaya gruesa","Grano grueso, ideal para molino",             80,  "kg", "Sales",         ""),
-    ("Sal de mar gruesa",      "Cosechada naturalmente, sin refinar",         45,  "kg", "Sales",         ""),
-    ("Kit Cocina Mexicana",    "Chile ancho + guajillo + comino + oregano, 250g c/u", 199, "kit", "Kits", "Bestseller"),
-    ("Kit Reposteria",         "Canela + vainilla + nuez + almendra, 250g c/u",       249, "kit", "Kits", ""),
-    ("Kit Tes Relajantes",     "Manzanilla + lavanda + pasiflora, 100g c/u",          179, "kit", "Kits", ""),
-    ("Kit Superfoods",         "Chia + quinoa + curcuma + jengibre, 250g c/u",        229, "kit", "Kits", ""),
-    ("Paquete Prueba",         "5 especias bestseller en sobres de 100g",             149, "paq", "Kits", ""),
+    ("Canela en raja",         "Canela ceylan premium, aroma intenso",       "Especias",      "Popular"),
+    ("Canela molida",          "Molida fina para panaderia de volumen",       "Especias",      ""),
+    ("Pimienta negra entera",  "Grano entero seleccionado para molino",       "Especias",      ""),
+    ("Pimienta negra molida",  "Molida gruesa, sabor intenso",                "Especias",      ""),
+    ("Comino entero",          "Semilla entera, base de adobos y moles",      "Especias",      ""),
+    ("Chile ancho seco",       "Poblano seco, base de moles y adobos",        "Especias",      ""),
+    ("Chile guajillo seco",    "Rojo intenso, salsas rojas y caldos",         "Especias",      ""),
+    ("Oregano molido",         "Oregano mexicano, aroma fresco",              "Especias",      ""),
+    ("Clavo de olor",          "Grano entero muy aromatico",                  "Especias",      "Premium"),
+    ("Curcuma en polvo",       "Molienda propia, color dorado intenso",       "Superfoods",    ""),
+    ("Manzanilla premium",     "Flor entera, cosecha reciente",               "Tes",           "Popular"),
+    ("Hierbabuena",            "Hojas secas, aroma refrescante",              "Tes",           ""),
+    ("Te de limon",            "Hojas de limon natural",                      "Tes",           ""),
+    ("Moringa en hoja",        "Hojas secas, insumo wellness",                "Superfoods",    "Superfood"),
+    ("Flor de Jamaica",        "Flor entera, agua fresca y kombucha",         "Superfoods",    ""),
+    ("Chia",                   "Semilla entera",                              "Superfoods",    ""),
+    ("Quinoa",                 "Grano entero, insumo bowls y menu wellness",  "Superfoods",    ""),
+    ("Jengibre",               "Deshidratado o en polvo",                     "Superfoods",    ""),
+    ("Arandano deshidratado",  "Fruta entera, sabor dulce-acido",             "Deshidratados", "Popular"),
+    ("Mango rodaja",           "Rodajas deshidratadas, sin azucar",           "Deshidratados", ""),
+    ("Mango cubo",             "Cubos deshidratados, snack natural",          "Deshidratados", ""),
+    ("Fresa deshidratada",     "Rodaja entera, color intenso",                "Deshidratados", "Premium"),
+    ("Pina rodaja",            "Rodajas naturales deshidratadas",             "Deshidratados", ""),
+    ("Pina cubo",              "Cubos practicos para granola",                "Deshidratados", ""),
+    ("Papaya deshidratada",    "Trozos dulces y suaves",                      "Deshidratados", ""),
+    ("Manzana rodaja",         "Rodajas crujientes, sin azucar",              "Deshidratados", ""),
+    ("Cereza deshidratada",    "Sabor intenso, insumo reposteria",            "Deshidratados", ""),
+    ("Orejon (chabacano)",     "Chabacano deshidratado premium",              "Deshidratados", "Premium"),
+    ("Almendra natural",       "Entera con cuticula, seleccionada",           "Semillas",      "Popular"),
+    ("Almendra fileteada",     "Corte fino para reposteria y panaderia",      "Semillas",      ""),
+    ("Almendra sin cuticula",  "Pelada, para mazapan y harina de almendra",   "Semillas",      ""),
+    ("Nuez de la India",       "Cashew entero, tostado natural",              "Semillas",      ""),
+    ("Avellana",               "Entera con cuticula, grado premium",          "Semillas",      "Premium"),
+    ("Ajonjoli natural",       "Semilla limpia, panaderia y moles",           "Semillas",      ""),
+    ("Coco rallado",           "Rallado fino, sin azucar",                    "Semillas",      ""),
+    ("Sal del Himalaya fina",  "Sal rosa molida fina, 84 minerales",          "Sales",         "Popular"),
+    ("Sal del Himalaya gruesa","Grano grueso, para molino",                   "Sales",         ""),
+    ("Sal de mar gruesa",      "Cosechada naturalmente, sin refinar",         "Sales",         ""),
 ]
 
 
@@ -70,16 +85,16 @@ class CatalogPDF(FPDF):
         self.set_font("Helvetica", "B", 9)
         self.set_text_color(*WHITE)
         self.set_y(3)
-        self.cell(0, 6, "AS MOLINAS  |  Catalogo de Productos 2026", align="C")
+        self.cell(0, 6, "AS MOLINAS  |  Catalogo de Mayoreo 2026", align="C")
         self.set_text_color(0, 0, 0)
-        self.ln(8)
+        self.ln(10)
 
     def footer(self):
         self.set_y(-14)
         self.set_font("Helvetica", "", 8)
         self.set_text_color(*MUTED)
         self.cell(0, 5, f"Pagina {self.page_no()}", align="C")
-        self.cell(0, 5, "asmolinas.com  |  748 166 0295  |  info@asmolinas.com", align="R")
+        self.cell(0, 5, "asmolinas.com  |  WhatsApp 748 166 0295  |  info@asmolinas.com", align="R")
         self.set_text_color(0, 0, 0)
 
     def cover(self):
@@ -90,45 +105,57 @@ class CatalogPDF(FPDF):
         # Brand name
         self.set_font("Helvetica", "B", 42)
         self.set_text_color(*WHITE)
-        self.set_y(80)
+        self.set_y(70)
         self.cell(0, 16, "AS MOLINAS", align="C")
 
         # Separator line
-        self.set_draw_color(*TERRA)
-        self.set_line_width(1.2)
-        self.line(60, 102, 150, 102)
+        self.set_draw_color(*GOLD)
+        self.set_line_width(1.4)
+        self.line(60, 92, 150, 92)
 
         # Tagline
         self.set_font("Helvetica", "I", 13)
         self.set_text_color(200, 220, 210)
-        self.set_y(106)
-        self.cell(0, 8, "Especias, Tes y Productos Naturales", align="C")
+        self.set_y(96)
+        self.cell(0, 8, "Especias, Chiles, Semillas, Tes y Superfoods", align="C")
+        self.set_y(103)
+        self.cell(0, 8, "Solo mayoreo y medio mayoreo para HORECA y foodservice", align="C")
 
         # Catalog title box
         self.set_fill_color(*TERRA)
-        self.set_y(130)
-        self.set_x(45)
+        self.set_y(122)
+        self.set_x(35)
         self.set_font("Helvetica", "B", 16)
         self.set_text_color(*WHITE)
-        self.cell(120, 14, "CATALOGO DE PRODUCTOS 2026", align="C", fill=True)
+        self.cell(140, 14, "CATALOGO DE MAYOREO 2026", align="C", fill=True)
 
-        # Description
+        # Pricing structure block
+        self.set_fill_color(30, 55, 45)
+        self.rect(25, 148, 160, 62, "F")
+        self.set_font("Helvetica", "B", 11)
+        self.set_text_color(*WHITE)
+        self.set_y(154)
+        self.cell(0, 6, "Estructura de precios por volumen (por kg)", align="C")
         self.set_font("Helvetica", "", 10)
         self.set_text_color(200, 220, 210)
-        self.set_y(160)
+        self.set_y(164)
         self.multi_cell(0, 6,
-            "Mayoreo y menudeo  |  CDMX y Area Metropolitana\n"
-            "100% naturales, sin conservadores\n"
-            "Pedido minimo $300 MXN",
+            "  10 - 19.9 kg    Precio de entrada\n"
+            "  20 - 24.9 kg    Precio de entrada intermedio\n"
+            "  25 - 399.9 kg   Precio medio mayoreo (bulto 25 kg)\n"
+            "  400 kg y mas    Precio mayoreo",
             align="C")
+        self.set_font("Helvetica", "I", 9)
+        self.set_y(200)
+        self.cell(0, 5, "Pedido minimo: 10 kg por producto", align="C")
 
         # Contact block
         self.set_fill_color(30, 55, 45)
-        self.rect(30, 220, 150, 44, "F")
+        self.rect(25, 230, 160, 44, "F")
         self.set_font("Helvetica", "B", 10)
         self.set_text_color(*WHITE)
-        self.set_y(228)
-        self.cell(0, 6, "Contacto", align="C")
+        self.set_y(236)
+        self.cell(0, 6, "Contacto para cotizacion", align="C")
         self.set_font("Helvetica", "", 10)
         self.set_text_color(200, 220, 210)
         self.ln(8)
@@ -136,99 +163,131 @@ class CatalogPDF(FPDF):
         self.ln(6)
         self.cell(0, 5, "Email: info@asmolinas.com", align="C")
         self.ln(6)
-        self.cell(0, 5, "Instagram: @asmolinas_especias", align="C")
+        self.cell(0, 5, "Web: asmolinas.com", align="C")
 
     def category_header(self, label, color):
         self.set_fill_color(*color)
         self.set_font("Helvetica", "B", 13)
         self.set_text_color(*WHITE)
         self.cell(0, 10, f"  {label}", fill=True, new_x="LMARGIN", new_y="NEXT")
-        self.ln(3)
+        self.ln(2)
         self.set_text_color(0, 0, 0)
 
-    def product_row(self, name, desc, price, unit, tag, col):
-        x_start = self.get_x()
-        y_start = self.get_y()
-        col_w = 90
-        x = 10 + col * (col_w + 5)
+    def price_table_header(self):
+        # Header de columnas de precios
+        self.set_fill_color(*LIGHT)
+        self.set_draw_color(*MUTED)
+        self.set_line_width(0.2)
+        self.set_font("Helvetica", "B", 7.5)
+        self.set_text_color(*FOREST)
+        # Producto | Entrada | Interm | Bulto25 | Mayoreo | Tag
+        cols = [
+            ("Producto",         76),
+            ("10-19.9 kg",       22),
+            ("20-24.9 kg",       22),
+            ("25-399.9 kg",      22),
+            ("400 kg +",         22),
+            ("",                 26),
+        ]
+        for label, w in cols:
+            self.cell(w, 7, label, border=1, align="C", fill=True)
+        self.ln(7)
 
-        # Card background
-        self.set_fill_color(*CREAM)
+    def product_row(self, name, desc, tag):
         self.set_draw_color(*LIGHT)
-        self.set_line_width(0.3)
-        self.rect(x, y_start, col_w, 26, "FD")
+        self.set_line_width(0.2)
+        y_start = self.get_y()
 
-        # Tag badge
+        # Columna producto (nombre + descripcion en 2 lineas)
+        self.set_font("Helvetica", "B", 8.5)
+        self.set_text_color(*FOREST)
+        self.set_xy(10, y_start)
+        self.cell(76, 5, name, border="LT")
+        self.set_font("Helvetica", "", 7)
+        self.set_text_color(*MUTED)
+        self.set_xy(10, y_start + 5)
+        self.cell(76, 5, desc[:60], border="LB")
+
+        # 4 columnas de precio
+        self.set_font("Helvetica", "", 7)
+        self.set_text_color(*TERRA)
+        for i in range(4):
+            x = 86 + i * 22
+            self.set_xy(x, y_start)
+            self.cell(22, 10, PP, border=1, align="C")
+
+        # Columna tag
+        self.set_xy(86 + 4 * 22, y_start)
         if tag:
             self.set_fill_color(*TERRA)
-            self.set_font("Helvetica", "B", 6)
+            self.set_font("Helvetica", "B", 6.5)
             self.set_text_color(*WHITE)
-            self.set_xy(x + col_w - 24, y_start + 2)
-            self.cell(22, 4, tag.upper(), align="C", fill=True)
-
-        # Name
-        self.set_font("Helvetica", "B", 9)
-        self.set_text_color(*FOREST)
-        self.set_xy(x + 3, y_start + 3)
-        self.cell(col_w - 30, 5, name)
-
-        # Desc
-        self.set_font("Helvetica", "", 7.5)
-        self.set_text_color(*MUTED)
-        self.set_xy(x + 3, y_start + 9)
-        self.multi_cell(col_w - 6, 4, desc)
-
-        # Price
-        self.set_font("Helvetica", "B", 11)
-        self.set_text_color(*TERRA)
-        self.set_xy(x + 3, y_start + 19)
-        self.cell(col_w - 6, 5, f"${price} MXN/{unit}")
+            self.cell(26, 10, tag.upper(), border=1, align="C", fill=True)
+        else:
+            self.cell(26, 10, "", border=1)
 
         self.set_text_color(0, 0, 0)
-        return y_start + 29  # next y after card
+        self.set_y(y_start + 10)
 
 
-pdf = CatalogPDF(orientation="P", unit="mm", format="A4")
-pdf.set_auto_page_break(auto=True, margin=18)
-pdf.set_margins(10, 18, 10)
+def build_pdf(output_path):
+    pdf = CatalogPDF(orientation="P", unit="mm", format="A4")
+    pdf.set_auto_page_break(auto=True, margin=18)
+    pdf.set_margins(10, 18, 10)
 
-# Cover page
-pdf.add_page()
-pdf.cover()
-
-# Group products by category
-from collections import defaultdict
-by_cat = defaultdict(list)
-for p in products:
-    by_cat[p[4]].append(p)
-
-cat_order = ["Especias", "Tes", "Deshidratados", "Semillas", "Sales", "Kits"]
-
-for cat_key in cat_order:
-    prods = by_cat[cat_key]
-    color, label = CATS[cat_key]
+    # Cover
     pdf.add_page()
-    pdf.category_header(label, color)
+    pdf.cover()
 
-    col = 0
-    row_y = pdf.get_y()
-    for p in prods:
-        name, desc, price, unit, _, tag = p
-        next_y = pdf.product_row(name, desc, price, unit, tag, col)
-        if col == 0:
-            col = 1
-        else:
-            col = 0
-            row_y = next_y
-            pdf.set_xy(10, row_y)
-            if pdf.get_y() > 265:
+    # Group by category
+    by_cat = defaultdict(list)
+    for p in products:
+        by_cat[p[2]].append(p)
+
+    cat_order = ["Especias", "Superfoods", "Semillas", "Deshidratados", "Tes", "Sales"]
+
+    for cat_key in cat_order:
+        prods = by_cat.get(cat_key, [])
+        if not prods:
+            continue
+        color, label = CATS[cat_key]
+        pdf.add_page()
+        pdf.category_header(label, color)
+        pdf.price_table_header()
+        for name, desc, _, tag in prods:
+            if pdf.get_y() > 260:
                 pdf.add_page()
                 pdf.category_header(label + " (cont.)", color)
-                row_y = pdf.get_y()
+                pdf.price_table_header()
+            pdf.product_row(name, desc, tag)
 
-    # Last odd product leaves col=1, advance row
-    if col == 1:
-        pdf.set_xy(10, next_y)
+    # Notas finales
+    pdf.add_page()
+    pdf.set_font("Helvetica", "B", 14)
+    pdf.set_text_color(*FOREST)
+    pdf.cell(0, 10, "Notas importantes", new_x="LMARGIN", new_y="NEXT")
+    pdf.ln(2)
+    pdf.set_font("Helvetica", "", 10)
+    pdf.set_text_color(0, 0, 0)
+    notas = [
+        "- Todos los precios son por kilo (MXN) e IVA no incluido.",
+        "- Pedido minimo: 10 kg por producto. No manejamos venta menudeo por debajo de 10 kg.",
+        "- El precio por kg baja segun el rango de volumen (entrada, intermedio, bulto 25 kg, mayoreo 400 kg+).",
+        "- El bulto cerrado equivale a 25 kg. Aplica el rango 25 - 399.9 kg.",
+        "- Los precios pueden ajustarse por cosecha y tipo de cambio; tu cotizacion vigente se confirma por WhatsApp.",
+        "- Emitimos CFDI en todos los pedidos de mayoreo.",
+        "- Entrega en CDMX y Area Metropolitana en 1 a 3 dias habiles. Envios foraneos por paqueteria o transporte segun volumen.",
+        "- Puedes combinar varios productos en un mismo pedido siempre que cada uno alcance 10 kg minimo.",
+    ]
+    for n in notas:
+        pdf.multi_cell(0, 6, n)
+        pdf.ln(1)
 
-pdf.output("C:/Users/jraba/Links/asmolinas-repo/assets/catalogo-asmolinas.pdf")
-print("PDF generado OK")
+    pdf.output(output_path)
+    print(f"PDF generado OK -> {output_path}")
+
+
+if __name__ == "__main__":
+    import os
+    here = os.path.dirname(os.path.abspath(__file__))
+    build_pdf(os.path.join(here, "catalogo-asmolinas.pdf"))
