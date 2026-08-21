@@ -145,8 +145,8 @@
       },
       {
         "@type": "Question",
-        "name": "¿Cuál es el precio de la canela al mayoreo?",
-        "acceptedAnswer": {"@type": "Answer", "text": "La canela en raja (Ceylan premium) parte de $180 MXN/kg y la canela molida de $190 MXN/kg como precio de lista. El precio baja por volumen: pide tu cotización de mayoreo por WhatsApp."}
+        "name": "¿Cómo funcionan los precios por volumen?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Manejamos 4 rangos de precio por kg según el volumen del pedido: entrada (10 a 19.9 kg), intermedio (20 a 24.9 kg), bulto cerrado (25 a 399.9 kg) y mayoreo (400 kg en adelante). Cotiza por WhatsApp para recibir el precio exacto por producto y volumen."}
       },
       {
         "@type": "Question",
@@ -156,7 +156,7 @@
       {
         "@type": "Question",
         "name": "¿Cuál es el pedido mínimo de mayoreo?",
-        "acceptedAnswer": {"@type": "Answer", "text": "El pedido mínimo de mayoreo es de $2,000 MXN. Trabajamos solo mayoreo y medio mayoreo para restaurantes, hoteles, distribuidores y tiendas, con facturación disponible."}
+        "acceptedAnswer": {"@type": "Answer", "text": "El pedido mínimo es de 10 kg por producto. Trabajamos solo mayoreo y medio mayoreo para restaurantes, hoteles, distribuidores, marcas de alimentos y tiendas, con facturación CFDI disponible."}
       },
       {
         "@type": "Question",
@@ -165,16 +165,6 @@
       }
     ]
   }
-  </script>
-  <!-- Structured Data Kits/Bundles -->
-  <script type="application/ld+json">
-  [
-    {"@context":"https://schema.org","@type":"Product","name":"Kit Cocina Mexicana","description":"Chile ancho + guajillo + comino + orégano, 250g cada uno. Especias esenciales de cocina mexicana.","brand":{"@type":"Brand","name":"AS MOLINAS"},"offers":{"@type":"Offer","price":"199","priceCurrency":"MXN","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"AS MOLINAS"}}},
-    {"@context":"https://schema.org","@type":"Product","name":"Kit Repostería","description":"Canela + vainilla + nuez + almendra, 250g cada uno. Todo para tu cocina dulce.","brand":{"@type":"Brand","name":"AS MOLINAS"},"offers":{"@type":"Offer","price":"249","priceCurrency":"MXN","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"AS MOLINAS"}}},
-    {"@context":"https://schema.org","@type":"Product","name":"Kit Tés Relajantes","description":"Manzanilla + lavanda + pasiflora, 100g cada uno.","brand":{"@type":"Brand","name":"AS MOLINAS"},"offers":{"@type":"Offer","price":"179","priceCurrency":"MXN","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"AS MOLINAS"}}},
-    {"@context":"https://schema.org","@type":"Product","name":"Kit Superfoods","description":"Chía + quinoa + cúrcuma + jengibre, 250g cada uno.","brand":{"@type":"Brand","name":"AS MOLINAS"},"offers":{"@type":"Offer","price":"229","priceCurrency":"MXN","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"AS MOLINAS"}}},
-    {"@context":"https://schema.org","@type":"Product","name":"Paquete Prueba","description":"5 especias bestseller en sobres de 100g. Ideal para conocer nuestra calidad.","brand":{"@type":"Brand","name":"AS MOLINAS"},"offers":{"@type":"Offer","price":"149","priceCurrency":"MXN","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"AS MOLINAS"}}}
-  ]
   </script>
 
   <!-- Google Tag Manager — carga diferida para no bloquear LCP -->
@@ -657,16 +647,23 @@
       align-items: center;
       justify-content: space-between;
     }
-    .product-price {
-      font-family: var(--ff-display);
-      font-size: 1.2rem;
-      color: var(--c-terracotta);
-    }
-    .product-price small {
+    .product-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-family: var(--ff-body);
-      font-size: 0.72rem;
-      color: var(--c-text-light);
-      font-weight: 400;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--c-forest);
+      background: rgba(45,74,62,0.08);
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s;
+      align-self: flex-start;
+    }
+    .product-cta:hover {
+      background: rgba(45,74,62,0.16);
     }
 
     /* Pagination */
@@ -1207,31 +1204,6 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- ======= AVISO IMPORTANTE ======= -->
-  <div class="aviso-banner" role="alert" aria-live="polite">
-    <div class="aviso-inner">
-      <span class="aviso-icon" aria-hidden="true">⚙️</span>
-      <div class="aviso-texto">
-        <strong>ESTAMOS TRABAJANDO PARA ATENDERTE MEJOR</strong>
-        <span>En unos días estaremos contigo.</span>
-      </div>
-      <button class="aviso-close" aria-label="Cerrar aviso" onclick="this.closest('.aviso-banner').style.display='none'">✕</button>
-    </div>
-  </div>
-  <style>
-    .aviso-banner{background:linear-gradient(90deg,#2D4A3E 0%,#3d6350 100%);color:#fff;padding:24px 20px;font-family:'DM Sans',-apple-system,sans-serif;border-bottom:5px solid #d4a017;position:relative;z-index:999;animation:aviso-slide .5s ease-out;box-shadow:0 4px 12px rgba(0,0,0,.15)}
-    @keyframes aviso-slide{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
-    .aviso-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:22px}
-    .aviso-icon{font-size:2.8rem;flex-shrink:0;animation:aviso-rotate 3s ease-in-out infinite}
-    @keyframes aviso-rotate{0%,100%{transform:rotate(0)}25%{transform:rotate(15deg)}75%{transform:rotate(-15deg)}}
-    .aviso-texto{flex:1;display:flex;flex-direction:column;gap:6px;line-height:1.3}
-    .aviso-texto strong{font-size:1.5rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
-    .aviso-texto span{font-size:1.1rem;opacity:.95}
-    .aviso-close{background:rgba(255,255,255,.15);color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;flex-shrink:0;transition:background .2s}
-    .aviso-close:hover{background:rgba(255,255,255,.3)}
-    @media(max-width:640px){.aviso-banner{padding:18px 14px}.aviso-inner{gap:14px}.aviso-icon{font-size:2rem}.aviso-texto strong{font-size:1.05rem}.aviso-texto span{font-size:.9rem}.aviso-close{width:30px;height:30px;font-size:.85rem}}
-  </style>
-
   <!-- ======= NAVBAR ======= -->
   <nav class="navbar" role="navigation" aria-label="Navegación principal">
     <div class="nav-inner">
@@ -1283,7 +1255,7 @@
   <!-- ======= DISCOUNT BANNER ======= -->
   <div class="discount-banner" role="banner" aria-label="Promociones">
     <div class="discount-banner-inner">
-      <span class="discount-item">📦 Pedido mínimo de mayoreo desde <strong>$2,000 MXN</strong></span>
+      <span class="discount-item">📦 Pedido mínimo <strong>10 kg</strong> · Precio baja por volumen</span>
       <span class="discount-sep">|</span>
       <span class="discount-item">🧾 <strong>Facturación</strong> disponible (CFDI)</span>
       <span class="discount-sep">|</span>
@@ -1332,7 +1304,7 @@
       <div class="section-header fade-up">
         <div class="section-label">Catálogo</div>
         <h2 class="section-title">Catálogo de Mayoreo y Precios</h2>
-        <p class="section-subtitle">Precios de lista en MXN por kg · Baja por volumen · Pedido mínimo de mayoreo $2,000</p>
+        <p class="section-subtitle">Precios por kg según volumen · 4 rangos: entrada (10 kg) · intermedio (20 kg) · bulto cerrado (25 kg) · mayoreo (400 kg+)</p>
       </div>
 
       <div class="filter-bar fade-up">
@@ -1344,7 +1316,6 @@
         <button class="filter-btn" onclick="filterProducts('tes')">Tés</button>
         <button class="filter-btn" onclick="filterProducts('deshidratados')">Deshidratados</button>
         <button class="filter-btn" onclick="filterProducts('sales')">Sales</button>
-        <button class="filter-btn filter-btn-kits" onclick="filterProducts('kits')">🎁 Kits</button>
       </div>
 
       <div class="products-grid" id="productsGrid">
@@ -1405,7 +1376,7 @@
         <div class="b2b-card fade-up" style="transition-delay:0.08s">
           <div class="b2b-icon">🍽️</div>
           <h3>Restaurantes</h3>
-          <p>Desde fondas y cantinas hasta cocinas de alta gastronomía. Abastecemos especias frescas en presentaciones de 500 g, 1 kg y 5 kg con pedido mínimo desde $1,500 MXN.</p>
+          <p>Desde fondas y cantinas hasta cocinas de alta gastronomía. Abastecemos especias frescas en bulto cerrado de 25 kg y sacos de mayoreo con precio por volumen desde 10 kg.</p>
           <ul class="b2b-list">
             <li>Achiote, epazote, canela Ceylon</li>
             <li>Chiles secos seleccionados</li>
@@ -1427,7 +1398,7 @@
           <h3>Negocios</h3>
           <p>Tiendas naturistas, distribuidores, cafeterías y cualquier negocio del sector Foodservice que necesite surtido constante de especias y productos naturales con precio de mayoreo.</p>
           <ul class="b2b-list">
-            <li>Precios por volumen desde 1 kg</li>
+            <li>Precios por volumen desde 10 kg</li>
             <li>Facturación y crédito disponible</li>
             <li>Reposición semanal o quincenal</li>
           </ul>
@@ -1565,11 +1536,11 @@
       <div class="mission-grid">
         <div class="mission-card fade-up">
           <h3>🌱 Misión</h3>
-          <p>Llevar al hogar de cada familia mexicana especias, tés y productos naturales de la más alta calidad, seleccionados directamente en origen con respeto al campo y a los productores. Creemos que comer bien empieza por ingredientes honestos, frescos y sin artificios.</p>
+          <p>Abastecer al sector HORECA y a distribuidores de México con especias, chiles secos, semillas, tés y superfoods seleccionados en origen. Trabajamos solo mayoreo y medio mayoreo para que restaurantes, hoteles y marcas de alimentos operen con producto consistente, precio por volumen y factura CFDI.</p>
         </div>
         <div class="mission-card fade-up" style="transition-delay:0.08s">
           <h3>✨ Visión</h3>
-          <p>Ser la marca de referencia en México para la venta de especias y productos naturales a granel, reconocida por su autenticidad, transparencia y compromiso con el bienestar de las personas y el medio ambiente.</p>
+          <p>Ser el proveedor mayorista de referencia en México para el sector HORECA y de foodservice, reconocido por su consistencia, transparencia en precios por volumen y respaldo operativo para cocinas de alto consumo.</p>
         </div>
       </div>
     </div>
@@ -1581,7 +1552,7 @@
       <div class="contact-grid">
         <div class="contact-info fade-up">
           <h2>¿Listo para ordenar?</h2>
-          <p>Haz tu pedido por WhatsApp o llena el formulario y te respondemos en minutos. Pedido mínimo $300 MXN.</p>
+          <p>Cotiza mayoreo por WhatsApp o llena el formulario. Te respondemos en minutos con precios por volumen. Pedido mínimo 10 kg.</p>
           <div class="contact-channels">
             <a href="https://wa.me/527481660295?text=Hola%2C%20quiero%20hacer%20un%20pedido" class="contact-channel">
               <div class="contact-channel-icon wa"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
@@ -1875,13 +1846,6 @@
       { name: "Sal del Himalaya fina", desc: "Sal rosa molida fina, 84 minerales", price: 85, unit: "kg", cat: "sales", tag: "Popular" },
       { name: "Sal del Himalaya gruesa", desc: "Grano grueso, ideal para molino", price: 80, unit: "kg", cat: "sales", tag: "" },
       { name: "Sal de mar gruesa", desc: "Cosechada naturalmente, sin refinar", price: 45, unit: "kg", cat: "sales", tag: "" },
-
-      // Kits / Bundles
-      { name: "Kit Cocina Mexicana", desc: "Chile ancho + guajillo + comino + orégano · 250g c/u", price: 199, unit: "kit", cat: "kits", tag: "⭐ Bestseller" },
-      { name: "Kit Repostería", desc: "Canela + vainilla + nuez + almendra · 250g c/u", price: 249, unit: "kit", cat: "kits", tag: "🍰 Repostería" },
-      { name: "Kit Tés Relajantes", desc: "Manzanilla + lavanda + pasiflora · 100g c/u", price: 179, unit: "kit", cat: "kits", tag: "😴 Relax" },
-      { name: "Kit Superfoods", desc: "Chía + quinoa + cúrcuma + jengibre · 250g c/u", price: 229, unit: "kit", cat: "kits", tag: "💪 Salud" },
-      { name: "Paquete Prueba", desc: "5 especias bestseller en sobres de 100g · ¡Ideal para conocernos!", price: 149, unit: "paq", cat: "kits", tag: "🎁 Prueba" },
     ];
 
     // ===== PRODUCT IMAGE MAPPING =====
@@ -1927,7 +1891,7 @@
           <div class="product-card-body">
             <h4>${p.name}</h4>
             <p class="product-desc">${p.desc}</p>
-            <div class="product-price">$${p.price} <small>MXN/${p.unit}</small></div>
+            <a href="https://wa.me/527481660295?text=Hola%20AS%20MOLINAS%2C%20quiero%20cotizar%20mayoreo%20de%20${encodeURIComponent(p.name)}" target="_blank" rel="noopener" class="product-cta">💬 Cotizar mayoreo</a>
           </div>
         </div>
       `).join('');
