@@ -45,9 +45,9 @@
     "mainEntity": [
       {"@type": "Question", "name": "¿Cuál es el pedido mínimo de superfoods al mayoreo?", "acceptedAnswer": {"@type": "Answer", "text": "El pedido mínimo es de 10 kg por superfood. Puedes combinar con especias, chiles secos y semillas en un solo pedido. Manejamos 4 rangos de precio por kg: entrada (10-19.9 kg), intermedio (20-24.9 kg), bulto cerrado (25-399.9 kg) y mayoreo (400 kg+). No manejamos venta menudeo."}},
       {"@type": "Question", "name": "¿Qué superfoods manejan a granel?", "acceptedAnswer": {"@type": "Answer", "text": "En existencia constante manejamos moringa en hoja a $250 por kg y cúrcuma en polvo a $170 por kg. Chía, quinoa, jengibre y flor de Jamaica están disponibles por encargo con tiempo de surtido de 3 a 5 días hábiles."}},
-      {"@type": "Question", "name": "¿Sus superfoods tienen conservadores o aditivos?", "acceptedAnswer": {"@type": "Answer", "text": "No. Nuestros superfoods son 100% naturales, sin conservadores ni aditivos, y libres de pesticidas. Recibes el producto tal como sale del secado y la molienda."}},
+      {"@type": "Question", "name": "¿Qué información de especificación entregan?", "acceptedAnswer": {"@type": "Answer", "text": "Compartimos la presentación, el origen declarado por el proveedor y la ficha técnica cuando el proveedor la tiene disponible. Lote y fecha se confirman al cotizar."}},
       {"@type": "Question", "name": "¿En qué presentaciones venden los superfoods?", "acceptedAnswer": {"@type": "Answer", "text": "Trabajamos exclusivamente mayoreo y medio mayoreo desde 10 kg por superfood. Bulto cerrado de 25 kg para cocinas, jugueras y tiendas; saco de mayoreo desde 400 kg para distribuidores, cadenas y marcas de suplementos. No manejamos presentaciones de menudeo."}},
-      {"@type": "Question", "name": "¿Emiten factura y envían a todo México?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Emitimos CFDI con tus datos fiscales en todos los pedidos y enviamos a todo México por paquetería o transporte. En CDMX y Área Metropolitana entregamos en 1 a 3 días hábiles."}}
+      {"@type": "Question", "name": "¿Emiten factura y envían a todo México?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Emitimos CFDI con tus datos fiscales en todos los pedidos. Flete a cargo del cliente. Coordinamos paquetería o transporte según destino, volumen y peso; el costo y el tiempo de entrega se confirman en la cotización."}}
     ]
   }
   </script>
@@ -120,7 +120,7 @@
 
 <section class="hero-b2b">
   <div class="inner">
-    <span class="badge">🌱 Superfoods 100% naturales, solo mayoreo</span>
+    <span class="badge">🌱 Superfoods a granel, sólo mayoreo</span>
     <h1>Superfoods a Granel para tu Negocio</h1>
     <p>Somos distribuidor de superfoods a granel y al mayoreo en México: moringa en hoja, cúrcuma en polvo, chía, quinoa, jengibre y flor de Jamaica. Surtimos jugueras, cafeterías wellness, tiendas naturistas, spas, hoteles y marcas de suplementos con precio por kilo, factura y envíos a todo el país.</p>
     <div class="hero-actions">
@@ -138,24 +138,18 @@
     <table>
       <thead>
         <tr>
-          <th rowspan="2">Superfood</th>
-          <th colspan="4" style="text-align:center">Precio por kg (MXN)</th>
-          <th rowspan="2">Disponibilidad</th>
-        </tr>
-        <tr>
-          <th>10–19.9 kg<br><small>Entrada</small></th>
-          <th>20–24.9 kg<br><small>Intermedio</small></th>
-          <th>25–399.9 kg<br><small>Bulto 25 kg</small></th>
-          <th>400 kg+<br><small>Mayoreo</small></th>
+          <th>Superfood</th>
+          <th>Precio por kg (MXN)</th>
+          <th>Disponibilidad</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Moringa en hoja</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>En existencia</td></tr>
-        <tr><td>Cúrcuma en polvo</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>En existencia</td></tr>
-        <tr><td>Chía</td><td colspan="4" style="text-align:center">Por encargo · cotiza por volumen</td><td>Por encargo</td></tr>
-        <tr><td>Quinoa</td><td colspan="4" style="text-align:center">Por encargo · cotiza por volumen</td><td>Por encargo</td></tr>
-        <tr><td>Jengibre</td><td colspan="4" style="text-align:center">Por encargo · cotiza por volumen</td><td>Por encargo</td></tr>
-        <tr><td>Flor de Jamaica</td><td colspan="4" style="text-align:center">Por encargo · cotiza por volumen</td><td>Por encargo</td></tr>
+        <tr><td>Moringa en hoja</td><td class="precio-cotiza">Cotiza precio vigente por volumen</td><td>En existencia</td></tr>
+        <tr><td>Cúrcuma en polvo</td><td class="precio-cotiza">Cotiza precio vigente por volumen</td><td>En existencia</td></tr>
+        <tr><td>Chía</td><td class="precio-cotiza">Por encargo · cotiza por volumen</td><td>Por encargo</td></tr>
+        <tr><td>Quinoa</td><td class="precio-cotiza">Por encargo · cotiza por volumen</td><td>Por encargo</td></tr>
+        <tr><td>Jengibre</td><td class="precio-cotiza">Por encargo · cotiza por volumen</td><td>Por encargo</td></tr>
+        <tr><td>Flor de Jamaica</td><td class="precio-cotiza">Por encargo · cotiza por volumen</td><td>Por encargo</td></tr>
       </tbody>
     </table>
   </div>
@@ -174,9 +168,9 @@
   <h2>Calidad que puedes poner en tu etiqueta</h2>
   <p>Cuando revendes un superfood o lo integras a tu producto, la calidad del insumo se vuelve tu reputación. Por eso nuestro respaldo es simple y verificable:</p>
   <div class="grid-2">
-    <div class="card"><h3>🌿 100% natural</h3><p style="margin:0">Producto vegetal puro: hoja, flor, semilla, grano o polvo. Nada más. Sin rellenos, sin mezclas ocultas y sin ingredientes que no puedas declarar.</p></div>
+    <div class="card"><h3>🌿 Producto a granel</h3><p style="margin:0">Hoja, flor, semilla, grano o polvo, en la presentación que confirma el proveedor. Te compartimos la especificación disponible para que declares tu producto.</p></div>
     <div class="card"><h3>🚫 Sin conservadores</h3><p style="margin:0">No agregamos conservadores ni aditivos en ninguna etapa. El secado y la molienda son los únicos procesos entre el campo y tu bodega.</p></div>
-    <div class="card"><h3>✅ Libre de pesticidas</h3><p style="margin:0">Trabajamos con productores que cultivan sin pesticidas, un requisito cada vez más frecuente entre los consumidores del canal wellness y naturista.</p></div>
+    <div class="card"><h3>✅ Especificación disponible</h3><p style="margin:0">Compartimos la ficha técnica y el origen declarado por el proveedor cuando están documentados, para que puedas evaluar el producto antes de comprar.</p></div>
     <div class="card"><h3>📦 Lote parejo</h3><p style="margin:0">Color, granulometría y humedad consistentes entre pedidos, para que tu receta, tu mezcla o tu anaquel se vean igual todo el año.</p></div>
   </div>
   <p>Un punto importante: vendemos insumos alimenticios, no medicamentos. Los superfoods son ingredientes con alta demanda en el mercado wellness por su perfil nutricional y su versatilidad en cocina y bebidas. Cualquier declaración sobre efectos en la salud corresponde a la regulación de tu propio producto terminado.</p>
@@ -185,7 +179,7 @@
   <div class="steps">
     <div class="step"><h3>Escríbenos por WhatsApp</h3><p style="margin:0">Manda tu lista de superfoods y cantidades aproximadas al <a href="https://wa.me/527481660295">748 166 0295</a>. Si necesitas factura, comparte tu Constancia de Situación Fiscal desde el primer mensaje.</p></div>
     <div class="step"><h3>Recibe tu cotización en menos de 2 horas</h3><p style="margin:0">En horario hábil te respondemos con precio por volumen, disponibilidad de los productos por encargo y tiempo de entrega a tu ciudad.</p></div>
-    <div class="step"><h3>Confirma, paga y recibe</h3><p style="margin:0">El pedido mínimo es de 10 kg por superfood. Puedes combinar con especias, chiles y semillas en una sola entrega. Pagas por transferencia, depósito o tarjeta, emitimos tu CFDI y coordinamos la entrega o el envío foráneo.</p></div>
+    <div class="step"><h3>Confirma, paga y recibe</h3><p style="margin:0">El pedido mínimo es de 10 kg por superfood. Puedes combinar con especias, chiles y semillas en una sola entrega. Pagas por transferencia SPEI o depósito, emitimos tu CFDI y coordinamos la entrega. Flete a cargo del cliente; el costo y el tiempo se confirman en la cotización.</p></div>
   </div>
 
   <h2>Presentaciones de mayoreo</h2>
@@ -213,9 +207,9 @@
   <h2>Preguntas frecuentes sobre superfoods al mayoreo</h2>
   <details><summary>¿Cuál es el pedido mínimo de superfoods al mayoreo?</summary><p>El pedido mínimo es de 10 kg por superfood. Puedes combinar con especias, chiles secos y semillas en un solo pedido. Manejamos 4 rangos de precio por kg: entrada (10-19.9 kg), intermedio (20-24.9 kg), bulto cerrado (25-399.9 kg) y mayoreo (400 kg+). No manejamos venta menudeo.</p></details>
   <details><summary>¿Qué superfoods manejan a granel?</summary><p>En existencia constante manejamos moringa en hoja a $250 por kg y cúrcuma en polvo a $170 por kg. Chía, quinoa, jengibre y flor de Jamaica están disponibles por encargo con tiempo de surtido de 3 a 5 días hábiles.</p></details>
-  <details><summary>¿Sus superfoods tienen conservadores o aditivos?</summary><p>No. Nuestros superfoods son 100% naturales, sin conservadores ni aditivos, y libres de pesticidas. Recibes el producto tal como sale del secado y la molienda.</p></details>
+  <details><summary>¿Qué información de especificación entregan?</summary><p>Compartimos la presentación, el origen declarado por el proveedor y la ficha técnica cuando el proveedor la tiene disponible. Lote y fecha se confirman al cotizar.</p></details>
   <details><summary>¿En qué presentaciones venden los superfoods?</summary><p>Trabajamos exclusivamente mayoreo y medio mayoreo desde 10 kg por superfood. Bulto cerrado de 25 kg para cocinas, jugueras y tiendas; saco de mayoreo desde 400 kg para distribuidores, cadenas y marcas de suplementos. No manejamos presentaciones de menudeo.</p></details>
-  <details><summary>¿Emiten factura y envían a todo México?</summary><p>Sí. Emitimos CFDI con tus datos fiscales en todos los pedidos y enviamos a todo México por paquetería o transporte. En CDMX y Área Metropolitana entregamos en 1 a 3 días hábiles.</p></details>
+  <details><summary>¿Emiten factura y cómo manejan el envío?</summary><p>Sí. Emitimos CFDI con tus datos fiscales en todos los pedidos. Flete a cargo del cliente. Coordinamos paquetería o transporte según destino, volumen y peso; el costo y el tiempo de entrega se confirman en la cotización.</p></details>
 
 </div>
 

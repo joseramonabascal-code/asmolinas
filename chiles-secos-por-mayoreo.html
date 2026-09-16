@@ -43,11 +43,11 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type": "Question", "name": "¿Qué chiles secos manejan al mayoreo?", "acceptedAnswer": {"@type": "Answer", "text": "Manejamos chile ancho y chile guajillo en existencia permanente, con precio por kilo por volumen. Pasilla, chile de árbol, chipotle y morita están disponibles por encargo según temporada y volumen. Pedido mínimo 10 kg por variedad."}},
+      {"@type": "Question", "name": "¿Qué chiles secos manejan al mayoreo?", "acceptedAnswer": {"@type": "Answer", "text": "Manejamos chile ancho y chile guajillo como productos de línea. Disponibilidad sujeta a cosecha y existencia; confirmamos lote y fecha al cotizar. Pasilla, chile de árbol, chipotle y morita se surten por encargo según temporada y volumen. Pedido mínimo 10 kg por variedad."}},
       {"@type": "Question", "name": "¿Cómo funciona el precio por volumen del chile seco al mayoreo?", "acceptedAnswer": {"@type": "Answer", "text": "Manejamos 4 rangos de precio por kg: entrada (10 a 19.9 kg), intermedio (20 a 24.9 kg), bulto cerrado (25 a 399.9 kg) y mayoreo (400 kg en adelante). Cotiza por WhatsApp para recibir el precio exacto por variedad y volumen."}},
       {"@type": "Question", "name": "¿Cómo se conservan los chiles secos en una cocina de volumen?", "acceptedAnswer": {"@type": "Answer", "text": "Guárdalos en un lugar seco, fresco y sin luz directa, en contenedor cerrado. Bien almacenados, el chile ancho y el guajillo conservan color, aroma y flexibilidad varios meses. Recomendamos rotar inventario cada 4 a 6 semanas en cocinas de alto consumo."}},
       {"@type": "Question", "name": "¿Cuál es el pedido mínimo para comprar chiles secos por mayoreo?", "acceptedAnswer": {"@type": "Answer", "text": "El pedido mínimo es de 10 kg por variedad. Puedes combinar variedades y complementar con especias, semillas y superfoods de nuestro catálogo. No manejamos venta menudeo por debajo de 10 kg."}},
-      {"@type": "Question", "name": "¿Emiten factura y envían a todo México?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Emitimos factura CFDI en todos los pedidos de mayoreo y enviamos a todo México por paquetería o transporte. En CDMX y Área Metropolitana entregamos en 1 a 3 días hábiles."}}
+      {"@type": "Question", "name": "¿Emiten factura y envían a todo México?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Emitimos factura CFDI en todos los pedidos de mayoreo. Flete a cargo del cliente. Coordinamos paquetería o transporte según destino, volumen y peso; el costo y el tiempo de entrega se confirman en la cotización."}}
     ]
   }
   </script>
@@ -138,24 +138,18 @@
     <table>
       <thead>
         <tr>
-          <th rowspan="2">Chile seco</th>
-          <th colspan="4" style="text-align:center">Precio por kg (MXN)</th>
-          <th rowspan="2">Uso principal en cocina</th>
-        </tr>
-        <tr>
-          <th>10–19.9 kg<br><small>Entrada</small></th>
-          <th>20–24.9 kg<br><small>Intermedio</small></th>
-          <th>25–399.9 kg<br><small>Bulto 25 kg</small></th>
-          <th>400 kg+<br><small>Mayoreo</small></th>
+          <th>Chile seco</th>
+          <th>Precio por kg (MXN)</th>
+          <th>Uso principal en cocina</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Chile ancho</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>Moles, adobos, marinados para carnes</td></tr>
-        <tr><td>Chile guajillo</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>[PRECIO_PENDIENTE]</td><td>Salsas rojas, caldos, consomés, pozole</td></tr>
-        <tr><td>Chile pasilla</td><td colspan="4" style="text-align:center">Por encargo · cotiza por volumen</td><td>Moles oscuros, salsas de mesa</td></tr>
-        <tr><td>Chile de árbol</td><td colspan="4" style="text-align:center">Por encargo · cotiza por volumen</td><td>Salsas picantes, aceites, botanas</td></tr>
-        <tr><td>Chile chipotle</td><td colspan="4" style="text-align:center">Por encargo · cotiza por volumen</td><td>Adobos, escabeches, salsas ahumadas</td></tr>
-        <tr><td>Chile morita</td><td colspan="4" style="text-align:center">Por encargo · cotiza por volumen</td><td>Salsas taqueras, guisos con ahumado ligero</td></tr>
+        <tr><td>Chile ancho</td><td class="precio-cotiza">Cotiza precio vigente por volumen</td><td>Moles, adobos, marinados para carnes</td></tr>
+        <tr><td>Chile guajillo</td><td class="precio-cotiza">Cotiza precio vigente por volumen</td><td>Salsas rojas, caldos, consomés, pozole</td></tr>
+        <tr><td>Chile pasilla</td><td class="precio-cotiza">Por encargo · cotiza por volumen</td><td>Moles oscuros, salsas de mesa</td></tr>
+        <tr><td>Chile de árbol</td><td class="precio-cotiza">Por encargo · cotiza por volumen</td><td>Salsas picantes, aceites, botanas</td></tr>
+        <tr><td>Chile chipotle</td><td class="precio-cotiza">Por encargo · cotiza por volumen</td><td>Adobos, escabeches, salsas ahumadas</td></tr>
+        <tr><td>Chile morita</td><td class="precio-cotiza">Por encargo · cotiza por volumen</td><td>Salsas taqueras, guisos con ahumado ligero</td></tr>
       </tbody>
     </table>
   </div>
@@ -201,7 +195,7 @@
 
   <h2>Por qué comprar con un proveedor especializado y no en el mercado</h2>
   <p>Comprar chile seco en la central o el mercado funciona hasta que el negocio crece. Entonces aparecen los problemas: el precio cambia cada semana, la calidad varía entre puestos, nadie te da factura y el chofer pierde media mañana en el traslado. Con un proveedor especializado obtienes precio de lista estable, el mismo grado de selección en cada entrega, factura CFDI para deducir el insumo y el pedido puesto en tu cocina o bodega. Además puedes dejar programada la reposición semanal o quincenal en <a href="/mayoreo.html">nuestro esquema de mayoreo</a> y olvidarte de andar cazando chile cada vez que se acaba.</p>
-  <p>Otro punto que pesa en producción: la trazabilidad. Cuando embotellas salsa o vendes mole preparado, necesitas saber qué recibiste, de qué lote y en qué condición. Nosotros documentamos cada pedido, lo que simplifica tus controles internos y cualquier auditoría de tus propios clientes.</p>
+  <p>Otro punto que pesa en producción: saber qué recibiste y en qué condición. Al cotizar te confirmamos presentación y disponibilidad, y compartimos el origen y la ficha técnica cuando el proveedor los tiene documentados.</p>
 
   <h2>Cómo cotizar en 3 pasos</h2>
   <div class="steps">
@@ -211,11 +205,11 @@
   </div>
 
   <h2>Preguntas frecuentes sobre chiles secos al mayoreo</h2>
-  <details><summary>¿Qué chiles secos manejan al mayoreo?</summary><p>Manejamos chile ancho y chile guajillo en existencia permanente, con precio por kilo por volumen. Pasilla, chile de árbol, chipotle y morita están disponibles por encargo según temporada y volumen. Pedido mínimo 10 kg por variedad.</p></details>
+  <details><summary>¿Qué chiles secos manejan al mayoreo?</summary><p>Manejamos chile ancho y chile guajillo como productos de línea. Disponibilidad sujeta a cosecha y existencia; confirmamos lote y fecha al cotizar. Pasilla, chile de árbol, chipotle y morita se surten por encargo según temporada y volumen. Pedido mínimo 10 kg por variedad.</p></details>
   <details><summary>¿Cómo funciona el precio por volumen del chile seco al mayoreo?</summary><p>Manejamos 4 rangos de precio por kg: entrada (10 a 19.9 kg), intermedio (20 a 24.9 kg), bulto cerrado de 25 kg (25 a 399.9 kg) y mayoreo (400 kg en adelante). Cotiza por WhatsApp para recibir el precio exacto por variedad y volumen.</p></details>
   <details><summary>¿Cómo se conservan los chiles secos en una cocina de volumen?</summary><p>Guárdalos en un lugar seco, fresco y sin luz directa, en contenedor cerrado. Bien almacenados, el chile ancho y el guajillo conservan color, aroma y flexibilidad varios meses. Recomendamos rotar inventario cada 4 a 6 semanas en cocinas de alto consumo.</p></details>
   <details><summary>¿Cuál es el pedido mínimo para comprar chiles secos por mayoreo?</summary><p>El pedido mínimo es de 10 kg por variedad. Puedes combinar variedades y complementar con especias, semillas y superfoods de nuestro catálogo. No manejamos venta menudeo por debajo de 10 kg.</p></details>
-  <details><summary>¿Emiten factura y envían a todo México?</summary><p>Sí. Emitimos factura CFDI en todos los pedidos de mayoreo y enviamos a todo México por paquetería o transporte. En CDMX y Área Metropolitana entregamos en 1 a 3 días hábiles.</p></details>
+  <details><summary>¿Emiten factura y cómo manejan el envío?</summary><p>Sí. Emitimos factura CFDI en todos los pedidos de mayoreo. Flete a cargo del cliente. Coordinamos paquetería o transporte según destino, volumen y peso; el costo y el tiempo de entrega se confirman en la cotización.</p></details>
 
 </div>
 
