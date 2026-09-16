@@ -20,8 +20,8 @@ Sitio web de **AS MOLINAS**, proveedor mayorista B2B/HORECA de especias, chiles 
 
 ```
 asmolinas/
-├── index.html                        ← Homepage (hero, catálogo, HORECA, testimonios, contacto)
-├── mayoreo.html                      ← Página general de mayoreo (mínimos, rangos, FAQ)
+├── index.html                        ← Homepage (hero, catálogo, HORECA, contacto)
+├── mayoreo.html                      ← Página general de mayoreo (rangos de precio, FAQ)
 ├── especias-al-mayoreo.html          ← Landing SEO: especias
 ├── chiles-secos-por-mayoreo.html     ← Landing SEO: chiles secos
 ├── semillas-a-granel.html            ← Landing SEO: semillas y nueces
@@ -66,9 +66,10 @@ asmolinas/
 
 ### 3.1 Solo mayoreo y medio mayoreo — nada de menudeo
 
-- **Pedido mínimo: 10 kg por producto**
-- **Prohibido en toda la web:** presentaciones de 500 g, 1 kg individual, sobres de 100 g, kits pequeños, "paquete prueba", cualquier compra < 10 kg
-- **Prohibido:** mencionar mínimos monetarios ($300, $1,500, $2,000 MXN) — el mínimo es en kg, no en dinero
+- **El pedido mínimo cambia según el producto y la presentación.** No existe un mínimo único: se confirma al cotizar. Frase canónica: *"mínimo según producto y presentación"*
+- **Prohibido:** afirmar un mínimo fijo ("pedido mínimo 10 kg") — fue la regla anterior y ya no aplica
+- **Prohibido en toda la web:** presentaciones de 500 g, 1 kg individual, sobres de 100 g, kits pequeños, "paquete prueba"
+- **Prohibido:** mencionar mínimos monetarios ($300, $1,500, $2,000 MXN) — el mínimo es en volumen, no en dinero
 
 ### 3.2 Estructura de precios (4 rangos por producto)
 
@@ -81,18 +82,37 @@ Todos los precios se cotizan **por kg** y bajan según el volumen del pedido:
 | **25 – 399.9 kg** | Precio medio mayoreo (bulto cerrado 25 kg) | Restaurantes de alto consumo, distribuidores medianos, tiendas |
 | **400 kg en adelante** | Precio mayoreo | Distribuidores, marcas de alimentos, foodservice a escala |
 
-**Cuando falte un precio real**, usar el placeholder literal `[PRECIO_PENDIENTE]` (con corchetes y guion bajo). Nunca inventar cifras.
+Estos 4 rangos describen **cómo escala el precio con el volumen**, no un piso de compra: el mínimo real depende del producto y la presentación (ver 3.1).
 
-### 3.3 Tono y público del copy
+**No se publican precios en el sitio.** Nunca inventar cifras y nunca dejar placeholders visibles (`[PRECIO_PENDIENTE]` fue retirado de todo el sitio). La frase canónica es **"Cotiza precio vigente por volumen"**.
+
+### 3.3 Regla de evidencia (la más importante)
+
+Del reporte maestro del 15-sep-2026: *no publicar ni vender una promesa que no pueda demostrarse con producto, documento, lote, muestra, proceso o evidencia operativa.*
+
+Claims **prohibidos** hasta que exista documentación lote a lote:
+
+| Prohibido | Usar en su lugar |
+|---|---|
+| "100% natural", "libre de pesticidas", "certificado", "comercio justo" | Presentación, origen declarado por el proveedor, ficha técnica cuando exista |
+| "Proveedor directo, sin intermediarios", "compramos en origen" | "Comercializamos y abastecemos ingredientes secos para negocio" |
+| "Molienda propia", "molemos por lote" | "Presentación según disponibilidad del proveedor" |
+| "Existencia permanente todo el año" | "Disponibilidad sujeta a cosecha y existencia; confirmamos lote al cotizar" |
+| "Documentamos cada pedido" | Nada, hasta que exista bitácora formal de recepción y lote |
+| "Entrega 1-3 días", envío nacional genérico | "Flete a cargo del cliente; costo y tiempo se confirman en la cotización" |
+| Pago con tarjeta, crédito automático | Sólo SPEI y depósito; CFDI en todos los pedidos |
+| "+200 negocios surtidos", "47 reseñas", testimonios, `aggregateRating` | Sólo evidencia comprobable: "Atención B2B", "Factura CFDI" |
+
+### 3.4 Tono y público del copy
 
 - **Público único:** B2B / HORECA / foodservice
 - **PROHIBIDO** copy dirigido a consumidor final: "cada familia mexicana", "para tu hogar", "amas de casa", "para tu cocina" en sentido individual
 - **Usa** términos como: "para tu operación", "cocinas de restaurante", "abasto para tu negocio", "cotiza mayoreo"
 - El idioma es **español (México)** en todo el sitio
 
-### 3.4 CTAs
+### 3.5 CTAs
 
-- CTA único principal: **"Cotizar mayoreo"** por WhatsApp
+- CTA principal: **"Solicitar cotización B2B"** por WhatsApp (secundario: "Ver productos disponibles")
 - Número: `748 166 0295` (link `https://wa.me/527481660295`)
 - Nunca uses lenguaje transaccional de e-commerce ("Comprar ahora", "Añadir al carrito") — no hay tienda online, solo cotización
 
@@ -199,8 +219,10 @@ Después de editar, siempre regenerar el PDF y commitearlo junto con el script.
 
 Antes de commitear cualquier cambio en HTML de las páginas de catálogo/mayoreo:
 
-- [ ] ¿Menciono algún precio o mínimo en dinero (`$XXX MXN`)? → **quitar**, dejar solo mínimo en kg
-- [ ] ¿Menciono presentaciones < 10 kg (500 g, 1 kg individual)? → **quitar**
+- [ ] ¿Publico algún precio o mínimo en dinero (`$XXX MXN`)? → **quitar**
+- [ ] ¿Afirmo un mínimo fijo ("10 kg por producto")? → **quitar**, el mínimo es por SKU
+- [ ] ¿Menciono presentaciones de menudeo (500 g, 1 kg individual)? → **quitar**
+- [ ] ¿Algún claim de la tabla 3.3 sin evidencia documentada? → **quitar**
 - [ ] ¿El copy suena B2C (familia, hogar, cada mexicano)? → **reescribir a B2B**
 - [ ] ¿Actualicé el schema JSON-LD además del texto visible?
 - [ ] ¿La meta description sigue siendo coherente con el cambio?
@@ -243,8 +265,11 @@ cd assets && python3 gen_catalog.py
 
 # Buscar residuos B2C o precios viejos antes de commit
 grep -rn -iE '\$300|\$1,?500|\$2,?000|500\s?g|familia mexicana|bolsa de 1 kg' *.html blog/*.html
+
+# Auditar claims sin evidencia (regla 3.3) y mínimos fijos
+grep -rn -iE 'PRECIO_PENDIENTE|100% natural|pesticida|comercio justo|molienda propia|sin intermediarios|existencia permanente|1-3 días|mínimo.{0,12}10 kg' *.html blog/*.html
 ```
 
 ---
 
-**Última actualización del CLAUDE.md:** después del refactor B2B + 4 rangos de precio.
+**Última actualización:** tras aplicar la Fase P0 del reporte maestro (15-sep-2026) — retiro de claims sin evidencia y MOQ por SKU.
