@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- SEO Meta Tags -->
-  <title>Proveedor de Especias, Chiles Secos y Semillas al Mayoreo | AS MOLINAS</title>
-  <meta name="description" content="Proveedor mayorista de especias, chiles secos, semillas y superfoods en México. Surtimos restaurantes, hoteles, distribuidores y tiendas. Precios por volumen, facturación y envíos. Cotiza en 2 horas.">
+  <title>Especias y Chiles Secos al Mayoreo en México | AS MOLINAS</title>
+  <meta name="description" content="Especias y chiles secos al mayoreo para negocios en México: comino, ajo, cúrcuma, pimienta, pimentón, orégano, guajillo, ancho y árbol. Cotización por volumen, factura CFDI. Molinos, fabricantes de salsas, comedores, restaurantes y tiendas a granel.">
   <meta name="keywords" content="proveedor de especias, especias al por mayor, chiles secos por mayoreo, proveedor de chiles secos, semillas al por mayor, especias para restaurantes, distribuidor de especias, especias a granel, superfoods mayoreo, especias mayoreo México, HORECA, Foodservice">
   <meta name="author" content="AS MOLINAS">
   <meta name="robots" content="index, follow">
@@ -1189,6 +1189,67 @@
       .discount-banner-inner { flex-direction: column; gap: 6px; }
       .discount-sep { display: none; }
     }
+  
+    /* ===== Formulario de calificación B2B ===== */
+    .contact-form-wrap {
+      background: var(--c-white);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+    }
+    .cform-title {
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      color: var(--c-forest);
+      margin-bottom: 8px;
+    }
+    .cform-intro {
+      font-size: .88rem;
+      color: var(--c-text-light);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+    .cform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .cform-field { display: flex; flex-direction: column; gap: 6px; }
+    .cform-field.cform-full { grid-column: 1 / -1; }
+    .cform-field > span {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--c-text);
+      letter-spacing: .01em;
+    }
+    .cform-field > span em { color: var(--c-terracotta); font-style: normal; }
+    .cform-field input,
+    .cform-field select {
+      width: 100%;
+      padding: 11px 13px;
+      font-family: var(--ff-body);
+      font-size: .92rem;
+      color: var(--c-text);
+      background: var(--c-cream);
+      border: 1.5px solid var(--c-sand);
+      border-radius: var(--radius);
+      transition: border-color .2s;
+    }
+    .cform-field input:focus,
+    .cform-field select:focus { outline: none; border-color: var(--c-forest); }
+    .cform-field input::placeholder { color: #a99e92; }
+    .cform-submit { width: 100%; justify-content: center; margin-top: 18px; }
+    .cform-nota {
+      font-size: .74rem;
+      color: var(--c-text-light);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+    @media (max-width: 640px) {
+      .contact-form-wrap { padding: 22px; }
+      .cform-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -1247,11 +1308,11 @@
       <div class="hero-grid">
         <div class="fade-up">
           <div class="hero-badge">🌿 Solo mayoreo y medio mayoreo</div>
-          <h1>Especias, Chiles Secos y Semillas <em>al Mayoreo</em></h1>
-          <p class="hero-desc">Proveedor mayorista para restaurantes, hoteles, distribuidores y tiendas. Especias, chiles secos, semillas y superfoods a granel — precios por volumen, facturación y envíos a todo México.</p>
+          <h1>Especias y Chiles Secos <em>al Mayoreo</em> para Negocios en México</h1>
+          <p class="hero-desc">Comercializamos y abastecemos ingredientes secos para negocio: especias, chiles secos y semillas seleccionadas. Cotización por volumen, factura CFDI y coordinación de envío para molinos, fabricantes de salsas, comedores, restaurantes y tiendas a granel.</p>
           <div class="hero-actions">
-            <a href="https://wa.me/527481660295?text=Hola%20AS%20MOLINAS%2C%20quiero%20una%20cotización%20de%20mayoreo%20para%20mi%20negocio" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Cotizar por WhatsApp</a>
-            <a href="/assets/catalogo-asmolinas.pdf" download class="btn btn-outline"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" style="flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM12 17l-4-4h2.5v-3h3v3H16l-4 4z"/></svg> Descargar catálogo PDF</a>
+            <a href="https://wa.me/527481660295?text=Hola%20AS%20MOLINAS%2C%20quiero%20una%20cotización%20de%20mayoreo%20para%20mi%20negocio" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Solicitar cotización B2B</a>
+            <a href="#catalogo" class="btn btn-outline">Ver productos disponibles</a>
           </div>
           <div class="hero-stats">
             <div class="hero-stat"><strong>B2B</strong><span>Sólo mayoreo y medio mayoreo</span></div>
@@ -1474,12 +1535,94 @@
             </a>
           </div>
         </div>
-        <div class="contact-wa-cta fade-up" style="transition-delay:0.1s; background:var(--c-white); border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-md); text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;">
-          <div style="font-size:3rem">💬</div>
-          <h3 style="font-family:var(--ff-display); font-size:1.4rem; color:var(--c-forest)">Escríbenos directamente</h3>
-          <p style="font-size:0.9rem; color:var(--c-text-light); max-width:320px; line-height:1.6">Dinos qué productos te interesan y cuánto necesitas. Te respondemos en minutos con disponibilidad y precios.</p>
-          <a href="https://wa.me/527481660295?text=Hola%2C%20quiero%20hacer%20un%20pedido" class="btn btn-primary" style="margin-top:8px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Pedir por WhatsApp</a>
-          <p style="font-size:0.78rem; color:var(--c-text-light)">748 166 0295 · Lun–Sáb 9am–7pm</p>
+        <div class="contact-form-wrap fade-up" style="transition-delay:0.1s">
+          <h3 class="cform-title">Solicitar cotización B2B</h3>
+          <p class="cform-intro">Con estos datos preparamos tu cotización en menos de 2 horas hábiles. Al enviar se abre WhatsApp con tu solicitud lista para revisar.</p>
+
+          <form id="formCotiza" onsubmit="enviarCotizacionB2B(event)">
+            <div class="cform-grid">
+              <label class="cform-field">
+                <span>Empresa <em>*</em></span>
+                <input type="text" name="empresa" required autocomplete="organization" placeholder="Nombre de tu negocio">
+              </label>
+              <label class="cform-field">
+                <span>Giro <em>*</em></span>
+                <select name="giro" required>
+                  <option value="">Selecciona…</option>
+                  <option>Molino de chiles / moles</option>
+                  <option>Fabricante de salsas</option>
+                  <option>Fabricante de botanas</option>
+                  <option>Embutidos / cárnicos</option>
+                  <option>Comedor industrial</option>
+                  <option>Restaurante / taquería</option>
+                  <option>Grupo restaurantero</option>
+                  <option>Hotel</option>
+                  <option>Panadería / repostería</option>
+                  <option>Tienda a granel / naturista</option>
+                  <option>Distribuidor</option>
+                  <option>Otro</option>
+                </select>
+              </label>
+              <label class="cform-field">
+                <span>Ciudad y CP <em>*</em></span>
+                <input type="text" name="ciudad" required placeholder="Ej. CDMX, 06700">
+              </label>
+              <label class="cform-field">
+                <span>Producto que necesitas <em>*</em></span>
+                <input type="text" name="producto" required placeholder="Ej. comino, ajo granulado, guajillo">
+              </label>
+              <label class="cform-field">
+                <span>Volumen aproximado <em>*</em></span>
+                <input type="text" name="volumen" required placeholder="Ej. 50 kg" inputmode="text">
+              </label>
+              <label class="cform-field">
+                <span>Frecuencia de compra</span>
+                <select name="frecuencia">
+                  <option value="">Selecciona…</option>
+                  <option>Única vez / prueba</option>
+                  <option>Semanal</option>
+                  <option>Quincenal</option>
+                  <option>Mensual</option>
+                  <option>Por temporada</option>
+                </select>
+              </label>
+              <label class="cform-field">
+                <span>Presentación preferida</span>
+                <select name="presentacion">
+                  <option value="">La que esté disponible</option>
+                  <option>Bulto cerrado 25 kg</option>
+                  <option>Saco de mayoreo</option>
+                  <option>Según disponibilidad del proveedor</option>
+                </select>
+              </label>
+              <label class="cform-field">
+                <span>¿Requieres factura CFDI?</span>
+                <select name="factura">
+                  <option value="">Selecciona…</option>
+                  <option>Sí, requiero CFDI</option>
+                  <option>No por ahora</option>
+                </select>
+              </label>
+              <label class="cform-field">
+                <span>Destino de envío</span>
+                <input type="text" name="destino" placeholder="Ciudad o municipio de entrega">
+              </label>
+              <label class="cform-field">
+                <span>Teléfono <em>*</em></span>
+                <input type="tel" name="telefono" required autocomplete="tel" placeholder="10 dígitos" inputmode="tel">
+              </label>
+              <label class="cform-field cform-full">
+                <span>Correo</span>
+                <input type="email" name="correo" autocomplete="email" placeholder="compras@tunegocio.com">
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary cform-submit">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Enviar solicitud por WhatsApp
+            </button>
+            <p class="cform-nota">El mínimo cambia según el producto y la presentación; se confirma al cotizar. Flete a cargo del cliente.</p>
+          </form>
         </div>
       </div>
     </div>
@@ -1702,55 +1845,53 @@
   <script>
     // ===== PRODUCT DATA =====
     const products = [
-      // Especias
-      { name: "Canela en raja", desc: "Ceylan premium, aroma intenso. Ideal repostería, café y té.", price: 180, unit: "kg", cat: "especias", tag: "Popular" },
-      { name: "Canela molida", desc: "Molida fina para repostería y panadería de volumen.", price: 190, unit: "kg", cat: "especias", tag: "" },
-      { name: "Pimienta negra entera", desc: "Aroma intenso y picor limpio que tu chef nota al primer golpe. Grano entero para molino.", price: 220, unit: "kg", cat: "especias", tag: "" },
-      { name: "Pimienta negra molida", desc: "Molida gruesa, sabor intenso para cocina diaria.", price: 230, unit: "kg", cat: "especias", tag: "" },
-      { name: "Comino entero", desc: "Semilla entera, base de adobos, moles y guisos.", price: 160, unit: "kg", cat: "especias", tag: "" },
-      { name: "Orégano molido", desc: "Orégano mexicano, aroma fresco para salsas y pizzas.", price: 120, unit: "kg", cat: "especias", tag: "" },
-      { name: "Clavo de olor", desc: "Grano entero muy aromático, para guisos y repostería.", price: 350, unit: "kg", cat: "especias", tag: "Premium" },
+      // Prioridad del radar comercial — muy alta
+      { name: "Comino entero", desc: "Semilla entera. Base de adobos, moles, guisos y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "Prioridad" },
+      { name: "Ajo granulado", desc: "Granulometría según proveedor. Comedores, sazonadores y botanas.", price: 0, unit: "kg", cat: "especias", tag: "Prioridad" },
+      { name: "Ajo en polvo", desc: "Molienda fina para mezclas secas y línea industrial.", price: 0, unit: "kg", cat: "especias", tag: "Prioridad" },
+      { name: "Cúrcuma molida", desc: "Polvo. Color para mezclas, bebidas y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "Prioridad" },
 
-      // Chiles secos
-      { name: "Chile ancho seco", desc: "Poblano seco, dulce y carnoso. Base de moles y adobos.", price: 140, unit: "kg", cat: "chiles", tag: "Popular" },
-      { name: "Chile guajillo seco", desc: "Guajillo brillante. Rojo vivo y picor amable que da alma a salsas y caldos.", price: 130, unit: "kg", cat: "chiles", tag: "" },
+      // Prioridad del radar comercial — alta
+      { name: "Pimienta negra entera", desc: "Grano entero para molino. Calibre se confirma al cotizar.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Pimienta negra molida", desc: "Molienda para cocina de volumen y embutidos.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Pimentón / paprika", desc: "Dulce o picante según disponibilidad. Botanas y cárnicos.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Orégano molido", desc: "Orégano mexicano. Salsas, caldos y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Chile guajillo seco", desc: "Rojo intenso, picor moderado. Salsas, caldos y moles.", price: 0, unit: "kg", cat: "chiles", tag: "Prioridad" },
+      { name: "Chile ancho seco", desc: "Poblano seco. Base de moles y adobos.", price: 0, unit: "kg", cat: "chiles", tag: "Prioridad" },
+      { name: "Chile de árbol seco", desc: "Picor alto. Salsas embotelladas, aceites y botanas.", price: 0, unit: "kg", cat: "chiles", tag: "Prioridad" },
 
-      // Tés e infusiones
-      { name: "Manzanilla premium", desc: "Flor entera, cosecha reciente. Infusiones y spa.", price: 180, unit: "kg", cat: "tes", tag: "Popular" },
-      { name: "Hierbabuena", desc: "Hojas secas, aroma refrescante para té y coctelería.", price: 140, unit: "kg", cat: "tes", tag: "" },
-      { name: "Té de limón", desc: "Hojas de limón natural, infusión digestiva.", price: 120, unit: "kg", cat: "tes", tag: "" },
-      { name: "Flor de Jamaica", desc: "Flor entera para agua fresca y concentrados.", price: 130, unit: "kg", cat: "tes", tag: "" },
-      { name: "Mezcla relajante", desc: "Manzanilla, lavanda y pasiflora para infusión.", price: 220, unit: "kg", cat: "tes", tag: "Nuevo" },
+      // Resto del catálogo
+      { name: "Canela en raja", desc: "Raja entera para infusión, jarabes y repostería de volumen.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Canela molida", desc: "Molienda para masas, panificación y bebidas.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Clavo de olor", desc: "Grano entero. Guisos, pan de especias y conservas.", price: 0, unit: "kg", cat: "especias", tag: "" },
 
-      // Superfoods
-      { name: "Moringa", desc: "Hoja seca de alto valor nutricional. Té y batidos wellness.", price: 250, unit: "kg", cat: "superfoods", tag: "Popular" },
-      { name: "Cúrcuma en polvo", desc: "El oro de la cocina saludable — color, sabor y bienestar en un ingrediente.", price: 170, unit: "kg", cat: "superfoods", tag: "" },
-
-      // Deshidratados
-      { name: "Arándano deshidratado", desc: "Fruta entera, sabor dulce-ácido", price: 90, unit: "kg", cat: "deshidratados", tag: "Popular" },
-      { name: "Mango rodaja", desc: "Rodajas deshidratadas, sin azúcar", price: 135, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Mango cubo", desc: "Cubos deshidratados, snack natural", price: 135, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Fresa deshidratada", desc: "Rodaja entera, color intenso", price: 200, unit: "kg", cat: "deshidratados", tag: "Premium" },
-      { name: "Piña rodaja", desc: "Rodajas naturales deshidratadas", price: 180, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Piña cubo", desc: "Cubos prácticos para granola", price: 135, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Papaya deshidratada", desc: "Trozos dulces y suaves", price: 110, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Manzana rodaja", desc: "Rodajas crujientes, sin azúcar", price: 120, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Cereza deshidratada", desc: "Sabor intenso, ideal repostería", price: 170, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Orejón (chabacano)", desc: "Chabacano deshidratado premium", price: 250, unit: "kg", cat: "deshidratados", tag: "Premium" },
-
-      // Semillas
-      { name: "Almendra natural", desc: "Crocante, fresca y versátil — de repostería a botana. Calidad que se muerde.", price: 190, unit: "kg", cat: "semillas", tag: "Popular" },
-      { name: "Almendra fileteada", desc: "Corte fino para repostería", price: 200, unit: "kg", cat: "semillas", tag: "" },
-      { name: "Almendra sin cutícula", desc: "Pelada, lista para usar", price: 200, unit: "kg", cat: "semillas", tag: "" },
-      { name: "Nuez de la India", desc: "Cashew entero, tostado natural", price: 210, unit: "kg", cat: "semillas", tag: "" },
-      { name: "Avellana", desc: "Entera con cutícula, grado premium", price: 370, unit: "kg", cat: "semillas", tag: "Premium" },
-      { name: "Ajonjolí natural", desc: "Semilla limpia, ideal para pan", price: 65, unit: "kg", cat: "semillas", tag: "" },
-      { name: "Coco rallado", desc: "Rallado fino, sin azúcar", price: 80, unit: "kg", cat: "semillas", tag: "" },
-
-      // Sales
-      { name: "Sal del Himalaya fina", desc: "Sal rosa molida fina, 84 minerales", price: 85, unit: "kg", cat: "sales", tag: "Popular" },
-      { name: "Sal del Himalaya gruesa", desc: "Grano grueso, ideal para molino", price: 80, unit: "kg", cat: "sales", tag: "" },
-      { name: "Sal de mar gruesa", desc: "Cosechada naturalmente, sin refinar", price: 45, unit: "kg", cat: "sales", tag: "" },
+      { name: "Manzanilla premium", desc: "Flor entera, cosecha reciente. Infusiones y spa.", price: 0, unit: "kg", cat: "tes", tag: "Popular" },
+      { name: "Hierbabuena", desc: "Hojas secas, aroma refrescante para té y coctelería.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té de limón", desc: "Hojas de limón natural, infusión digestiva.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Flor de Jamaica", desc: "Flor entera para agua fresca y concentrados.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Mezcla relajante", desc: "Manzanilla, lavanda y pasiflora para infusión.", price: 0, unit: "kg", cat: "tes", tag: "Nuevo" },
+      { name: "Moringa", desc: "Hoja seca de alto valor nutricional. Té y batidos wellness.", price: 0, unit: "kg", cat: "superfoods", tag: "Popular" },
+      { name: "Cúrcuma en polvo", desc: "El oro de la cocina saludable — color, sabor y bienestar en un ingrediente.", price: 0, unit: "kg", cat: "superfoods", tag: "" },
+      { name: "Arándano deshidratado", desc: "Fruta entera, sabor dulce-ácido", price: 0, unit: "kg", cat: "deshidratados", tag: "Popular" },
+      { name: "Mango rodaja", desc: "Rodajas deshidratadas, sin azúcar", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Mango cubo", desc: "Cubos deshidratados, snack natural", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Fresa deshidratada", desc: "Rodaja entera, color intenso", price: 0, unit: "kg", cat: "deshidratados", tag: "Premium" },
+      { name: "Piña rodaja", desc: "Rodajas naturales deshidratadas", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Piña cubo", desc: "Cubos prácticos para granola", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Papaya deshidratada", desc: "Trozos dulces y suaves", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Manzana rodaja", desc: "Rodajas crujientes, sin azúcar", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Cereza deshidratada", desc: "Sabor intenso, ideal repostería", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Orejón (chabacano)", desc: "Chabacano deshidratado premium", price: 0, unit: "kg", cat: "deshidratados", tag: "Premium" },
+      { name: "Almendra natural", desc: "Crocante, fresca y versátil — de repostería a botana. Calidad que se muerde.", price: 0, unit: "kg", cat: "semillas", tag: "Popular" },
+      { name: "Almendra fileteada", desc: "Corte fino para repostería", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Almendra sin cutícula", desc: "Pelada, lista para usar", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Nuez de la India", desc: "Cashew entero, tostado natural", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Avellana", desc: "Entera con cutícula, grado premium", price: 0, unit: "kg", cat: "semillas", tag: "Premium" },
+      { name: "Ajonjolí natural", desc: "Semilla limpia, ideal para pan", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Coco rallado", desc: "Rallado fino, sin azúcar", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Sal del Himalaya fina", desc: "Sal rosa molida fina, 84 minerales", price: 0, unit: "kg", cat: "sales", tag: "Popular" },
+      { name: "Sal del Himalaya gruesa", desc: "Grano grueso, ideal para molino", price: 0, unit: "kg", cat: "sales", tag: "" },
+      { name: "Sal de mar gruesa", desc: "Cosechada naturalmente, sin refinar", price: 0, unit: "kg", cat: "sales", tag: "" },
     ];
 
     // ===== PRODUCT IMAGE MAPPING =====
@@ -1838,6 +1979,38 @@
     function declineCookies() {
       localStorage.setItem('cookies_set', 'declined');
       document.getElementById('cookieBanner').classList.remove('show');
+    }
+
+
+    // ===== Formulario de calificación B2B =====
+    // El sitio es estático: no hay backend al cual postear. El formulario
+    // compone un mensaje de WhatsApp con los datos capturados para que el
+    // cliente lo revise antes de enviarlo.
+    function enviarCotizacionB2B(ev) {
+      ev.preventDefault();
+      const f = ev.target;
+      const v = n => (f.elements[n] && f.elements[n].value || '').trim();
+
+      const lineas = [
+        'Solicitud de cotización B2B — AS MOLINAS',
+        '',
+        `Empresa: ${v('empresa')}`,
+        `Giro: ${v('giro')}`,
+        `Ciudad y CP: ${v('ciudad')}`,
+        '',
+        `Producto: ${v('producto')}`,
+        `Volumen aproximado: ${v('volumen')}`,
+      ];
+      if (v('frecuencia'))   lineas.push(`Frecuencia: ${v('frecuencia')}`);
+      if (v('presentacion')) lineas.push(`Presentación: ${v('presentacion')}`);
+      if (v('factura'))      lineas.push(`Factura: ${v('factura')}`);
+      if (v('destino'))      lineas.push(`Destino de envío: ${v('destino')}`);
+      lineas.push('', `Teléfono: ${v('telefono')}`);
+      if (v('correo')) lineas.push(`Correo: ${v('correo')}`);
+      lineas.push('', '¿Me confirman precio vigente por volumen y disponibilidad?');
+
+      window.open('https://wa.me/527481660295?text=' +
+        encodeURIComponent(lineas.join('\n')), '_blank', 'noopener');
     }
 
     // ===== INIT =====
