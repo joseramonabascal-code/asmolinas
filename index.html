@@ -1250,6 +1250,20 @@
       .contact-form-wrap { padding: 22px; }
       .cform-grid { grid-template-columns: 1fr; }
     }
+  
+    /* Enlaces a fichas de producto */
+    .prod-links { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--c-sand); }
+    .prod-links-title {
+      font-size: .78rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--c-text-light); margin-bottom: 12px;
+    }
+    .prod-links-grid { display: flex; flex-wrap: wrap; gap: 9px; }
+    .prod-links-grid a {
+      display: inline-block; padding: 8px 15px; font-size: .87rem; font-weight: 600;
+      color: var(--c-forest); background: var(--c-white); border: 1px solid var(--c-sand);
+      border-radius: 999px; text-decoration: none; transition: background .2s, border-color .2s;
+    }
+    .prod-links-grid a:hover { background: var(--c-warm); border-color: var(--c-forest); }
   </style>
 </head>
 <body>
@@ -1401,6 +1415,21 @@
       </div>
 
       <div class="pagination" id="pagination"></div>
+
+      <div class="prod-links fade-up">
+        <p class="prod-links-title">Fichas de producto · prioridad comercial</p>
+        <div class="prod-links-grid">
+          <a href="/comino-mayoreo.html">Comino</a>
+          <a href="/ajo-polvo-mayoreo.html">Ajo en polvo y granulado</a>
+          <a href="/curcuma-molida-mayoreo.html">Cúrcuma molida</a>
+          <a href="/pimienta-negra-mayoreo.html">Pimienta negra</a>
+          <a href="/pimenton-dulce-mayoreo.html">Pimentón / paprika</a>
+          <a href="/oregano-mayoreo.html">Orégano</a>
+          <a href="/chile-guajillo-mayoreo.html">Chile guajillo</a>
+          <a href="/chile-ancho-mayoreo.html">Chile ancho</a>
+          <a href="/chile-arbol-mayoreo.html">Chile de árbol</a>
+        </div>
+      </div>
     </div>
   </section>
 
