@@ -110,19 +110,7 @@
       {"@type": "State", "name": "Estado de México"}
     ],
     "priceRange": "$$",
-    "openingHours": "Mo-Sa 09:00-19:00",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Catálogo AS MOLINAS",
-      "itemListElement": [
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Canela en raja", "description": "Canela ceylan premium, aroma intenso"}, "price": "180", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Manzanilla premium", "description": "Flor entera, cosecha reciente"}, "price": "180", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Sal del Himalaya fina", "description": "Sal rosa molida fina, 84 minerales"}, "price": "85", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Arándano deshidratado", "description": "Fruta entera, sabor dulce-ácido"}, "price": "90", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Moringa", "description": "Hojas secas, alto valor nutricional, superfood"}, "price": "250", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Flor de Jamaica", "description": "Flor entera, ideal para agua fresca"}, "price": "130", "priceCurrency": "MXN"}
-      ]
-    }
+    "openingHours": "Mo-Sa 09:00-19:00"
   }
   </script>
   <!-- Schema: FAQPage -->
@@ -694,7 +682,7 @@
 
     .trust-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
       gap: 24px;
     }
     .trust-card {
@@ -1437,78 +1425,96 @@
   <!-- ======= TRUST BADGES ======= -->
   <section class="trust">
     <div class="container">
+      <div class="section-header fade-up" style="margin-bottom:32px">
+        <div class="section-label">Confianza</div>
+        <h2 class="section-title">Qué podemos entregar</h2>
+        <p class="section-subtitle">Sólo lo que podemos respaldar con documento, lote o muestra</p>
+      </div>
       <div class="trust-grid">
         <div class="trust-card fade-up">
-          <div class="trust-icon">🌱</div>
-          <h4>Atención B2B</h4>
-          <p>Sólo mayoreo y medio mayoreo, con cotización por volumen.</p>
-        </div>
-        <div class="trust-card fade-up" style="transition-delay:0.05s">
           <div class="trust-icon">🧾</div>
           <h4>Factura CFDI</h4>
-          <p>Emitimos CFDI en todos los pedidos de mayoreo.</p>
+          <p>En todos los pedidos de mayoreo. Comparte tu Constancia de Situación Fiscal al cotizar.</p>
+        </div>
+        <div class="trust-card fade-up" style="transition-delay:0.05s">
+          <div class="trust-icon">📄</div>
+          <h4>Ficha técnica</h4>
+          <p>Cuando el proveedor la tiene disponible. Te decimos de antemano si ese producto la trae.</p>
         </div>
         <div class="trust-card fade-up" style="transition-delay:0.1s">
-          <div class="trust-icon">📦</div>
-          <h4>Empaque Sellado</h4>
-          <p>Conserva aroma y frescura hasta tu puerta.</p>
+          <div class="trust-icon">🏷️</div>
+          <h4>Lote y origen</h4>
+          <p>Cuando están documentados por el proveedor, tal como los declara.</p>
         </div>
         <div class="trust-card fade-up" style="transition-delay:0.15s">
+          <div class="trust-icon">📷</div>
+          <h4>Fotos y muestra</h4>
+          <p>Del lote disponible, y muestra física cuando el volumen lo justifica.</p>
+        </div>
+        <div class="trust-card fade-up" style="transition-delay:0.2s">
+          <div class="trust-icon">📋</div>
+          <h4>Condiciones por escrito</h4>
+          <p>Precio vigente, vigencia de la cotización, presentación, mínimo y forma de pago.</p>
+        </div>
+        <div class="trust-card fade-up" style="transition-delay:0.25s">
           <div class="trust-icon">🚚</div>
           <h4>Logística coordinada</h4>
-          <p>Flete a cargo del cliente; tiempo y costo se confirman al cotizar.</p>
+          <p>Flete a cargo del cliente; costo y tiempo se confirman al cotizar.</p>
         </div>
       </div>
+      <p style="text-align:center;margin-top:24px;font-size:.9rem">
+        <a href="/calidad-y-abastecimiento.html">Ver cómo revisamos y documentamos cada pedido</a>
+      </p>
     </div>
   </section>
 
   <!-- ======= B2B: HOTELES, RESTAURANTES Y SPAS ======= -->
-  <section class="b2b-section" id="mayoreo" aria-label="Servicio HORECA y Foodservice — hoteles, restaurantes y spas">
+  <section class="b2b-section" id="mayoreo" aria-label="Segmentos B2B que abastecemos">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">HORECA &amp; Foodservice</div>
-        <h2 class="section-title">Atendemos Hoteles, Restaurantes y Spas</h2>
-        <p class="section-subtitle">Precios especiales por volumen · Facturación · Entrega programada</p>
+        <h2 class="section-title">A quién abastecemos</h2>
+        <p class="section-subtitle">Cotización por volumen · Factura CFDI · Coordinamos el envío</p>
       </div>
       <div class="b2b-grid">
         <div class="b2b-card fade-up">
-          <div class="b2b-icon">🏨</div>
-          <h3>Hoteles</h3>
-          <p>Surtimos las cocinas y spas de hoteles boutique y cadenas. Entrega semanal o quincenal con factura. Especias, tés y productos para aromaterapia.</p>
+          <div class="b2b-icon">🌶️</div>
+          <h3>Molinos de chiles y moles</h3>
+          <p>Chile guajillo, ancho y de árbol por bulto, con criterio de selección acordado desde el primer pedido para que el molido salga parejo.</p>
           <ul class="b2b-list">
-            <li>Hierbas para amenidades y spa</li>
-            <li>Especias para cocina de autor</li>
-            <li>Tés artesanales para habitaciones</li>
+            <li>Guajillo, ancho, árbol y pasilla</li>
+            <li>Comino y orégano para mezclas</li>
+            <li>Selección acordada por escrito</li>
           </ul>
         </div>
         <div class="b2b-card fade-up" style="transition-delay:0.08s">
-          <div class="b2b-icon">🍽️</div>
-          <h3>Restaurantes</h3>
-          <p>Desde fondas y cantinas hasta cocinas de alta gastronomía. Abastecemos especias frescas en bulto cerrado de 25 kg y sacos de mayoreo con precio por volumen por volumen.</p>
+          <div class="b2b-icon">🫙</div>
+          <h3>Fabricantes de salsas y botanas</h3>
+          <p>Materia prima seca para tus propias formulaciones: chiles, ajo, cebolla, comino y pimentón, con la especificación que declara el proveedor.</p>
           <ul class="b2b-list">
-            <li>Achiote, epazote, canela Ceylon</li>
-            <li>Chiles secos seleccionados</li>
-            <li>Mezclas de especias a la medida</li>
+            <li>Chile de árbol y guajillo por volumen</li>
+            <li>Ajo granulado y en polvo</li>
+            <li>Pimentón dulce o picante</li>
           </ul>
         </div>
         <div class="b2b-card fade-up" style="transition-delay:0.16s">
-          <div class="b2b-icon">🧖</div>
-          <h3>Spas &amp; Wellness</h3>
-          <p>Plantas, flores y raíces secas para aromaterapia, sales de baño y tratamientos corporales. Presentación y origen declarado por el proveedor; compartimos la ficha técnica cuando está disponible.</p>
+          <div class="b2b-icon">🍲</div>
+          <h3>Comedores y cocina mexicana</h3>
+          <p>Abasto recurrente para comedores industriales, taquerías, pozolerías y restaurantes de cocina mexicana, con factura CFDI en todos los pedidos.</p>
           <ul class="b2b-list">
-            <li>Lavanda, manzanilla, rosas secas</li>
-            <li>Sales minerales e infusiones</li>
-            <li>Moringa y superfoods para menús wellness</li>
+            <li>Ajo, cebolla, pimienta y comino</li>
+            <li>Orégano y chiles para salsas</li>
+            <li>Cotización por volumen</li>
           </ul>
         </div>
         <div class="b2b-card fade-up" style="transition-delay:0.24s">
-          <div class="b2b-icon">🏢</div>
-          <h3>Negocios</h3>
-          <p>Tiendas naturistas, distribuidores, cafeterías y cualquier negocio del sector Foodservice que necesite surtido constante de especias y productos naturales con precio de mayoreo.</p>
+          <div class="b2b-icon">🏪</div>
+          <h3>Tiendas a granel y embutidos</h3>
+          <p>Producto seco por bulto para reventa a granel, y especias base para embutidos y cárnicos: pimienta, pimentón, ajo y comino.</p>
           <ul class="b2b-list">
-            <li>Precios por volumen por volumen</li>
+            <li>Cúrcuma, jengibre, jamaica y ajonjolí</li>
+            <li>Pimienta y pimentón para cárnicos</li>
             <li>Facturación CFDI en todos los pedidos</li>
-            <li>Reposición semanal o quincenal</li>
           </ul>
         </div>
       </div>
@@ -2044,6 +2050,56 @@
       window.open('https://wa.me/527481660295?text=' +
         encodeURIComponent(lineas.join('\n')), '_blank', 'noopener');
     }
+
+
+    // ===== Eventos de conversión (dataLayer / GTM) =====
+    // Cada lead lleva la página de origen para saber qué contenido convierte.
+    (function medirConversiones() {
+      window.dataLayer = window.dataLayer || [];
+
+      function evento(nombre, extra) {
+        window.dataLayer.push(Object.assign({
+          event: nombre,
+          pagina_origen: location.pathname,
+          seccion: (extra && extra.seccion) || ''
+        }, extra || {}));
+      }
+
+      // Delegado: cubre también los CTA que el catálogo renderiza por JS
+      document.addEventListener('click', function (e) {
+        const a = e.target.closest && e.target.closest('a');
+        if (!a || !a.href) return;
+
+        if (a.href.indexOf('wa.me') !== -1) {
+          evento('click_whatsapp', { seccion: seccionDe(a), destino: a.href.slice(0, 120) });
+        } else if (a.href.indexOf('mailto:') === 0) {
+          evento('click_email', { seccion: seccionDe(a) });
+        } else if (a.href.indexOf('catalogo-asmolinas.pdf') !== -1) {
+          evento('descarga_catalogo', { seccion: seccionDe(a) });
+        }
+      }, true);
+
+      // Envío del formulario de calificación
+      const form = document.getElementById('formCotiza');
+      if (form) {
+        form.addEventListener('submit', function () {
+          const v = n => (form.elements[n] && form.elements[n].value || '').trim();
+          evento('envio_formulario', {
+            giro: v('giro'),
+            producto_solicitado: v('producto'),
+            volumen: v('volumen'),
+            frecuencia: v('frecuencia'),
+            requiere_factura: v('factura')
+          });
+        });
+      }
+
+      // Nombre de la sección que contiene el enlace, para atribuir el lead
+      function seccionDe(el) {
+        const s = el.closest('section, header, footer');
+        return (s && (s.id || s.className.split(' ')[0])) || 'otro';
+      }
+    })();
 
     // ===== INIT =====
     renderProducts();
