@@ -26,6 +26,7 @@ asmolinas/
 ├── chiles-secos-por-mayoreo.html     ← Landing SEO: chiles secos
 ├── semillas-a-granel.html            ← Landing SEO: semillas y nueces
 ├── superfoods-mayoreo.html           ← Landing SEO: superfoods
+├── pedido.html                       ← Arma tu pedido → POST al ERP → cotización automática (respaldo: WhatsApp)
 ├── envios.html                       ← Info de envíos y cobertura
 ├── terminos.html                     ← Términos y condiciones
 ├── aviso-de-privacidad.html          ← Aviso de privacidad
@@ -59,7 +60,8 @@ asmolinas/
 │   └── estado-cuenta.html            ← EDC 2026-09
 │
 ├── docs/
-│   └── imprimibles-asmolinas.md      ← Especificación de imprimibles y referencias (y cómo portarlas al ERP)
+│   ├── imprimibles-asmolinas.md      ← Especificación de imprimibles y referencias (y cómo portarlas al ERP)
+│   └── pedido-erp.md                 ← Contrato pedido.html ↔ ERP (/api/public/pedidos) y ruta de referencia
 │
 ├── CNAME                             ← "asmolinas.com" (custom domain de Pages)
 ├── favicon.svg
@@ -268,6 +270,14 @@ Especificación completa en `docs/imprimibles-asmolinas.md`. Reglas fijas:
 - Los precios sólo aparecen cuando el sistema carga un JSON real; los ejemplos son ficticios
 - La remisión a crédito lleva leyenda de **pagaré** (acreedor, plaza, vencimiento, importe en número y letra); la tasa moratoria sólo si está configurada en `EMPRESA.pagare`
 - El catálogo PDF (`assets/gen_catalog.py`) sigue la misma identidad y **no publica precios**
+
+## 8c. Pedido en la web → cotización automática (`pedido.html`)
+
+- La página arma un JSON (cliente, partidas en kg, entrega, canal) y lo manda a `ERP_API + /api/public/pedidos`; el ERP cotiza con precio vigente por volumen, crea `COT AAAA-NNNN`, renderiza el PDF con `imprimibles/` y lo envía por WhatsApp o correo. Contrato y ruta de referencia en `docs/pedido-erp.md`.
+- Si el ERP no responde en 9 s, la página abre WhatsApp con el pedido redactado. **Nunca dejar al cliente sin salida.**
+- La lista de productos de `pedido.html` es la misma que `const products` de `index.html`: si cambia una, cambia la otra.
+- `pedido.html?producto=Comino%20entero` preselecciona un producto (para enlazar desde fichas).
+- Sigue aplicando 3.1–3.3: sin precios en la página, mínimo según producto, flete aparte, sin promesas de tiempo.
 
 ## 9. Sobre `financial-dashboard.html`
 

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arma tu pedido y recibe tu cotización | AS MOLINAS</title>
+  <meta name="description" content="Elige especias, chiles secos y semillas, indica los kilos que necesita tu negocio y recibe tu cotización B2B con precio vigente por volumen por WhatsApp o correo.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://asmolinas.com/pedido.html">
+  <meta property="og:title" content="Arma tu pedido y recibe tu cotización | AS MOLINAS">
+  <meta property="og:description" content="Elige productos y kilos; recibe tu cotización B2B con precio vigente por volumen por WhatsApp o correo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://asmolinas.com/pedido.html">
+  <meta property="og:locale" content="es_MX">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#2D4A3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://asmolinas.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Arma tu pedido", "item": "https://asmolinas.com/pedido.html" }
+  ]
+}
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --forest: #2D4A3E; --forest-deep: #1B3028; --terracotta: #C4704B; --terracotta-dark: #A85A38; --cream: #FBF8F3; --warm: #F5EDE3; --sand: #E8DDD0; --sage: #7A9E8E; --text: #2C2C2C; --muted: #6b5e52; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; }
+    nav { background: var(--forest); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; }
+    nav a { color: white; text-decoration: none; font-weight: 600; }
+    nav .nav-home { font-size: .9rem; opacity: .8; }
+    .hero-b2b { background: var(--forest); color: #fff; padding: 46px 24px 40px; text-align: center; }
+    .hero-b2b .inner { max-width: 780px; margin: 0 auto; }
+    .hero-b2b h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.7rem, 4.5vw, 2.5rem); line-height: 1.15; margin-bottom: 12px; }
+    .hero-b2b p { font-size: 1.02rem; color: rgba(255,255,255,.85); }
+    .hero-b2b .pasos-mini { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin-top: 22px; font-size: .9rem; }
+    .hero-b2b .pasos-mini span { background: rgba(255,255,255,.1); padding: 6px 14px; border-radius: 999px; }
+    .hero-b2b .pasos-mini b { color: #F0B79A; }
+    .container { max-width: 1040px; margin: 0 auto; padding: 36px 20px 60px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; align-items: start; }
+    @media (max-width: 860px) { .container { grid-template-columns: 1fr; } .resumen-card { position: static !important; } }
+    h2 { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--forest); margin-bottom: 4px; }
+    .paso-num { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--terracotta); color: #fff; font-weight: 700; font-size: .9rem; margin-right: 8px; vertical-align: middle; }
+    .card { background: #fff; border: 1px solid #ece4d8; border-radius: 14px; padding: 22px; margin-bottom: 22px; }
+    .card p.ayuda { color: var(--muted); font-size: .92rem; margin-bottom: 14px; }
+    /* Buscador y lista de productos */
+    .buscador { display: flex; gap: 8px; margin-bottom: 10px; }
+    .buscador input { flex: 1; padding: 11px 14px; border: 1.5px solid var(--sand); border-radius: 10px; font: inherit; font-size: .95rem; }
+    .buscador input:focus { outline: none; border-color: var(--forest); }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .chip { border: 1px solid var(--sand); background: var(--warm); border-radius: 999px; padding: 4px 12px; font-size: .82rem; cursor: pointer; font-weight: 500; }
+    .chip.on { background: var(--forest); color: #fff; border-color: var(--forest); }
+    .lista-prod { max-height: 300px; overflow-y: auto; border: 1px solid var(--sand); border-radius: 10px; }
+    .lista-prod button { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 10px; text-align: left; padding: 9px 14px; background: none; border: 0; border-bottom: 1px solid #f1ebe2; font: inherit; font-size: .93rem; cursor: pointer; color: var(--text); }
+    .lista-prod button:hover { background: var(--warm); }
+    .lista-prod button:last-child { border-bottom: 0; }
+    .lista-prod .cat { font-size: .74rem; color: var(--sage); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+    .lista-prod .add { color: var(--terracotta); font-weight: 700; white-space: nowrap; }
+    .lista-prod button.ya { opacity: .45; cursor: default; }
+    .otro { display: flex; gap: 8px; margin-top: 10px; }
+    .otro input { flex: 1; padding: 10px 12px; border: 1.5px solid var(--sand); border-radius: 10px; font: inherit; font-size: .92rem; }
+    .btn-sec { background: var(--warm); color: var(--forest); border: 1.5px solid var(--sand); border-radius: 10px; padding: 10px 14px; font: 600 .9rem 'DM Sans', sans-serif; cursor: pointer; white-space: nowrap; }
+    /* Partidas seleccionadas */
+    table.partidas { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    table.partidas th { text-align: left; font-size: .76rem; letter-spacing: .05em; text-transform: uppercase; color: var(--sage); padding: 6px 6px; border-bottom: 2px solid var(--forest); }
+    table.partidas td { padding: 8px 6px; border-bottom: 1px solid #f1ebe2; vertical-align: middle; font-size: .93rem; }
+    table.partidas td.prod { font-weight: 600; }
+    table.partidas select, table.partidas input { width: 100%; padding: 8px 10px; border: 1.5px solid var(--sand); border-radius: 8px; font: inherit; font-size: .9rem; background: #fff; }
+    table.partidas input[type=number] { width: 92px; text-align: right; }
+    table.partidas .quitar { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 1.1rem; padding: 4px 8px; }
+    table.partidas .quitar:hover { color: var(--terracotta); }
+    .vacio { text-align: center; color: var(--muted); padding: 18px; border: 1.5px dashed var(--sand); border-radius: 10px; margin-top: 14px; font-size: .92rem; }
+    /* Formulario */
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; }
+    @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+    .campo { display: flex; flex-direction: column; gap: 4px; font-size: .88rem; font-weight: 600; color: var(--forest); }
+    .campo.full { grid-column: 1 / -1; }
+    .campo em { color: var(--terracotta); font-style: normal; }
+    .campo input, .campo select, .campo textarea { padding: 10px 12px; border: 1.5px solid var(--sand); border-radius: 10px; font: inherit; font-size: .95rem; font-weight: 400; color: var(--text); background: #fff; }
+    .campo input:focus, .campo select:focus, .campo textarea:focus { outline: none; border-color: var(--forest); }
+    .campo textarea { min-height: 76px; resize: vertical; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    /* Resumen */
+    .resumen-card { position: sticky; top: 16px; background: var(--forest); color: #fff; border-radius: 14px; padding: 22px; }
+    .resumen-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin-bottom: 8px; }
+    .resumen-card .kpi { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.14); font-size: .95rem; }
+    .resumen-card .kpi b { font-size: 1.15rem; }
+    .resumen-card ul { list-style: none; margin: 10px 0 0; font-size: .9rem; color: rgba(255,255,255,.85); }
+    .resumen-card li { display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; }
+    .resumen-card .como { margin-top: 16px; font-size: .86rem; color: rgba(255,255,255,.8); line-height: 1.5; }
+    .btn-main { display: block; width: 100%; margin-top: 18px; background: var(--terracotta); color: #fff; border: 0; border-radius: 12px; padding: 15px 18px; font: 700 1.02rem 'DM Sans', sans-serif; cursor: pointer; transition: background .2s; }
+    .btn-main:hover { background: var(--terracotta-dark); }
+    .btn-main:disabled { opacity: .55; cursor: wait; }
+    .legal { font-size: .78rem; color: rgba(255,255,255,.7); margin-top: 10px; }
+    .legal a { color: #F0B79A; }
+    /* Resultado */
+    .resultado { display: none; background: #fff; border: 2px solid var(--forest); border-radius: 14px; padding: 26px; margin-bottom: 22px; }
+    .resultado.ok { display: block; }
+    .resultado h2 { margin-bottom: 8px; }
+    .resultado .folio { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--terracotta); margin: 6px 0 10px; }
+    .resultado p { margin-bottom: 10px; }
+    .resultado .aviso { background: var(--warm); border-left: 4px solid var(--terracotta); padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: .92rem; }
+    .resultado a.wa { display: inline-block; margin-top: 8px; background: #25D366; color: #fff; text-decoration: none; padding: 11px 18px; border-radius: 10px; font-weight: 700; }
+    .error-msg { color: var(--terracotta); font-size: .9rem; margin-top: 10px; display: none; }
+    footer { text-align: center; padding: 28px 20px 40px; color: var(--muted); font-size: .85rem; }
+    footer a { color: var(--forest); }
+  </style>
+</head>
+<body>
+  <nav><a href="/">🌿 AS MOLINAS</a><a href="/mayoreo.html" class="nav-home">Mayoreo</a></nav>
+
+  <section class="hero-b2b">
+    <div class="inner">
+      <h1>Arma tu pedido y recibe tu cotización</h1>
+      <p>Elige los productos y los kilos que necesita tu operación. Nuestro sistema prepara la cotización con el precio vigente por volumen y te la envía por WhatsApp o correo.</p>
+      <div class="pasos-mini"><span><b>1</b> Elige productos</span><span><b>2</b> Indica kilos</span><span><b>3</b> Deja tus datos</span><span><b>4</b> Recibe tu cotización</span></div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div>
+      <div class="resultado" id="resultado" role="status" aria-live="polite"></div>
+
+      <form id="formPedido" novalidate>
+        <!-- Paso 1: productos -->
+        <section class="card">
+          <h2><span class="paso-num">1</span>Elige tus productos</h2>
+          <p class="ayuda">Busca por nombre o filtra por categoría. Puedes agregar todos los que necesites y también un producto que no esté en la lista.</p>
+          <div class="buscador"><input type="search" id="buscar" placeholder="Buscar: comino, guajillo, ajo…" autocomplete="off" aria-label="Buscar producto"></div>
+          <div class="chips" id="chips"></div>
+          <div class="lista-prod" id="listaProd"></div>
+          <div class="otro">
+            <input type="text" id="otroProd" placeholder="¿No está en la lista? Escríbelo aquí" aria-label="Otro producto">
+            <button type="button" class="btn-sec" id="btnOtro">Agregar</button>
+          </div>
+
+          <div id="partidasWrap">
+            <div class="vacio" id="vacio">Aún no has agregado productos. Selecciónalos arriba.</div>
+            <table class="partidas" id="tablaPartidas" hidden>
+              <thead><tr><th>Producto</th><th>Presentación</th><th style="text-align:right">Kilos</th><th></th></tr></thead>
+              <tbody id="cuerpoPartidas"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Paso 2: datos -->
+        <section class="card">
+          <h2><span class="paso-num">2</span>Datos de tu negocio</h2>
+          <p class="ayuda">Con estos datos el sistema genera tu cotización a nombre de tu negocio y te la envía. Sólo vendemos a negocios.</p>
+          <div class="grid">
+            <label class="campo"><span>Empresa o negocio <em>*</em></span><input type="text" name="empresa" required autocomplete="organization" placeholder="Nombre comercial"></label>
+            <label class="campo"><span>Giro <em>*</em></span>
+              <select name="giro" required>
+                <option value="">Selecciona…</option>
+                <option>Molino de chiles / moles</option><option>Fabricante de salsas</option><option>Fabricante de botanas</option>
+                <option>Embutidos / cárnicos</option><option>Comedor industrial</option><option>Restaurante / taquería</option>
+                <option>Grupo restaurantero</option><option>Hotel</option><option>Panadería / repostería</option>
+                <option>Tienda a granel / naturista</option><option>Distribuidor</option><option>Otro</option>
+              </select></label>
+            <label class="campo"><span>Persona de contacto <em>*</em></span><input type="text" name="contacto" required autocomplete="name" placeholder="Nombre y apellido"></label>
+            <label class="campo"><span>WhatsApp (10 dígitos) <em>*</em></span><input type="tel" name="whatsapp" required inputmode="numeric" pattern="[0-9\s]{10,14}" autocomplete="tel" placeholder="55 1234 5678"></label>
+            <label class="campo"><span>Correo electrónico</span><input type="email" name="correo" autocomplete="email" placeholder="compras@tunegocio.com"></label>
+            <label class="campo"><span>Ciudad y CP <em>*</em></span><input type="text" name="ciudad" required placeholder="Ej. CDMX, 06700"></label>
+            <label class="campo"><span>RFC (si requieres CFDI)</span><input type="text" name="rfc" maxlength="13" style="text-transform:uppercase" placeholder="Opcional"></label>
+            <label class="campo"><span>Frecuencia de compra</span>
+              <select name="frecuencia"><option value="">Selecciona…</option><option>Única vez / prueba</option><option>Semanal</option><option>Quincenal</option><option>Mensual</option><option>Por temporada</option></select></label>
+            <label class="campo"><span>Entrega</span>
+              <select name="entrega"><option value="recoleccion">Recolección en bodega (CDMX)</option><option value="flete">Necesito flete (a cargo del cliente, se cotiza aparte)</option></select></label>
+            <label class="campo"><span>Cotización por</span>
+              <select name="canal"><option value="whatsapp">WhatsApp</option><option value="correo">Correo electrónico</option><option value="ambos">Ambos</option></select></label>
+            <label class="campo full"><span>Comentarios</span><textarea name="comentarios" placeholder="Especificaciones, fecha en que lo necesitas, presentación especial…"></textarea></label>
+            <label class="hp" aria-hidden="true">Sitio web<input type="text" name="sitio_web" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <div class="error-msg" id="errorMsg"></div>
+        </section>
+      </form>
+    </div>
+
+    <!-- Resumen y envío -->
+    <aside class="resumen-card" id="resumen">
+      <h3>Tu pedido</h3>
+      <div class="kpi"><span>Productos</span><b id="rProductos">0</b></div>
+      <div class="kpi"><span>Volumen total</span><b id="rKilos">0 kg</b></div>
+      <ul id="rLista"></ul>
+      <div class="como">Precio por kg según volumen; el mínimo depende del producto y la presentación. Disponibilidad sujeta a existencia. Pago por SPEI o depósito, con CFDI.</div>
+      <button type="submit" form="formPedido" class="btn-main" id="btnEnviar">Solicitar cotización B2B</button>
+      <div class="legal">Al enviar aceptas nuestro <a href="/aviso-de-privacidad.html">aviso de privacidad</a>. Si el sistema no está disponible, tu pedido se envía por WhatsApp y te cotizamos personalmente.</div>
+    </aside>
+  </main>
+
+  <footer>AS MOLINAS · <a href="/mayoreo.html">Mayoreo</a> · <a href="/calidad-y-abastecimiento.html">Calidad</a> · <a href="/logistica.html">Logística</a> · <a href="https://wa.me/527481660295">WhatsApp 748 166 0295</a></footer>
+
+  <script>
+    // ============================================================
+    // Pedido → cotización automática desde el ERP
+    // ------------------------------------------------------------
+    // El sitio es estático. El formulario arma un JSON y lo manda al ERP
+    // (POST ERP_API/api/public/pedidos). El ERP calcula el precio vigente por
+    // volumen, crea la cotización (COT 2026-0001) y la envía al cliente por
+    // WhatsApp o correo. Contrato completo: docs/pedido-erp.md.
+    // Si el ERP no responde, el pedido se manda por WhatsApp para que nada
+    // se pierda y se cotice a mano.
+    // ============================================================
+    const ERP_API = 'https://intranet.asmolinas.com';
+    const WA = 'https://wa.me/527481660295';
+
+    const CATS = { especias: 'Especias', chiles: 'Chiles secos', semillas: 'Semillas y nueces', superfoods: 'Superfoods', deshidratados: 'Deshidratados', tes: 'Tés e infusiones', sales: 'Sales' };
+    // Misma lista que el catálogo del inicio (index.html → const products)
+    let CATALOGO = [
+      ['Comino entero','especias'],['Ajo granulado','especias'],['Ajo en polvo','especias'],['Cúrcuma molida','especias'],
+      ['Pimienta negra entera','especias'],['Pimienta negra molida','especias'],['Pimentón / paprika','especias'],['Orégano molido','especias'],
+      ['Chile guajillo seco','chiles'],['Chile ancho seco','chiles'],['Chile de árbol seco','chiles'],
+      ['Canela en raja','especias'],['Canela molida','especias'],['Clavo de olor','especias'],
+      ['Manzanilla premium','tes'],['Hierbabuena','tes'],['Té de limón','tes'],['Flor de Jamaica','tes'],['Mezcla relajante','tes'],
+      ['Moringa','superfoods'],['Cúrcuma en polvo','superfoods'],
+      ['Arándano deshidratado','deshidratados'],['Mango rodaja','deshidratados'],['Mango cubo','deshidratados'],['Fresa deshidratada','deshidratados'],
+      ['Piña rodaja','deshidratados'],['Piña cubo','deshidratados'],['Papaya deshidratada','deshidratados'],['Manzana rodaja','deshidratados'],
+      ['Cereza deshidratada','deshidratados'],['Orejón (chabacano)','deshidratados'],
+      ['Almendra natural','semillas'],['Almendra fileteada','semillas'],['Almendra sin cutícula','semillas'],['Nuez de la India','semillas'],
+      ['Avellana','semillas'],['Ajonjolí natural','semillas'],['Coco rallado','semillas'],
+      ['Sal del Himalaya fina','sales'],['Sal del Himalaya gruesa','sales'],['Sal de mar gruesa','sales'],
+    ].map(([n, c]) => ({ nombre: n, cat: c }));
+    const PRESENTACIONES = ['Según disponibilidad', 'Bulto cerrado 25 kg', 'Saco de mayoreo', 'Bolsa de 10 kg'];
+
+    const $ = (s) => document.querySelector(s);
+    const norm = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    let catFiltro = '';
+    let partidas = [];   // {producto, presentacion, cantidad, catalogo:bool}
+
+    // ---- Paso 1: catálogo ----
+    function pintarChips() {
+      const cats = ['', ...Object.keys(CATS)];
+      $('#chips').innerHTML = cats.map((c) => `<button type="button" class="chip ${c === catFiltro ? 'on' : ''}" data-cat="${c}">${c ? CATS[c] : 'Todos'}</button>`).join('');
+    }
+    function pintarLista() {
+      const q = norm($('#buscar').value);
+      const ya = new Set(partidas.map((p) => norm(p.producto)));
+      const items = CATALOGO.filter((p) => (!catFiltro || p.cat === catFiltro) && (!q || norm(p.nombre).includes(q)));
+      $('#listaProd').innerHTML = items.length
+        ? items.map((p) => `<button type="button" data-prod="${esc(p.nombre)}" class="${ya.has(norm(p.nombre)) ? 'ya' : ''}"><span>${esc(p.nombre)} <span class="cat">· ${CATS[p.cat]}</span></span><span class="add">${ya.has(norm(p.nombre)) ? 'Agregado' : '+ Agregar'}</span></button>`).join('')
+        : `<button type="button" disabled style="color:var(--muted)">Sin resultados. Escríbelo abajo como "otro producto".</button>`;
+    }
+    function agregar(nombre, esCatalogo) {
+      nombre = String(nombre || '').trim();
+      if (!nombre) return;
+      if (partidas.some((p) => norm(p.producto) === norm(nombre))) return;
+      partidas.push({ producto: nombre, presentacion: PRESENTACIONES[0], cantidad: 25, catalogo: !!esCatalogo });
+      pintarPartidas(); pintarLista(); guardarBorrador();
+    }
+    function pintarPartidas() {
+      const hay = partidas.length > 0;
+      $('#vacio').hidden = hay; $('#tablaPartidas').hidden = !hay;
+      $('#cuerpoPartidas').innerHTML = partidas.map((p, i) => `
+        <tr>
+          <td class="prod">${esc(p.producto)}${p.catalogo ? '' : ' <span style="font-weight:400;color:var(--muted);font-size:.8rem">(fuera de lista)</span>'}</td>
+          <td><select data-i="${i}" data-k="presentacion">${PRESENTACIONES.map((x) => `<option ${x === p.presentacion ? 'selected' : ''}>${x}</option>`).join('')}</select></td>
+          <td style="text-align:right"><input type="number" min="1" step="1" inputmode="numeric" value="${p.cantidad}" data-i="${i}" data-k="cantidad" aria-label="Kilos de ${esc(p.producto)}"></td>
+          <td><button type="button" class="quitar" data-quitar="${i}" aria-label="Quitar ${esc(p.producto)}">✕</button></td>
+        </tr>`).join('');
+      pintarResumen();
+    }
+    function pintarResumen() {
+      const kg = partidas.reduce((s, p) => s + (Number(p.cantidad) || 0), 0);
+      $('#rProductos').textContent = partidas.length;
+      $('#rKilos').textContent = kg.toLocaleString('es-MX') + ' kg';
+      $('#rLista').innerHTML = partidas.map((p) => `<li><span>${esc(p.producto)}</span><span>${Number(p.cantidad) || 0} kg</span></li>`).join('');
+    }
+
+    $('#chips').addEventListener('click', (e) => { const b = e.target.closest('[data-cat]'); if (!b) return; catFiltro = b.dataset.cat; pintarChips(); pintarLista(); });
+    $('#buscar').addEventListener('input', pintarLista);
+    $('#buscar').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); const first = $('#listaProd button[data-prod]:not(.ya)'); if (first) agregar(first.dataset.prod, true); } });
+    $('#listaProd').addEventListener('click', (e) => { const b = e.target.closest('[data-prod]'); if (b && !b.classList.contains('ya')) agregar(b.dataset.prod, true); });
+    $('#btnOtro').addEventListener('click', () => { agregar($('#otroProd').value, false); $('#otroProd').value = ''; });
+    $('#otroProd').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); $('#btnOtro').click(); } });
+    $('#cuerpoPartidas').addEventListener('input', (e) => { const el = e.target; if (!el.dataset.k) return; partidas[+el.dataset.i][el.dataset.k] = el.dataset.k === 'cantidad' ? Math.max(0, Number(el.value)) : el.value; pintarResumen(); guardarBorrador(); });
+    $('#cuerpoPartidas').addEventListener('click', (e) => { const b = e.target.closest('[data-quitar]'); if (!b) return; partidas.splice(+b.dataset.quitar, 1); pintarPartidas(); pintarLista(); guardarBorrador(); });
+
+    // ---- Borrador local (por si el cliente vuelve más tarde) ----
+    function guardarBorrador() { try { localStorage.setItem('asm_pedido', JSON.stringify(partidas)); } catch (e) {} }
+    function cargarBorrador() { try { const b = JSON.parse(localStorage.getItem('asm_pedido') || '[]'); if (Array.isArray(b)) partidas = b.filter((p) => p && p.producto); } catch (e) {} }
+
+    // ---- Disponibilidad viva desde el ERP (opcional; si falla, lista estática) ----
+    (async function sincronizar() {
+      try {
+        const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 4000);
+        const r = await fetch(ERP_API + '/api/public/productos', { signal: ctrl.signal }); clearTimeout(t);
+        if (!r.ok) return;
+        const lista = await r.json();
+        const agotados = new Set(lista.filter((p) => !p.activo || (typeof p.stock === 'number' && p.stock <= 0)).map((p) => norm(p.nombre)));
+        if (agotados.size) { CATALOGO = CATALOGO.filter((p) => !agotados.has(norm(p.nombre))); pintarLista(); }
+      } catch (e) { /* sin ERP: catálogo estático */ }
+    })();
+
+    // ---- Envío ----
+    function armarPayload(f) {
+      const v = (n) => (f.elements[n] && f.elements[n].value || '').trim();
+      return {
+        origen: 'asmolinas.com', version: 1, fecha: new Date().toISOString(), pagina_origen: location.pathname,
+        cliente: { empresa: v('empresa'), giro: v('giro'), contacto: v('contacto'), whatsapp: v('whatsapp').replace(/\D/g, ''), correo: v('correo'), ciudad: v('ciudad'), rfc: v('rfc').toUpperCase(), requiereCfdi: !!v('rfc') },
+        partidas: partidas.map((p) => ({ producto: p.producto, presentacion: p.presentacion, cantidad: Number(p.cantidad) || 0, unidad: 'kg', enCatalogo: !!p.catalogo })),
+        entrega: { modo: v('entrega') },
+        frecuencia: v('frecuencia'), canal: v('canal'), comentarios: v('comentarios'), consentimiento: true,
+      };
+    }
+    function textoWhatsApp(p) {
+      const l = ['Solicitud de cotización B2B — AS MOLINAS', '', `Empresa: ${p.cliente.empresa}`, `Giro: ${p.cliente.giro}`, `Contacto: ${p.cliente.contacto}`, `Ciudad y CP: ${p.cliente.ciudad}`];
+      if (p.cliente.rfc) l.push(`RFC: ${p.cliente.rfc} (requiero CFDI)`);
+      if (p.cliente.correo) l.push(`Correo: ${p.cliente.correo}`);
+      l.push('', 'Productos:');
+      p.partidas.forEach((x) => l.push(`• ${x.producto} — ${x.cantidad} kg (${x.presentacion})`));
+      l.push('', `Entrega: ${p.entrega.modo === 'flete' ? 'necesito flete' : 'recolección en bodega'}`);
+      if (p.frecuencia) l.push(`Frecuencia: ${p.frecuencia}`);
+      if (p.comentarios) l.push(`Comentarios: ${p.comentarios}`);
+      l.push('', '¿Me confirman precio vigente por volumen y disponibilidad?');
+      return l.join('\n');
+    }
+    function validar(f) {
+      const err = $('#errorMsg'); err.style.display = 'none';
+      if (!partidas.length) return mostrarError('Agrega al menos un producto.');
+      if (partidas.some((p) => !(Number(p.cantidad) > 0))) return mostrarError('Indica los kilos de cada producto.');
+      if (!f.checkValidity()) { f.reportValidity(); return false; }
+      return true;
+      function mostrarError(m) { err.textContent = m; err.style.display = 'block'; err.scrollIntoView({ behavior: 'smooth', block: 'center' }); return false; }
+    }
+    function medir(nombre, extra) { try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: nombre, pagina_origen: location.pathname }, extra || {})); } catch (e) {} }
+
+    $('#formPedido').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      if (f.elements.sitio_web.value) return; // honeypot: bots lo llenan, personas no
+      if (!validar(f)) return;
+      const payload = armarPayload(f);
+      const btn = $('#btnEnviar'); btn.disabled = true; btn.textContent = 'Enviando…';
+      medir('envio_pedido', { productos: payload.partidas.length, kilos: payload.partidas.reduce((s, p) => s + p.cantidad, 0), giro: payload.cliente.giro, canal: payload.canal });
+      let res = null;
+      try {
+        const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 9000);
+        const r = await fetch(ERP_API + '/api/public/pedidos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: ctrl.signal });
+        clearTimeout(t);
+        if (r.ok) res = await r.json();
+      } catch (err) { res = null; }
+      btn.disabled = false; btn.textContent = 'Solicitar cotización B2B';
+      const out = $('#resultado');
+      if (res && res.ok) {
+        const canales = (res.canal || [payload.canal]).map((c) => ({ whatsapp: 'WhatsApp', correo: 'correo', ambos: 'WhatsApp y correo' }[c] || c)).join(' y ');
+        out.innerHTML = `<h2>Recibimos tu pedido</h2><div class="folio">${esc(res.folio || '')}</div>
+          <p>Tu cotización va en camino por <b>${esc(canales)}</b> a nombre de <b>${esc(payload.cliente.empresa)}</b>. Guarda el folio para cualquier aclaración.</p>
+          ${res.ajustes && res.ajustes.length ? `<div class="aviso">Algunas partidas se ajustaron al mínimo por producto: ${res.ajustes.map(esc).join('; ')}.</div>` : ''}
+          ${res.mensaje ? `<p>${esc(res.mensaje)}</p>` : ''}`;
+        partidas = []; pintarPartidas(); pintarLista(); f.reset(); try { localStorage.removeItem('asm_pedido'); } catch (x) {}
+        medir('pedido_confirmado', { folio: res.folio || '' });
+      } else {
+        const url = WA + '?text=' + encodeURIComponent(textoWhatsApp(payload));
+        out.innerHTML = `<h2>Tu pedido está listo para enviarse</h2>
+          <p>En este momento el sistema de cotización automática no está disponible. Envíanos el pedido por WhatsApp: ya va con todos los datos, y te cotizamos personalmente.</p>
+          <a class="wa" href="${url}" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
+          <div class="aviso" style="margin-top:14px">Tu selección queda guardada en este navegador por si quieres intentarlo de nuevo más tarde.</div>`;
+        window.open(url, '_blank', 'noopener');
+        medir('pedido_fallback_whatsapp', {});
+      }
+      out.classList.add('ok'); out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ---- Init ----
+    cargarBorrador(); pintarChips(); pintarLista(); pintarPartidas();
+    // Producto preseleccionado desde una ficha: pedido.html?producto=Comino%20entero
+    const pre = new URLSearchParams(location.search).get('producto');
+    if (pre) { const hit = CATALOGO.find((p) => norm(p.nombre) === norm(pre)); agregar(hit ? hit.nombre : pre, !!hit); }
+  </script>
+</body>
+</html>
