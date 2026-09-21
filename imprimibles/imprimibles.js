@@ -149,53 +149,53 @@ function cantidadConLetra(n) {
   return `(${letras} peso${ent === 1 ? '' : 's'} ${String(cen).padStart(2, '0')}/100 M.N.)`;
 }
 
-/* Piezas comunes ----------------------------------------------------------------- */
-function bloqueMarca() {
+/* Piezas comunes (composición v2) --------------------------------------------------- */
+function cinta() {
   return `
-    <div class="marca">
+    <div class="cinta">
       <div class="nombre">AS <span>Molinas</span></div>
-      <div class="lema">${esc(EMPRESA.lema)}</div>
-      <div class="datos">
+      <div class="contacto">
         WhatsApp ${esc(EMPRESA.whatsapp)} · ${esc(EMPRESA.email)} · ${esc(EMPRESA.web)}<br>
-        ${esc(EMPRESA.ubicacion)}
-        ${EMPRESA.fiscal.razonSocial ? `<br>${esc(EMPRESA.fiscal.razonSocial)}${EMPRESA.fiscal.rfc ? ' · RFC ' + esc(EMPRESA.fiscal.rfc) : ''}` : ''}
+        ${esc(EMPRESA.ubicacion)}${EMPRESA.fiscal.razonSocial ? ` · ${esc(EMPRESA.fiscal.razonSocial)}${EMPRESA.fiscal.rfc ? ' · RFC ' + esc(EMPRESA.fiscal.rfc) : ''}` : ''}
       </div>
     </div>`;
 }
 
-function bloqueDocumento(tipo, folioDoc, metaHtml, sello) {
+// El bloque verde: qué documento es, cuánto es y para cuándo.
+function resumen({ tipo, folioDoc, fechaTxt, cifraEt, cifra, cifraAlerta = false, sub = '', chips = [] }) {
   return `
-    <div class="documento">
-      <div class="tipo">${esc(TIPOS[tipo])}</div>
-      <div class="folio">${esc(folioDoc)}</div>
-      <div class="meta">${metaHtml}</div>
-      ${sello ? `<span class="sello ${sello.clase || ''}">${esc(sello.texto)}</span>` : ''}
+    <div class="resumen">
+      <div>
+        <div class="tipo">${esc(TIPOS[tipo])}</div>
+        <div class="folio">Folio <b>${esc(folioDoc)}</b> · ${esc(fechaTxt)}</div>
+      </div>
+      <div class="cifra">
+        <div class="et">${esc(cifraEt)}</div>
+        <div class="v ${cifraAlerta ? 'alerta' : ''}">${cifra}</div>
+        ${sub ? `<div class="sub">${sub}</div>` : ''}
+      </div>
+      ${chips.length ? `<div class="chips">${chips.map((c) => `<span class="chip ${c.acento ? 'acento' : ''}">${c.html}</span>`).join('')}</div>` : ''}
     </div>`;
 }
 
-function tarjetaCliente(c, titulo = 'Cliente') {
+// Una sola lista label/valor. Se omiten los pares vacíos.
+function lista(titulo, pares, { dos = false } = {}) {
+  const filas = pares.filter(([, v]) => v !== undefined && v !== null && v !== '')
+    .map(([k, v, clase]) => `<dt>${esc(k)}</dt><dd class="${clase || ''}">${v}</dd>`).join('');
+  return `<div class="seccion"><h2>${esc(titulo)}</h2><dl class="lista ${dos ? 'dos' : ''}">${filas}</dl></div>`;
+}
+
+function paresCliente(c) {
   const clave = c.clave || (c.numero ? claveCliente(c.numero) : '');
-  return `
-    <div class="tarjeta">
-      <h3>${esc(titulo)}</h3>
-      <div class="titular">${esc(c.nombre)}</div>
-      <dl>
-        ${c.razonSocial ? `<dt>Razón social</dt><dd>${esc(c.razonSocial)}</dd>` : ''}
-        ${c.rfc ? `<dt>RFC</dt><dd>${esc(c.rfc)}</dd>` : ''}
-        ${c.contacto ? `<dt>Atención</dt><dd>${esc(c.contacto)}</dd>` : ''}
-        ${c.telefono ? `<dt>Teléfono</dt><dd>${esc(c.telefono)}</dd>` : ''}
-        ${c.direccion ? `<dt>Entrega</dt><dd>${esc(c.direccion)}</dd>` : ''}
-        ${clave ? `<dt>Clave de pago</dt><dd class="clave">${esc(clave)}</dd>` : ''}
-      </dl>
-    </div>`;
-}
-
-function tarjetaCondiciones(titulo, pares) {
-  return `
-    <div class="tarjeta">
-      <h3>${esc(titulo)}</h3>
-      <dl>${pares.filter(([, v]) => v !== undefined && v !== null && v !== '').map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('')}</dl>
-    </div>`;
+  return [
+    ['Cliente', esc(c.nombre), 'grande'],
+    ['Razón social', c.razonSocial ? esc(c.razonSocial) : ''],
+    ['RFC', c.rfc ? esc(c.rfc) : ''],
+    ['Atención', c.contacto ? esc(c.contacto) : ''],
+    ['Teléfono', c.telefono ? esc(c.telefono) : ''],
+    ['Dirección', c.direccion ? esc(c.direccion) : ''],
+    ['Clave de pago', clave ? esc(clave) : '', 'clave'],
+  ];
 }
 
 function calcularTotales(partidas) {
@@ -208,28 +208,25 @@ function calcularTotales(partidas) {
   return { subtotal, iva, total: subtotal + iva };
 }
 
-function tablaPartidas(partidas, { conLote = false, conPrecio = true } = {}) {
-  const filas = partidas.map((p, i) => {
-    const importe = Number(p.cantidad) * Number(p.precio);
-    return `
+function tablaPartidas(partidas, { conLote = false } = {}) {
+  const filas = partidas.map((p, i) => `
       <tr>
         <td class="n">${i + 1}</td>
         <td><span class="prod">${esc(p.producto)}</span>${p.presentacion ? `<span class="pres">${esc(p.presentacion)}</span>` : ''}</td>
         ${conLote ? `<td class="lote">${esc(p.lote || '—')}</td>` : ''}
         <td class="num">${kg(p.cantidad)}</td>
-        ${conPrecio ? `<td class="num">${money(p.precio)}</td><td class="num">${money(importe)}</td>` : ''}
-      </tr>`;
-  }).join('');
+        <td class="num">${money(p.precio)}</td>
+        <td class="num">${money(Number(p.cantidad) * Number(p.precio))}</td>
+      </tr>`).join('');
   return `
+    <div class="seccion"><h2>Productos</h2>
     <table class="partidas">
       <thead><tr>
-        <th></th><th>Producto y presentación</th>
-        ${conLote ? '<th>Lote</th>' : ''}
-        <th class="num">Cantidad</th>
-        ${conPrecio ? '<th class="num">Precio / kg</th><th class="num">Importe</th>' : ''}
+        <th></th><th>Producto y presentación</th>${conLote ? '<th>Lote</th>' : ''}
+        <th class="num">Cantidad</th><th class="num">Precio / kg</th><th class="num">Importe</th>
       </tr></thead>
       <tbody>${filas}</tbody>
-    </table>`;
+    </table></div>`;
 }
 
 function bloqueTotales(partidas, notaHtml, { conLetra = false } = {}) {
@@ -248,40 +245,33 @@ function bloqueTotales(partidas, notaHtml, { conLetra = false } = {}) {
     </div>`;
 }
 
-function bloquePago(folioDoc, clave, { generico = false } = {}) {
+// Cómo pagar, en tres pasos. `concepto` es lo que va en la transferencia.
+function pasosPago(concepto, { generico = false } = {}) {
   const b = EMPRESA.banco;
   const datos = b.clabe
-    ? `<div class="spei"><b>${esc(b.banco)}</b> · ${esc(b.titular)}<br>CLABE <b>${esc(b.clabe)}</b>${b.cuenta ? ` · Cuenta ${esc(b.cuenta)}` : ''}</div>`
-    : `<div>Los datos bancarios se comparten por WhatsApp al confirmar el pedido.</div>`;
-  // En un estado de cuenta no hay un solo documento que pagar: el concepto
-  // lleva la clave y el folio de la remisión que se liquida.
-  const concepto = generico
-    ? `<div>En el concepto de tu transferencia escribe el folio de la remisión que pagas y tu clave:</div>
-       <span class="concepto">REM 2026-0000 ${esc(clave)}</span>`
-    : `<div>Escribe este concepto en tu transferencia:</div>
-       <span class="concepto">${esc(conceptoSpei(folioDoc, clave))}</span>`;
+    ? `<div class="spei"><b>${esc(b.banco)}</b> · ${esc(b.titular)}<br>CLABE ${esc(b.clabe)}</div>`
+    : `<p>Los datos bancarios se comparten por WhatsApp al confirmar el pedido.</p>`;
   return `
-    <div class="bloque">
-      <h4>Forma de pago</h4>
-      <div>Transferencia SPEI o depósito. No aceptamos tarjeta ni crédito automático.</div>
-      ${datos}
-      ${concepto}
-      <div>Emitimos CFDI en todos los pedidos.</div>
-    </div>`;
+    <div class="seccion"><h2>Cómo pagar</h2>
+    <div class="pasos">
+      <div class="paso"><span class="num">1</span><h3>Transfiere por SPEI o deposita</h3>
+        <p>No aceptamos tarjeta ni crédito automático.</p>${datos}</div>
+      <div class="paso"><span class="num">2</span><h3>Escribe este concepto</h3>
+        <p>${generico ? 'El folio de la remisión que pagas y tu clave:' : 'Así el pago se aplica el mismo día:'}</p>
+        <span class="concepto">${esc(concepto)}</span></div>
+      <div class="paso"><span class="num">3</span><h3>Envía el comprobante</h3>
+        <p>Por WhatsApp al ${esc(EMPRESA.whatsapp)}. Te confirmamos y emitimos el CFDI.</p></div>
+    </div></div>`;
 }
 
-function bloqueCondiciones(items) {
-  return `
-    <div class="bloque">
-      <h4>Condiciones</h4>
-      <ul>${items.map((i) => `<li>${i}</li>`).join('')}</ul>
-    </div>`;
+function condiciones(items) {
+  return `<div class="condiciones"><ul>${items.map((i) => `<li>${i}</li>`).join('')}</ul></div>`;
 }
 
-function pie(folioDoc, total, fechaISO, extra = '') {
+function pie(folioDoc, total, fechaISO) {
   return `
     <div class="pie">
-      <div>${esc(EMPRESA.nombre)} · ${esc(EMPRESA.web)} · WhatsApp ${esc(EMPRESA.whatsapp)}${extra ? ' · ' + extra : ''}</div>
+      <div>${esc(EMPRESA.nombre)} · ${esc(EMPRESA.web)} · ${esc(EMPRESA.horario)}</div>
       <div class="verif">Verificación ${codigoVerificacion(folioDoc, total, fechaISO)}</div>
     </div>`;
 }
@@ -293,32 +283,31 @@ function renderCotizacion(d) {
   const clave = d.cliente.clave || claveCliente(d.cliente.numero);
   const t = calcularTotales(d.partidas);
   return `
-    <div class="cabecera">
-      ${bloqueMarca()}
-      ${bloqueDocumento('COT', f, `Fecha <b>${esc(fechaLarga(d.fecha))}</b><br>Vigente hasta <b>${esc(fechaLarga(vence))}</b>${d.atendio ? `<br>Atendió <b>${esc(d.atendio)}</b>` : ''}`,
-        { texto: `Vigencia ${d.vigenciaDias || 7} días`, clase: 'gris' })}
-    </div>
-    <div class="tarjetas">
-      ${tarjetaCliente(d.cliente)}
-      ${tarjetaCondiciones('Condiciones de la propuesta', [
-        ['Precios', 'Por kg, en MXN, vigentes hasta la fecha indicada'],
-        ['Mínimo', 'Según producto y presentación'],
-        ['Disponibilidad', 'Sujeta a existencia; se confirma lote al cerrar'],
-        ['Flete', d.flete || 'A cargo del cliente; se cotiza aparte'],
-        ['Pago', 'SPEI o depósito antes de surtir'],
-      ])}
-    </div>
+    ${cinta()}
+    ${resumen({
+      tipo: 'COT', folioDoc: f, fechaTxt: fechaLarga(d.fecha),
+      cifraEt: 'Total cotizado', cifra: money(t.total), sub: `Vigente hasta el ${esc(fechaLarga(vence))}`,
+      chips: [
+        { html: `Precios <b>por kg</b>, MXN` },
+        { html: `Mínimo <b>según producto y presentación</b>` },
+        { html: `Flete <b>${esc(d.flete || 'a cargo del cliente')}</b>` },
+        { html: `Pago <b>SPEI o depósito</b> antes de surtir` },
+      ],
+    })}
+    ${lista('Datos', [
+      ...paresCliente(d.cliente),
+      ['Atendió', d.atendio ? esc(d.atendio) : ''],
+      ['Disponibilidad', 'Sujeta a existencia; se confirma lote al cerrar'],
+    ])}
     ${tablaPartidas(d.partidas)}
     ${bloqueTotales(d.partidas, d.nota ? esc(d.nota) : 'El precio por kg baja con el volumen. Si tu operación necesita más de lo cotizado, pide el siguiente rango.')}
-    <div class="pie-bloques">
-      ${bloquePago(f, clave)}
-      ${bloqueCondiciones([
-        'Esta cotización no aparta mercancía; el pedido queda confirmado con el pago.',
-        'Presentación y origen según disponibilidad del proveedor; ficha técnica cuando exista.',
-        'Cantidades en kg. Diferencias por pesaje se ajustan en la remisión.',
-        `Para confirmar, responde por WhatsApp con el folio <b>${esc(f)}</b>.`,
-      ])}
-    </div>
+    ${pasosPago(conceptoSpei(f, clave))}
+    ${condiciones([
+      'Esta cotización no aparta mercancía; el pedido queda confirmado con el pago.',
+      'Presentación y origen según disponibilidad del proveedor; ficha técnica cuando exista.',
+      'Cantidades en kg. Diferencias por pesaje se ajustan en la remisión.',
+      `Para confirmar, responde por WhatsApp con el folio <b>${esc(f)}</b>.`,
+    ])}
     ${pie(f, t.total, d.fecha)}`;
 }
 
@@ -328,33 +317,35 @@ function renderRemision(d) {
   const t = calcularTotales(d.partidas);
   const credito = Number(d.diasCredito) > 0;
   const vence = credito ? sumaDias(d.fecha, d.diasCredito) : null;
+  const e = d.entrega || {};
   return `
-    <div class="cabecera">
-      ${bloqueMarca()}
-      ${bloqueDocumento('REM', f, `Fecha <b>${esc(fechaLarga(d.fecha))}</b>${d.cotizacion ? `<br>Cotización <b>${esc(d.cotizacion)}</b>` : ''}${vence ? `<br>Vence <b>${esc(fechaLarga(vence))}</b>` : ''}`,
-        credito ? { texto: `Crédito ${d.diasCredito} días` } : { texto: 'Contado', clase: 'ok' })}
-    </div>
-    <div class="tarjetas">
-      ${tarjetaCliente(d.cliente)}
-      ${tarjetaCondiciones('Entrega', [
-        ['Lugar', esc(d.entrega?.lugar || d.cliente.direccion || 'Recolección en bodega')],
-        ['Fecha', esc(fechaLarga(d.entrega?.fecha || d.fecha))],
-        ['Transporte', esc(d.entrega?.transporte || 'Flete a cargo del cliente')],
-        ['Recibe', esc(d.entrega?.recibe || '')],
-        ['Bultos', d.entrega?.bultos ? esc(String(d.entrega.bultos)) : ''],
-      ])}
-    </div>
+    ${cinta()}
+    ${resumen({
+      tipo: 'REM', folioDoc: f, fechaTxt: fechaLarga(d.fecha),
+      cifraEt: credito ? 'Total a pagar' : 'Total pagado', cifra: money(t.total),
+      sub: credito ? `Vence el <b>${esc(fechaLarga(vence))}</b> · crédito ${d.diasCredito} días` : 'Pagado de contado',
+      chips: [
+        d.cotizacion ? { html: `Cotización <b>${esc(d.cotizacion)}</b>` } : null,
+        { html: `Entrega <b>${esc(fechaLarga(e.fecha || d.fecha))}</b>` },
+        e.bultos ? { html: `<b>${esc(String(e.bultos))}</b> bultos` } : null,
+        { html: `Concepto de pago <b>${esc(conceptoSpei(f, clave))}</b>`, acento: true },
+      ].filter(Boolean),
+    })}
+    ${lista('Datos', [
+      ...paresCliente(d.cliente),
+      ['Entregar en', esc(e.lugar || d.cliente.direccion || 'Recolección en bodega')],
+      ['Transporte', esc(e.transporte || 'Flete a cargo del cliente')],
+      ['Recibe', e.recibe ? esc(e.recibe) : ''],
+    ])}
     ${tablaPartidas(d.partidas, { conLote: true })}
-    ${bloqueTotales(d.partidas, 'Los lotes indicados son los que se entregan. Conserva esta remisión para cualquier aclaración: es el documento que ampara la mercancía.', { conLetra: true })}
-    <div class="pie-bloques">
-      ${bloquePago(f, clave)}
-      ${bloqueCondiciones([
-        'Revisa cantidad y estado de la mercancía al recibir; las diferencias se reportan el mismo día.',
-        'Producto seco: almacenar cerrado, en lugar fresco y sin humedad.',
-        credito ? `Pago a ${d.diasCredito} días, vence el ${esc(fechaLarga(vence))}.` : 'Pagado de contado.',
-        'Esta remisión no es comprobante fiscal; el CFDI se emite con los datos fiscales registrados.',
-      ])}
-    </div>
+    ${bloqueTotales(d.partidas, 'Los lotes indicados son los que se entregan. Conserva esta remisión: es el documento que ampara la mercancía.', { conLetra: true })}
+    ${pasosPago(conceptoSpei(f, clave))}
+    ${condiciones([
+      'Revisa cantidad y estado de la mercancía al recibir; las diferencias se reportan el mismo día.',
+      'Producto seco: almacenar cerrado, en lugar fresco y sin humedad.',
+      credito ? `Pago a ${d.diasCredito} días, vence el ${esc(fechaLarga(vence))}.` : 'Pagado de contado.',
+      'Esta remisión no es comprobante fiscal; el CFDI se emite con los datos fiscales registrados.',
+    ])}
     <div class="firmas">
       <div class="firma"><b>Entregó</b>${esc(d.entrego || EMPRESA.nombre)}</div>
       <div class="firma"><b>Recibió de conformidad</b>Nombre y firma</div>
@@ -376,36 +367,29 @@ function renderRecibo(d) {
       <td class="num">${money(Number(a.saldoAnterior) - Number(a.monto))}</td>
     </tr>`).join('');
   return `
-    <div class="cabecera">
-      ${bloqueMarca()}
-      ${bloqueDocumento('REC', f, `Fecha de pago <b>${esc(fechaLarga(d.fecha))}</b><br>Forma <b>${esc(d.forma)}</b>${d.referencia ? `<br>Referencia <b>${esc(d.referencia)}</b>` : ''}`,
-        { texto: 'Pago recibido', clase: 'ok' })}
-    </div>
-    <div class="tarjetas">
-      ${tarjetaCliente(d.cliente, 'Recibimos de')}
-      ${tarjetaCondiciones('Importe recibido', [
-        ['Monto', `<b>${money(d.monto)}</b>`],
-        ['Con letra', esc(cantidadConLetra(d.monto))],
-        ['Aplicado', money(aplicado)],
-        ['Saldo a favor', saldoFavor > 0 ? `<b>${money(saldoFavor)}</b>` : '—'],
-      ])}
-    </div>
+    ${cinta()}
+    ${resumen({
+      tipo: 'REC', folioDoc: f, fechaTxt: fechaLarga(d.fecha),
+      cifraEt: 'Pago recibido', cifra: money(d.monto), sub: esc(cantidadConLetra(d.monto)),
+      chips: [
+        { html: `Forma <b>${esc(d.forma)}</b>` },
+        d.referencia ? { html: `Referencia <b>${esc(d.referencia)}</b>` } : null,
+        { html: `Aplicado <b>${money(aplicado)}</b>` },
+        saldoFavor > 0 ? { html: `Saldo a favor <b>${money(saldoFavor)}</b>`, acento: true } : null,
+      ].filter(Boolean),
+    })}
+    ${lista('Datos', paresCliente(d.cliente))}
+    <div class="seccion"><h2>Documentos que paga</h2>
     <table class="partidas">
-      <thead><tr><th></th><th>Documento que paga</th><th class="num">Saldo anterior</th><th class="num">Aplicado</th><th class="num">Saldo restante</th></tr></thead>
+      <thead><tr><th></th><th>Documento</th><th class="num">Saldo anterior</th><th class="num">Aplicado</th><th class="num">Saldo restante</th></tr></thead>
       <tbody>${filas}</tbody>
-    </table>
-    <div class="pie-bloques">
-      <div class="bloque">
-        <h4>Para tu control</h4>
-        <div>Tu clave de pago es <span class="concepto">${esc(clave)}</span></div>
-        <div>Úsala en el concepto de cada transferencia junto con el folio del documento que pagas. Así el pago se aplica el mismo día.</div>
-      </div>
-      ${bloqueCondiciones([
-        'Este recibo confirma la aplicación del pago a los documentos listados.',
-        saldoFavor > 0 ? `El saldo a favor de ${money(saldoFavor)} queda disponible para tu siguiente pedido.` : 'No queda saldo a favor.',
-        'El CFDI de pago (complemento) se emite conforme a la operación.',
-      ])}
-    </div>
+    </table></div>
+    ${condiciones([
+      'Este recibo confirma la aplicación del pago a los documentos listados.',
+      saldoFavor > 0 ? `El saldo a favor de ${money(saldoFavor)} queda disponible para tu siguiente pedido.` : 'No queda saldo a favor.',
+      `Tu clave de pago es <b>${esc(clave)}</b>; escríbela en cada transferencia junto con el folio que pagas.`,
+      'El CFDI de pago (complemento) se emite conforme a la operación.',
+    ])}
     ${pie(f, d.monto, d.fecha)}`;
 }
 
@@ -413,57 +397,51 @@ function renderEstadoCuenta(d) {
   const f = folioMensual('EDC', d.anio, d.mes);
   const clave = d.cliente.clave || claveCliente(d.cliente.numero);
   const hoy = d.corte;
-  let saldoTotal = 0, vencido = 0, porVencer = 0;
+  let saldoTotal = 0, vencido = 0, porVencer = 0, folioVencido = '';
   const filas = d.documentos.map((doc) => {
     const saldo = Number(doc.importe) - Number(doc.abonos || 0);
     const vence = sumaDias(doc.fecha, doc.diasCredito || 0);
     const dias = diasEntre(vence, hoy);
     const estaVencido = saldo > 0.005 && dias > 0;
     saldoTotal += saldo;
-    if (estaVencido) vencido += saldo; else porVencer += saldo;
+    if (estaVencido) { vencido += saldo; folioVencido = folioVencido || doc.folio; } else porVencer += saldo;
     return `
       <tr>
         <td><span class="prod">${esc(doc.folio)}</span><span class="pres">${esc(doc.descripcion || '')}</span></td>
-        <td style="white-space:nowrap">${esc(fechaCorta(doc.fecha))}</td>
-        <td style="white-space:nowrap">${esc(fechaCorta(vence))}</td>
+        <td class="fecha">${esc(fechaCorta(doc.fecha))}</td>
+        <td class="fecha">${esc(fechaCorta(vence))}</td>
         <td class="num">${money(doc.importe)}</td>
         <td class="num">${money(doc.abonos || 0)}</td>
         <td class="num ${estaVencido ? 'vencido' : ''}">${money(saldo)}</td>
-        <td class="num ${estaVencido ? 'vencido' : ''}">${saldo > 0.005 ? (dias > 0 ? `${dias} d` : 'al corriente') : 'pagado'}</td>
+        <td class="num ${estaVencido ? 'vencido' : ''}">${saldo > 0.005 ? (dias > 0 ? `${dias} días` : 'al corriente') : 'pagado'}</td>
       </tr>`;
   }).join('');
+  const hayVencido = vencido > 0.005;
   return `
-    <div class="cabecera">
-      ${bloqueMarca()}
-      ${bloqueDocumento('EDC', f, `Corte al <b>${esc(fechaLarga(hoy))}</b><br>Periodo <b>${esc(d.periodo || '')}</b>`,
-        vencido > 0.005 ? { texto: 'Con saldo vencido' } : { texto: 'Al corriente', clase: 'ok' })}
-    </div>
-    <div class="tarjetas">
-      ${tarjetaCliente(d.cliente)}
-      ${tarjetaCondiciones('Condiciones de crédito', [
-        ['Plazo', `${esc(String(d.cliente.diasCredito ?? '—'))} días`],
-        ['Pago', 'SPEI o depósito con clave y folio en el concepto'],
-        ['Aclaraciones', `WhatsApp ${esc(EMPRESA.whatsapp)}`],
-      ])}
-    </div>
-    <div class="resumen">
-      <div class="kpi"><div class="et">Saldo total</div><div class="v">${money(saldoTotal)}</div></div>
-      <div class="kpi ${vencido > 0.005 ? 'alerta' : ''}"><div class="et">Vencido</div><div class="v">${money(vencido)}</div></div>
-      <div class="kpi"><div class="et">Por vencer</div><div class="v">${money(porVencer)}</div></div>
-      <div class="kpi"><div class="et">Documentos</div><div class="v">${d.documentos.length}</div></div>
-    </div>
+    ${cinta()}
+    ${resumen({
+      tipo: 'EDC', folioDoc: f, fechaTxt: `corte al ${fechaLarga(hoy)}`,
+      cifraEt: 'Saldo total', cifra: money(saldoTotal), cifraAlerta: hayVencido,
+      sub: hayVencido ? `<b>${money(vencido)}</b> vencido · ${money(porVencer)} por vencer` : 'Cuenta al corriente',
+      chips: [
+        { html: `Periodo <b>${esc(d.periodo || '')}</b>` },
+        { html: `Plazo <b>${esc(String(d.cliente.diasCredito ?? '—'))} días</b>` },
+        { html: `<b>${d.documentos.length}</b> documentos` },
+        hayVencido ? { html: `Regulariza <b>${esc(folioVencido)}</b> para seguir surtiendo`, acento: true } : null,
+      ].filter(Boolean),
+    })}
+    ${lista('Datos', paresCliente(d.cliente))}
+    <div class="seccion"><h2>Movimientos</h2>
     <table class="partidas">
       <thead><tr><th>Documento</th><th>Fecha</th><th>Vence</th><th class="num">Importe</th><th class="num">Abonos</th><th class="num">Saldo</th><th class="num">Antigüedad</th></tr></thead>
       <tbody>${filas}</tbody>
-    </table>
-    <div class="pie-bloques">
-      ${bloquePago(f, clave, { generico: true })}
-      ${bloqueCondiciones([
-        'Los pagos recibidos después de la fecha de corte no aparecen en este estado.',
-        'Si un pago ya fue hecho y no está aplicado, envíanos el comprobante con el folio.',
-        vencido > 0.005 ? 'Los documentos marcados están vencidos; te pedimos regularizarlos para seguir surtiendo.' : 'Gracias por mantener tu cuenta al corriente.',
-      ])}
-    </div>
+    </table></div>
+    ${pasosPago(`${folioVencido || 'REM 2026-0000'} ${clave}`, { generico: true })}
+    ${condiciones([
+      'Los pagos recibidos después de la fecha de corte no aparecen en este estado.',
+      'Si un pago ya fue hecho y no está aplicado, envíanos el comprobante con el folio.',
+      hayVencido ? 'Los documentos en color están vencidos; te pedimos regularizarlos para seguir surtiendo.' : 'Gracias por mantener tu cuenta al corriente.',
+    ])}
     ${pie(f, saldoTotal, hoy)}`;
 }
 
@@ -473,7 +451,7 @@ const RENDER = { COT: renderCotizacion, REM: renderRemision, REC: renderRecibo, 
 function montar(tipo, datos) {
   const hoja = document.querySelector('.hoja');
   hoja.innerHTML = RENDER[tipo](datos);
-  const folioTxt = hoja.querySelector('.folio')?.textContent || '';
+  const folioTxt = hoja.querySelector('.resumen .folio b')?.textContent || '';
   document.title = `${TIPOS[tipo]} ${folioTxt} · AS Molinas`;
 }
 

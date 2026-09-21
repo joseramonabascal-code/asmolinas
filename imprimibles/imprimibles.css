@@ -1,194 +1,188 @@
 /* ============================================================
    AS MOLINAS — Imprimibles (cotización, remisión, recibo, estado)
    ============================================================
-   Identidad propia, deliberadamente distinta del sistema de
-   Grupo Abascal (tema oscuro, azul, PDF en mayúsculas, tablas
-   jsPDF con rejilla). Aquí:
-     - papel claro color crema, tinta verde bosque y acento terracota
-     - titulares en serif (DM Serif Display), texto en DM Sans
-     - frase normal (nunca bloques en MAYÚSCULAS)
-     - sin rejilla: filetes finos horizontales y aire
-     - folio grande a la derecha, marca a la izquierda
-   Tamaño carta, márgenes 16 mm. Se imprime desde el navegador
-   (Ctrl+P → Guardar como PDF) o con Playwright/Chromium en servidor.
+   Composición v2, pensada para que el cliente entienda el documento
+   de un vistazo:
+     1. Cinta superior: marca y contacto en una línea.
+     2. Resumen en verde bosque: qué documento es, cuánto es y para cuándo.
+     3. Una sola lista de datos (cliente, entrega, referencias): sin cuadros.
+     4. Partidas en tabla limpia, totales a la derecha.
+     5. "Cómo pagar" en tres pasos numerados.
+     6. Condiciones breves, firmas si aplica, pie con verificación.
+   Colores: papel crema, verde bosque, terracota, salvia y oro (los del sitio).
+   Tamaño carta, márgenes 14 mm. Se imprime desde el navegador o con Chromium.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  --tinta: #1B3028;          /* verde bosque profundo: texto principal */
-  --bosque: #2D4A3E;         /* verde bosque: titulares y filetes fuertes */
-  --salvia: #7A9E8E;         /* etiquetas y texto secundario */
-  --crema: #FBF8F3;          /* papel */
-  --arena: #E8DDD0;          /* filetes suaves */
-  --calido: #F5EDE3;         /* fondos de tarjeta */
-  --terracota: #C4704B;      /* acento: folio, totales, sello */
-  --oro: #C9A96E;            /* filete decorativo */
+  --tinta: #1B3028;
+  --bosque: #2D4A3E;
+  --salvia: #7A9E8E;
+  --salvia-claro: #A8C5B6;
+  --crema: #FBF8F3;
+  --arena: #E8DDD0;
+  --calido: #F5EDE3;
+  --terracota: #C4704B;
+  --oro: #C9A96E;
   --gris: #6B6B6B;
   --ff-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
   --ff-body: 'DM Sans', -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
-@page { size: letter; margin: 16mm; }
-
+@page { size: letter; margin: 14mm; }
 * { box-sizing: border-box; }
-
 html, body { margin: 0; padding: 0; background: #ddd; }
-
 body {
-  font-family: var(--ff-body);
-  font-size: 10.5pt;
-  line-height: 1.45;
-  color: var(--tinta);
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
+  font-family: var(--ff-body); font-size: 10.5pt; line-height: 1.45; color: var(--tinta);
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
 }
 
-/* La hoja ---------------------------------------------------- */
+/* Hoja ------------------------------------------------------------------- */
 .hoja {
-  background: var(--crema);
-  width: 216mm;
-  min-height: 279mm;
-  margin: 12mm auto;
-  padding: 16mm;
-  box-shadow: 0 6px 30px rgba(0,0,0,.18);
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  background: var(--crema); width: 216mm; min-height: 279mm; margin: 12mm auto; padding: 14mm;
+  box-shadow: 0 6px 30px rgba(0,0,0,.18); display: flex; flex-direction: column; gap: 14px;
 }
 
-/* Barra de herramientas en pantalla (no se imprime) ----------- */
+/* Barra en pantalla (no se imprime) ----------------------------------------- */
 .barra {
-  max-width: 216mm; margin: 12mm auto 0; padding: 0 4px;
-  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
-  font-size: 9.5pt; color: var(--gris);
+  max-width: 216mm; margin: 12mm auto 0; padding: 0 4px; display: flex; gap: 8px; align-items: center;
+  flex-wrap: wrap; font-size: 9.5pt; color: var(--gris);
 }
 .barra button {
-  font: 600 10pt var(--ff-body); color: #fff; background: var(--bosque);
-  border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer;
+  font: 600 10pt var(--ff-body); color: #fff; background: var(--bosque); border: 0; border-radius: 6px;
+  padding: 8px 14px; cursor: pointer;
 }
 .barra button.sec { background: transparent; color: var(--bosque); border: 1px solid var(--bosque); }
 
-/* Encabezado --------------------------------------------------- */
-.cabecera {
-  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start;
-  padding-bottom: 12px; border-bottom: 2px solid var(--bosque);
-}
-.marca .nombre {
-  font-family: var(--ff-display); font-size: 22pt; letter-spacing: .01em;
-  color: var(--bosque); line-height: 1;
-}
-.marca .nombre span { color: var(--terracota); }
-.marca .lema { color: var(--salvia); font-size: 9pt; margin-top: 4px; }
-.marca .datos { font-size: 8.5pt; color: var(--gris); margin-top: 8px; line-height: 1.5; }
+/* 1. Cinta de marca -------------------------------------------------------- */
+.cinta { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.cinta .nombre { font-family: var(--ff-display); font-size: 19pt; color: var(--bosque); line-height: 1; }
+.cinta .nombre span { color: var(--terracota); }
+.cinta .contacto { font-size: 8.5pt; color: var(--gris); text-align: right; line-height: 1.4; }
 
-.documento { text-align: right; }
-.documento .tipo {
-  font-family: var(--ff-display); font-size: 20pt; color: var(--tinta); line-height: 1;
+/* 2. Resumen ------------------------------------------------------------------ */
+.resumen {
+  background: var(--bosque); color: var(--crema); border-radius: 10px; padding: 16px 20px;
+  display: grid; grid-template-columns: 1fr auto; gap: 12px 24px; align-items: end;
 }
-.documento .folio {
-  font-family: var(--ff-display); font-size: 15pt; color: var(--terracota); margin-top: 4px;
-  font-variant-numeric: tabular-nums;
-}
-.documento .meta { font-size: 8.5pt; color: var(--gris); margin-top: 6px; line-height: 1.5; }
-.documento .meta b { color: var(--tinta); font-weight: 600; }
+.resumen .tipo { font-family: var(--ff-display); font-size: 22pt; line-height: 1; }
+.resumen .folio { font-size: 11pt; color: var(--salvia-claro); margin-top: 6px; font-variant-numeric: tabular-nums; }
+.resumen .folio b { color: var(--crema); font-weight: 600; }
+.resumen .cifra { text-align: right; }
+.resumen .cifra .et { font-size: 8.5pt; color: var(--salvia-claro); letter-spacing: .04em; text-transform: uppercase; font-weight: 600; }
+.resumen .cifra .v { font-family: var(--ff-display); font-size: 26pt; line-height: 1.05; color: #fff; font-variant-numeric: tabular-nums; }
+.resumen .cifra .v.alerta { color: #F0B79A; }
+.resumen .cifra .sub { font-size: 9pt; color: var(--salvia-claro); margin-top: 4px; }
+.resumen .chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.15); }
+.chip { font-size: 8.5pt; padding: 3px 10px; border-radius: 999px; background: rgba(255,255,255,.10); color: var(--crema); }
+.chip b { font-weight: 600; color: #fff; }
+.chip.acento { background: var(--terracota); color: #fff; }
 
-/* Estado (sello) ---------------------------------------------- */
-.sello {
-  display: inline-block; margin-top: 8px; padding: 2px 10px; border-radius: 999px;
-  font-size: 8pt; font-weight: 600; letter-spacing: .04em;
-  border: 1.5px solid var(--terracota); color: var(--terracota);
+/* 3. Lista de datos ------------------------------------------------------------- */
+.seccion h2 {
+  margin: 0 0 4px; font: 600 8.5pt var(--ff-body); letter-spacing: .06em; text-transform: uppercase; color: var(--salvia);
 }
-.sello.ok { border-color: var(--bosque); color: var(--bosque); }
-.sello.gris { border-color: var(--salvia); color: var(--salvia); }
+.lista { margin: 0; display: grid; grid-template-columns: 150px 1fr; }
+.lista dt, .lista dd { margin: 0; padding: 5px 0; border-bottom: 1px solid var(--arena); font-size: 9.8pt; }
+.lista dt { color: var(--gris); }
+.lista dd { font-weight: 500; }
+.lista dd.grande { font-weight: 600; font-size: 11pt; }
+.lista dd.clave { font-family: var(--ff-display); font-size: 12pt; color: var(--terracota); letter-spacing: .02em; }
+.lista.dos { grid-template-columns: 150px 1fr 150px 1fr; column-gap: 18px; }
 
-/* Tarjetas de datos (cliente / condiciones) -------------------- */
-.tarjetas { display: grid; grid-template-columns: 1.2fr 1fr; gap: 12px; margin: 14px 0; }
-.tarjeta { background: var(--calido); border-radius: 8px; padding: 10px 12px; }
-.tarjeta h3 {
-  margin: 0 0 6px; font: 600 8pt var(--ff-body); letter-spacing: .06em; color: var(--salvia);
-  text-transform: uppercase; /* única mayúscula permitida: rótulos de 1-2 palabras */
-}
-.tarjeta .titular { font-weight: 600; font-size: 11pt; color: var(--tinta); }
-.tarjeta dl { margin: 6px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 9pt; }
-.tarjeta dt { color: var(--gris); }
-.tarjeta dd { margin: 0; }
-.tarjeta .clave {
-  font-family: var(--ff-display); font-size: 12pt; color: var(--terracota); letter-spacing: .02em;
-}
-
-/* Tabla de partidas -------------------------------------------- */
-table.partidas { width: 100%; border-collapse: collapse; margin-top: 4px; }
+/* 4. Partidas -------------------------------------------------------------------- */
+table.partidas { width: 100%; border-collapse: collapse; }
 table.partidas th {
-  text-align: left; font-size: 8pt; font-weight: 600; letter-spacing: .04em; color: var(--salvia);
+  text-align: left; font-size: 8.2pt; font-weight: 600; letter-spacing: .04em; color: var(--salvia);
   padding: 6px 6px; border-bottom: 1.5px solid var(--bosque);
 }
-table.partidas td {
-  padding: 7px 6px; border-bottom: 1px solid var(--arena); vertical-align: top; font-size: 9.5pt;
-}
+table.partidas td { padding: 7px 6px; border-bottom: 1px solid var(--arena); vertical-align: top; font-size: 9.6pt; }
 table.partidas .num, table.partidas th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 table.partidas .n { color: var(--gris); width: 22px; }
 table.partidas .prod { font-weight: 600; }
 table.partidas .pres { display: block; color: var(--gris); font-size: 8.5pt; font-weight: 400; }
 table.partidas .lote { color: var(--salvia); font-size: 8.5pt; white-space: nowrap; }
-table.partidas tr.total td { border-bottom: 0; }
+table.partidas .fecha { white-space: nowrap; }
+.vencido { color: var(--terracota); font-weight: 600; }
 
-/* Totales -------------------------------------------------------- */
-.totales { display: grid; grid-template-columns: 1fr 250px; gap: 16px; margin-top: 10px; align-items: end; }
-.totales .nota { font-size: 8.5pt; color: var(--gris); }
+.totales { display: grid; grid-template-columns: 1fr 260px; gap: 16px; align-items: end; }
+.totales .nota { font-size: 8.8pt; color: var(--gris); }
 .totales table { width: 100%; border-collapse: collapse; }
-.totales td { padding: 3px 6px; font-size: 9.5pt; font-variant-numeric: tabular-nums; }
+.totales td { padding: 3px 6px; font-size: 9.6pt; font-variant-numeric: tabular-nums; }
 .totales td:last-child { text-align: right; }
-.totales tr.gran td {
-  border-top: 2px solid var(--bosque); padding-top: 6px;
-  font-family: var(--ff-display); font-size: 14pt; color: var(--terracota);
-}
+.totales tr.gran td { border-top: 2px solid var(--bosque); padding-top: 6px; font-family: var(--ff-display); font-size: 14pt; color: var(--terracota); }
 .totales .letra { font-size: 8.5pt; color: var(--gris); font-style: italic; text-align: right; padding-top: 2px; }
 
-/* Bloques inferiores --------------------------------------------- */
-.pie-bloques { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
-.bloque { border-top: 1px solid var(--oro); padding-top: 8px; font-size: 8.8pt; }
-.bloque h4 { margin: 0 0 4px; font: 600 8pt var(--ff-body); letter-spacing: .06em; color: var(--salvia); text-transform: uppercase; }
-.bloque ul { margin: 0; padding-left: 14px; }
-.bloque li { margin: 2px 0; }
-.bloque .spei { font-variant-numeric: tabular-nums; }
-.bloque .spei b { font-weight: 600; }
-.bloque .concepto {
-  display: inline-block; margin-top: 4px; padding: 3px 8px; border-radius: 4px;
-  background: var(--calido); font-weight: 600; color: var(--terracota); font-size: 9.5pt;
+/* 5. Cómo pagar ------------------------------------------------------------------- */
+.pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.paso { background: var(--calido); border-radius: 10px; padding: 10px 12px 12px; font-size: 9pt; position: relative; }
+.paso .num {
+  display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--terracota); color: #fff; font-weight: 700; font-size: 10pt; margin-bottom: 6px;
 }
-.bloque .aviso { color: var(--terracota); }
+.paso h3 { margin: 0 0 3px; font: 600 10pt var(--ff-body); color: var(--tinta); }
+.paso p { margin: 0; color: var(--gris); }
+.paso .concepto {
+  display: inline-block; margin-top: 6px; padding: 4px 8px; border-radius: 4px; background: #fff;
+  border: 1px dashed var(--terracota); font-weight: 700; color: var(--terracota); font-size: 9.5pt; letter-spacing: .02em;
+}
+.paso .spei { margin-top: 4px; font-variant-numeric: tabular-nums; color: var(--tinta); }
 
-/* Firmas (remisión) ------------------------------------------------ */
-.firmas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
+/* 6. Condiciones y firmas ------------------------------------------------------------ */
+.condiciones { border-top: 1px solid var(--oro); padding-top: 8px; font-size: 8.6pt; color: var(--gris); }
+.condiciones ul { margin: 0; padding-left: 14px; columns: 2; column-gap: 24px; }
+.condiciones li { margin: 0 0 3px; break-inside: avoid; }
+.firmas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 18px; }
 .firma { border-top: 1px solid var(--tinta); padding-top: 4px; font-size: 8.5pt; color: var(--gris); text-align: center; }
 .firma b { display: block; color: var(--tinta); font-weight: 600; }
 
-/* Pie de página ------------------------------------------------------ */
 .pie {
-  margin-top: auto; padding-top: 10px; border-top: 1px solid var(--arena);
-  display: flex; justify-content: space-between; font-size: 8pt; color: var(--gris);
+  margin-top: auto; padding-top: 8px; border-top: 1px solid var(--arena); display: flex; justify-content: space-between;
+  font-size: 8pt; color: var(--gris);
 }
 .pie .verif { font-variant-numeric: tabular-nums; }
 
-/* Estado de cuenta ------------------------------------------------- */
-.resumen { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0; }
-.kpi { background: var(--calido); border-radius: 8px; padding: 8px 10px; }
-.kpi .et { font-size: 8pt; color: var(--salvia); letter-spacing: .04em; text-transform: uppercase; font-weight: 600; }
-.kpi .v { font-family: var(--ff-display); font-size: 15pt; color: var(--tinta); font-variant-numeric: tabular-nums; }
-.kpi.alerta .v { color: var(--terracota); }
-.vencido { color: var(--terracota); font-weight: 600; }
-
-/* Pantalla / impresión --------------------------------------------- */
+/* Pantalla / impresión ---------------------------------------------------------------- */
 @media screen and (max-width: 900px) {
   .hoja { width: auto; min-height: 0; margin: 8px; padding: 18px; }
-  .tarjetas, .totales, .pie-bloques, .resumen { grid-template-columns: 1fr; }
-  .cabecera { grid-template-columns: 1fr; }
-  .documento { text-align: left; }
+  .resumen, .totales, .pasos { grid-template-columns: 1fr; }
+  .resumen .cifra { text-align: left; }
+  .lista, .lista.dos { grid-template-columns: 120px 1fr; }
+  .condiciones ul { columns: 1; }
 }
 @media print {
+  /* Compactado para que cotización y remisión quepan en UNA hoja carta. */
   html, body { background: #fff; }
+  body { font-size: 9pt; line-height: 1.35; }
   .barra { display: none !important; }
-  .hoja { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; background: var(--crema); }
+  .hoja { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; background: var(--crema); gap: 9px; }
   a { color: inherit; text-decoration: none; }
+  .cinta .nombre { font-size: 16pt; }
+  .cinta .contacto { font-size: 7.5pt; }
+  .resumen { padding: 10px 14px; gap: 6px 18px; border-radius: 8px; }
+  .resumen .tipo { font-size: 17pt; }
+  .resumen .folio { font-size: 9.5pt; margin-top: 3px; }
+  .resumen .cifra .v { font-size: 20pt; }
+  .resumen .cifra .sub, .chip { font-size: 7.8pt; }
+  .resumen .chips { padding-top: 6px; gap: 5px; }
+  .seccion h2 { font-size: 7.5pt; margin-bottom: 2px; }
+  .lista dt, .lista dd { padding: 2.5px 0; font-size: 8.6pt; }
+  .lista dd.grande { font-size: 9.6pt; }
+  .lista dd.clave { font-size: 10.5pt; }
+  table.partidas th { padding: 3px 5px; font-size: 7.3pt; }
+  table.partidas td { padding: 3.5px 5px; font-size: 8.6pt; }
+  table.partidas .pres, table.partidas .lote { font-size: 7.6pt; }
+  .totales td { padding: 1.5px 5px; font-size: 8.6pt; }
+  .totales tr.gran td { font-size: 12pt; padding-top: 3px; }
+  .totales .nota, .totales .letra { font-size: 7.6pt; }
+  .pasos { gap: 7px; }
+  .paso { padding: 7px 9px 8px; font-size: 7.8pt; border-radius: 8px; }
+  .paso .num { width: 17px; height: 17px; font-size: 8pt; margin-bottom: 3px; }
+  .paso h3 { font-size: 8.6pt; }
+  .paso .concepto { font-size: 8.2pt; padding: 2px 6px; margin-top: 3px; }
+  .condiciones { font-size: 7.4pt; padding-top: 5px; }
+  .firmas { margin-top: 10px; gap: 30px; }
+  .firma { font-size: 7.4pt; }
+  .pie { font-size: 7pt; padding-top: 5px; }
 }

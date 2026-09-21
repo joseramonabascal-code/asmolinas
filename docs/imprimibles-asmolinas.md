@@ -33,7 +33,7 @@ enlazadas desde el sitio, llevan `noindex` y `robots.txt` las bloquea.
 | Fondo y color | Tema oscuro, azul de marca | Papel crema, tinta verde bosque, acento terracota, filete oro |
 | Tipografía | Sans, PDF **en mayúsculas** | Titulares en serif (DM Serif Display), texto DM Sans, **frase normal** |
 | Tablas | jsPDF con rejilla completa | Sin rejilla: filetes horizontales finos y aire |
-| Composición | Membrete arriba, tabla, totales | Marca a la izquierda, tipo y folio grandes a la derecha, dos tarjetas (cliente / condiciones), tabla, totales, dos bloques (pago / condiciones) |
+| Composición | Membrete arriba, tabla, totales | Cinta de marca; **resumen en verde** con tipo, folio, total y vencimiento; **una sola lista** de datos del cliente; tabla; totales; **"Cómo pagar" en 3 pasos**; condiciones breves |
 | Folio | Número corrido | `COT 2026-0018`, `REM 2026-0031`, `REC 2026-0009`, `EDC 2026-09` |
 | Clave del cliente | `AB####`, hash del nombre (puede repetirse) | `MOL-0042-69`: número de cliente + 2 dígitos de control mod 97 (única y verificable) |
 | Concepto de pago | Sólo la clave | **Folio + clave**: el depósito identifica cliente y documento |
