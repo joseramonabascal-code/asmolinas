@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Recibo de pago · AS Molinas</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="imprimibles.css">
+</head>
+<body>
+  <div class="barra"></div>
+  <main class="hoja"></main>
+
+  <script src="imprimibles.js"></script>
+  <script>
+    // Datos de EJEMPLO (cliente y montos ficticios).
+    const datos = {
+      anio: 2026, consecutivo: 9, fecha: '2026-09-21', forma: 'Transferencia SPEI', referencia: 'REM 2026-0031 MOL-0042-69',
+      monto: 13000,
+      cliente: { numero: 42, nombre: 'Cocina Central Ejemplo, S.A. de C.V.', contacto: 'Compras' },
+      aplicaciones: [
+        { documento: 'REM 2026-0031', descripcion: 'Remisión del 21 de septiembre', saldoAnterior: 12000, monto: 12000 },
+      ],
+    };
+    barra('REC', datos);
+  </script>
+</body>
+</html>

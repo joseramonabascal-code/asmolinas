@@ -5,6 +5,7 @@ Allow: /assets/catalogo-asmolinas.pdf
 # Páginas internas / borrador — no indexar
 Disallow: /as_molinas_tienda_6.html
 Disallow: /assets/gen_catalog.py
+Disallow: /imprimibles/
 
 # Páginas de redirección — evitar gasto de crawl budget
 Disallow: /blog/articulo-1.html

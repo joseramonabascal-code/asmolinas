@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Cotización · AS Molinas</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="imprimibles.css">
+</head>
+<body>
+  <div class="barra"></div>
+  <main class="hoja"></main>
+
+  <script src="imprimibles.js"></script>
+  <script>
+    // Datos de EJEMPLO (cliente y precios ficticios). El sistema exporta este
+    // mismo JSON por documento y se carga con el botón "Cargar JSON".
+    const datos = {
+      anio: 2026, consecutivo: 18, fecha: '2026-09-21', vigenciaDias: 7, atendio: 'Ventas AS Molinas',
+      cliente: {
+        numero: 42, nombre: 'Cocina Central Ejemplo, S.A. de C.V.',
+        contacto: 'Compras', telefono: '55 0000 0000',
+        direccion: 'Bodega de recepción, Iztapalapa, CDMX',
+      },
+      flete: 'A cargo del cliente; se cotiza aparte según destino',
+      partidas: [
+        { producto: 'Chile guajillo seco', presentacion: 'Saco de 25 kg', cantidad: 50, precio: 100, iva: 0 },
+        { producto: 'Chile ancho seco',    presentacion: 'Saco de 25 kg', cantidad: 25, precio: 100, iva: 0 },
+        { producto: 'Comino entero',       presentacion: 'Saco de 25 kg', cantidad: 25, precio: 100, iva: 0 },
+        { producto: 'Orégano molido',      presentacion: 'Bolsa de 10 kg', cantidad: 20, precio: 100, iva: 0 },
+      ],
+      nota: 'Documento de ejemplo: los precios son ficticios. El precio por kg baja con el volumen; si tu operación necesita más, pide el siguiente rango.',
+    };
+    barra('COT', datos);
+  </script>
+</body>
+</html>

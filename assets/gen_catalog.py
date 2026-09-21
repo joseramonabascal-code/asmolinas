@@ -2,284 +2,296 @@ from fpdf import FPDF
 from collections import defaultdict
 
 # ============================================================
-# AS MOLINAS — Generador de Catalogo PDF de Mayoreo
+# AS MOLINAS — Generador del catálogo PDF de mayoreo
 # ============================================================
-# Estructura de precios: 4 rangos de volumen por producto
-#   10-19.9 kg   → Entrada
-#   20-24.9 kg   → Intermedio
-#   25-399.9 kg  → Bulto cerrado (25 kg)
-#   400 kg+      → Mayoreo
-# Precios se dejan como [PRECIO_PENDIENTE] hasta llenarlos.
+# Misma identidad que los imprimibles (imprimibles/imprimibles.css):
+# papel crema, tinta verde bosque, acento terracota, filete oro,
+# frase normal (sin bloques en mayúsculas) y sin rejilla.
+#
+# Reglas de negocio (CLAUDE.md):
+#   - No se publican precios: "Cotiza precio vigente por volumen".
+#   - El mínimo cambia según producto y presentación.
+#   - Sin claims sin evidencia (natural, origen, molienda propia, tiempos).
+#
+# Requiere: pip install fpdf2
 # ============================================================
 
-FOREST  = (45, 74, 62)
+TINTA   = (27, 48, 40)
+BOSQUE  = (45, 74, 62)
+SALVIA  = (122, 158, 142)
+CREMA   = (251, 248, 243)
+CALIDO  = (245, 237, 227)
+ARENA   = (232, 221, 208)
 TERRA   = (196, 112, 75)
-CREAM   = (251, 248, 243)
-WHITE   = (255, 255, 255)
-MUTED   = (107, 107, 107)
-LIGHT   = (232, 221, 208)
-GOLD    = (212, 160, 23)
+ORO     = (201, 169, 110)
+GRIS    = (107, 107, 107)
+BLANCO  = (255, 255, 255)
 
 CATS = {
-    "Especias":      (TERRA,           "Especias y Chiles"),
-    "Tes":           ((58, 122, 48),   "Tes Artesanales"),
-    "Deshidratados": ((112, 48, 160),  "Deshidratados"),
-    "Semillas":      ((160, 112, 8),   "Semillas y Nueces"),
-    "Sales":         ((192, 88, 64),   "Sales Gourmet"),
-    "Superfoods":    (FOREST,          "Superfoods"),
+    "Especias":      "Especias y chiles secos",
+    "Superfoods":    "Superfoods",
+    "Semillas":      "Semillas y nueces",
+    "Deshidratados": "Frutas deshidratadas",
+    "Tes":           "Tés e infusiones",
+    "Sales":         "Sales",
 }
 
-# Placeholder que se muestra en el PDF hasta que llenes precios reales
-PP = "[PRECIO_PENDIENTE]"
-
-# Cada producto: (nombre, descripcion, categoria, tag)
-# Los precios se calculan al render como 4 columnas con placeholder
+# Cada producto: (nombre, descripción, categoría, etiqueta)
+# La descripción dice qué es y para qué se usa; no afirma origen, pureza,
+# proceso ni certificación.
 products = [
-    ("Canela en raja",         "Canela ceylan premium, aroma intenso",       "Especias",      "Popular"),
-    ("Canela molida",          "Molida fina para panaderia de volumen",       "Especias",      ""),
-    ("Pimienta negra entera",  "Grano entero seleccionado para molino",       "Especias",      ""),
-    ("Pimienta negra molida",  "Molida gruesa, sabor intenso",                "Especias",      ""),
-    ("Comino entero",          "Semilla entera, base de adobos y moles",      "Especias",      ""),
-    ("Chile ancho seco",       "Poblano seco, base de moles y adobos",        "Especias",      ""),
-    ("Chile guajillo seco",    "Rojo intenso, salsas rojas y caldos",         "Especias",      ""),
-    ("Oregano molido",         "Oregano mexicano, aroma fresco",              "Especias",      ""),
-    ("Clavo de olor",          "Grano entero muy aromatico",                  "Especias",      "Premium"),
-    ("Curcuma en polvo",       "Molienda propia, color dorado intenso",       "Superfoods",    ""),
-    ("Manzanilla premium",     "Flor entera, cosecha reciente",               "Tes",           "Popular"),
-    ("Hierbabuena",            "Hojas secas, aroma refrescante",              "Tes",           ""),
-    ("Te de limon",            "Hojas de limon natural",                      "Tes",           ""),
-    ("Moringa en hoja",        "Hojas secas, insumo wellness",                "Superfoods",    "Superfood"),
-    ("Flor de Jamaica",        "Flor entera, agua fresca y kombucha",         "Superfoods",    ""),
-    ("Chia",                   "Semilla entera",                              "Superfoods",    ""),
-    ("Quinoa",                 "Grano entero, insumo bowls y menu wellness",  "Superfoods",    ""),
-    ("Jengibre",               "Deshidratado o en polvo",                     "Superfoods",    ""),
-    ("Arandano deshidratado",  "Fruta entera, sabor dulce-acido",             "Deshidratados", "Popular"),
-    ("Mango rodaja",           "Rodajas deshidratadas, sin azucar",           "Deshidratados", ""),
-    ("Mango cubo",             "Cubos deshidratados, snack natural",          "Deshidratados", ""),
-    ("Fresa deshidratada",     "Rodaja entera, color intenso",                "Deshidratados", "Premium"),
-    ("Pina rodaja",            "Rodajas naturales deshidratadas",             "Deshidratados", ""),
-    ("Pina cubo",              "Cubos practicos para granola",                "Deshidratados", ""),
-    ("Papaya deshidratada",    "Trozos dulces y suaves",                      "Deshidratados", ""),
-    ("Manzana rodaja",         "Rodajas crujientes, sin azucar",              "Deshidratados", ""),
-    ("Cereza deshidratada",    "Sabor intenso, insumo reposteria",            "Deshidratados", ""),
-    ("Orejon (chabacano)",     "Chabacano deshidratado premium",              "Deshidratados", "Premium"),
-    ("Almendra natural",       "Entera con cuticula, seleccionada",           "Semillas",      "Popular"),
-    ("Almendra fileteada",     "Corte fino para reposteria y panaderia",      "Semillas",      ""),
-    ("Almendra sin cuticula",  "Pelada, para mazapan y harina de almendra",   "Semillas",      ""),
-    ("Nuez de la India",       "Cashew entero, tostado natural",              "Semillas",      ""),
-    ("Avellana",               "Entera con cuticula, grado premium",          "Semillas",      "Premium"),
-    ("Ajonjoli natural",       "Semilla limpia, panaderia y moles",           "Semillas",      ""),
-    ("Coco rallado",           "Rallado fino, sin azucar",                    "Semillas",      ""),
-    ("Sal del Himalaya fina",  "Sal rosa molida fina, 84 minerales",          "Sales",         "Popular"),
-    ("Sal del Himalaya gruesa","Grano grueso, para molino",                   "Sales",         ""),
-    ("Sal de mar gruesa",      "Cosechada naturalmente, sin refinar",         "Sales",         ""),
+    ("Canela en raja",          "Raja entera, aroma intenso",                     "Especias",      "Alta rotación"),
+    ("Canela molida",           "Molida fina para panadería de volumen",           "Especias",      ""),
+    ("Pimienta negra entera",   "Grano entero para molino",                        "Especias",      ""),
+    ("Pimienta negra molida",   "Molida gruesa, sabor intenso",                    "Especias",      ""),
+    ("Comino entero",           "Semilla entera, base de adobos y moles",          "Especias",      ""),
+    ("Chile ancho seco",        "Poblano seco, base de moles y adobos",            "Especias",      ""),
+    ("Chile guajillo seco",     "Rojo intenso, salsas rojas y caldos",             "Especias",      ""),
+    ("Chile de árbol seco",     "Picor alto, salsas y aceites",                    "Especias",      ""),
+    ("Orégano molido",          "Orégano mexicano, aroma fresco",                  "Especias",      ""),
+    ("Ajo en polvo",            "Polvo fino para sazonadores y marinados",         "Especias",      ""),
+    ("Pimentón dulce",          "Color y sabor suave para embutidos y salsas",     "Especias",      ""),
+    ("Clavo de olor",           "Grano entero muy aromático",                      "Especias",      ""),
+    ("Cúrcuma en polvo",        "Polvo, color dorado intenso",                     "Superfoods",    ""),
+    ("Manzanilla",              "Flor entera para infusión",                       "Tes",           "Alta rotación"),
+    ("Hierbabuena",             "Hojas secas, aroma refrescante",                  "Tes",           ""),
+    ("Té de limón",             "Hojas secas para infusión",                       "Tes",           ""),
+    ("Moringa en hoja",         "Hojas secas, insumo wellness",                    "Superfoods",    ""),
+    ("Flor de Jamaica",         "Flor entera, agua fresca y kombucha",             "Superfoods",    ""),
+    ("Chía",                    "Semilla entera",                                  "Superfoods",    ""),
+    ("Quinoa",                  "Grano entero, bowls y menú wellness",             "Superfoods",    ""),
+    ("Jengibre",                "Deshidratado o en polvo",                         "Superfoods",    ""),
+    ("Arándano deshidratado",   "Fruta entera, sabor dulce-ácido",                 "Deshidratados", "Alta rotación"),
+    ("Mango rodaja",            "Rodajas deshidratadas",                           "Deshidratados", ""),
+    ("Mango cubo",              "Cubos deshidratados para snack y granola",        "Deshidratados", ""),
+    ("Fresa deshidratada",      "Rodaja entera, color intenso",                    "Deshidratados", ""),
+    ("Piña rodaja",             "Rodajas deshidratadas",                           "Deshidratados", ""),
+    ("Piña cubo",               "Cubos para granola",                              "Deshidratados", ""),
+    ("Papaya deshidratada",     "Trozos dulces y suaves",                          "Deshidratados", ""),
+    ("Manzana rodaja",          "Rodajas crujientes",                              "Deshidratados", ""),
+    ("Cereza deshidratada",     "Sabor intenso, insumo repostería",                "Deshidratados", ""),
+    ("Orejón (chabacano)",      "Chabacano deshidratado",                          "Deshidratados", ""),
+    ("Almendra natural",        "Entera con cutícula",                             "Semillas",      "Alta rotación"),
+    ("Almendra fileteada",      "Corte fino para repostería y panadería",          "Semillas",      ""),
+    ("Almendra sin cutícula",   "Pelada, para mazapán y harina de almendra",       "Semillas",      ""),
+    ("Nuez de la India",        "Entera, tostado natural",                         "Semillas",      ""),
+    ("Avellana",                "Entera con cutícula",                             "Semillas",      ""),
+    ("Ajonjolí natural",        "Semilla limpia, panadería y moles",               "Semillas",      ""),
+    ("Coco rallado",            "Rallado fino, sin azúcar añadida",                "Semillas",      ""),
+    ("Sal del Himalaya fina",   "Sal rosa molida fina",                            "Sales",         ""),
+    ("Sal del Himalaya gruesa", "Grano grueso, para molino",                       "Sales",         ""),
+    ("Sal de mar gruesa",       "Grano grueso",                                    "Sales",         ""),
 ]
+
+CONTACTO = "asmolinas.com  ·  WhatsApp 748 166 0295  ·  info@asmolinas.com"
 
 
 class CatalogPDF(FPDF):
+    def __init__(self, *a, **k):
+        super().__init__(*a, **k)
+        # Fuente Unicode para acentos (DejaVu viene con fpdf2 en la mayoría de
+        # instalaciones; si no está, se usa Helvetica y se pierden acentos).
+        try:
+            import os
+            base = "/usr/share/fonts/truetype/dejavu/"
+            self.add_font("Sans", "", os.path.join(base, "DejaVuSans.ttf"))
+            self.add_font("Sans", "B", os.path.join(base, "DejaVuSans-Bold.ttf"))
+            self.add_font("Serif", "", os.path.join(base, "DejaVuSerif.ttf"))
+            self.add_font("Serif", "B", os.path.join(base, "DejaVuSerif-Bold.ttf"))
+            self.sans, self.serif = "Sans", "Serif"
+        except Exception:
+            self.sans, self.serif = "Helvetica", "Times"
+
+    # Fondo de papel en todas las páginas
+    def _papel(self):
+        self.set_fill_color(*CREMA)
+        self.rect(0, 0, 216, 279, "F")
+
     def header(self):
+        self._papel()
         if self.page_no() == 1:
             return
-        self.set_fill_color(*FOREST)
-        self.rect(0, 0, 210, 12, "F")
-        self.set_font("Helvetica", "B", 9)
-        self.set_text_color(*WHITE)
-        self.set_y(3)
-        self.cell(0, 6, "AS MOLINAS  |  Catalogo de Mayoreo 2026", align="C")
-        self.set_text_color(0, 0, 0)
-        self.ln(10)
+        self.set_y(10)
+        self.set_font(self.serif, "B", 11)
+        self.set_text_color(*BOSQUE)
+        self.cell(60, 6, "AS Molinas")
+        self.set_font(self.sans, "", 8)
+        self.set_text_color(*SALVIA)
+        self.cell(0, 6, "Catálogo de mayoreo 2026", align="R")
+        self.set_draw_color(*BOSQUE)
+        self.set_line_width(0.5)
+        self.line(16, 18, 200, 18)
+        self.set_y(24)
 
     def footer(self):
-        self.set_y(-14)
-        self.set_font("Helvetica", "", 8)
-        self.set_text_color(*MUTED)
-        self.cell(0, 5, f"Pagina {self.page_no()}", align="C")
-        self.cell(0, 5, "asmolinas.com  |  WhatsApp 748 166 0295  |  info@asmolinas.com", align="R")
-        self.set_text_color(0, 0, 0)
+        self.set_y(-16)
+        self.set_draw_color(*ARENA)
+        self.set_line_width(0.2)
+        self.line(16, self.get_y(), 200, self.get_y())
+        self.set_y(-13)
+        self.set_font(self.sans, "", 7.5)
+        self.set_text_color(*GRIS)
+        self.cell(120, 5, CONTACTO)
+        self.cell(0, 5, f"Página {self.page_no()}", align="R")
 
     def cover(self):
-        # Full-page dark green background
-        self.set_fill_color(*FOREST)
-        self.rect(0, 0, 210, 297, "F")
-
-        # Brand name
-        self.set_font("Helvetica", "B", 42)
-        self.set_text_color(*WHITE)
+        # Marca
         self.set_y(70)
-        self.cell(0, 16, "AS MOLINAS", align="C")
-
-        # Separator line
-        self.set_draw_color(*GOLD)
-        self.set_line_width(1.4)
-        self.line(60, 92, 150, 92)
-
-        # Tagline
-        self.set_font("Helvetica", "I", 13)
-        self.set_text_color(200, 220, 210)
-        self.set_y(96)
-        self.cell(0, 8, "Especias, Chiles, Semillas, Tes y Superfoods", align="C")
-        self.set_y(103)
-        self.cell(0, 8, "Solo mayoreo y medio mayoreo para HORECA y foodservice", align="C")
-
-        # Catalog title box
-        self.set_fill_color(*TERRA)
-        self.set_y(122)
-        self.set_x(35)
-        self.set_font("Helvetica", "B", 16)
-        self.set_text_color(*WHITE)
-        self.cell(140, 14, "CATALOGO DE MAYOREO 2026", align="C", fill=True)
-
-        # Pricing structure block
-        self.set_fill_color(30, 55, 45)
-        self.rect(25, 148, 160, 62, "F")
-        self.set_font("Helvetica", "B", 11)
-        self.set_text_color(*WHITE)
-        self.set_y(154)
-        self.cell(0, 6, "Estructura de precios por volumen (por kg)", align="C")
-        self.set_font("Helvetica", "", 10)
-        self.set_text_color(200, 220, 210)
-        self.set_y(164)
-        self.multi_cell(0, 6,
-            "  10 - 19.9 kg    Precio de entrada\n"
-            "  20 - 24.9 kg    Precio de entrada intermedio\n"
-            "  25 - 399.9 kg   Precio medio mayoreo (bulto 25 kg)\n"
-            "  400 kg y mas    Precio mayoreo",
-            align="C")
-        self.set_font("Helvetica", "I", 9)
-        self.set_y(200)
-        self.cell(0, 5, "Pedido minimo: 10 kg por producto", align="C")
-
-        # Contact block
-        self.set_fill_color(30, 55, 45)
-        self.rect(25, 230, 160, 44, "F")
-        self.set_font("Helvetica", "B", 10)
-        self.set_text_color(*WHITE)
-        self.set_y(236)
-        self.cell(0, 6, "Contacto para cotizacion", align="C")
-        self.set_font("Helvetica", "", 10)
-        self.set_text_color(200, 220, 210)
-        self.ln(8)
-        self.cell(0, 5, "WhatsApp: 748 166 0295", align="C")
-        self.ln(6)
-        self.cell(0, 5, "Email: info@asmolinas.com", align="C")
-        self.ln(6)
-        self.cell(0, 5, "Web: asmolinas.com", align="C")
-
-    def category_header(self, label, color):
-        self.set_fill_color(*color)
-        self.set_font("Helvetica", "B", 13)
-        self.set_text_color(*WHITE)
-        self.cell(0, 10, f"  {label}", fill=True, new_x="LMARGIN", new_y="NEXT")
-        self.ln(2)
-        self.set_text_color(0, 0, 0)
-
-    def price_table_header(self):
-        # Header de columnas de precios
-        self.set_fill_color(*LIGHT)
-        self.set_draw_color(*MUTED)
-        self.set_line_width(0.2)
-        self.set_font("Helvetica", "B", 7.5)
-        self.set_text_color(*FOREST)
-        # Producto | Entrada | Interm | Bulto25 | Mayoreo | Tag
-        cols = [
-            ("Producto",         76),
-            ("10-19.9 kg",       22),
-            ("20-24.9 kg",       22),
-            ("25-399.9 kg",      22),
-            ("400 kg +",         22),
-            ("",                 26),
-        ]
-        for label, w in cols:
-            self.cell(w, 7, label, border=1, align="C", fill=True)
-        self.ln(7)
-
-    def product_row(self, name, desc, tag):
-        self.set_draw_color(*LIGHT)
-        self.set_line_width(0.2)
-        y_start = self.get_y()
-
-        # Columna producto (nombre + descripcion en 2 lineas)
-        self.set_font("Helvetica", "B", 8.5)
-        self.set_text_color(*FOREST)
-        self.set_xy(10, y_start)
-        self.cell(76, 5, name, border="LT")
-        self.set_font("Helvetica", "", 7)
-        self.set_text_color(*MUTED)
-        self.set_xy(10, y_start + 5)
-        self.cell(76, 5, desc[:60], border="LB")
-
-        # 4 columnas de precio
-        self.set_font("Helvetica", "", 7)
+        self.set_font(self.serif, "B", 40)
+        self.set_text_color(*BOSQUE)
+        w_as = self.get_string_width("AS ")
+        w_mol = self.get_string_width("Molinas")
+        x = (216 - w_as - w_mol) / 2
+        self.set_x(x)
+        self.cell(w_as, 18, "AS ")
         self.set_text_color(*TERRA)
-        for i in range(4):
-            x = 86 + i * 22
-            self.set_xy(x, y_start)
-            self.cell(22, 10, PP, border=1, align="C")
+        self.cell(w_mol, 18, "Molinas")
+        self.ln(20)
 
-        # Columna tag
-        self.set_xy(86 + 4 * 22, y_start)
+        self.set_font(self.sans, "", 11)
+        self.set_text_color(*SALVIA)
+        self.cell(0, 7, "Especias, chiles secos y semillas al mayoreo para negocios", align="C")
+        self.ln(12)
+
+        self.set_draw_color(*ORO)
+        self.set_line_width(0.8)
+        self.line(78, self.get_y(), 138, self.get_y())
+        self.ln(10)
+
+        self.set_font(self.serif, "", 20)
+        self.set_text_color(*TINTA)
+        self.cell(0, 10, "Catálogo de mayoreo 2026", align="C")
+        self.ln(16)
+
+        # Tarjeta: cómo se cotiza
+        self._tarjeta(30, self.get_y(), 156, 58, "Cómo cotizamos", [
+            "Precio por kg en MXN; baja según el volumen del pedido.",
+            "Rangos: 10-19.9 kg  ·  20-24.9 kg  ·  25-399.9 kg  ·  400 kg y más.",
+            "Mínimo según producto y presentación; se confirma al cotizar.",
+            "Disponibilidad sujeta a cosecha y existencia; confirmamos lote.",
+            "Pago por SPEI o depósito. CFDI en todos los pedidos.",
+        ])
+        self.set_y(self.get_y() + 10)
+
+        # Tarjeta: contacto
+        self._tarjeta(30, self.get_y(), 156, 40, "Solicita tu cotización B2B", [
+            "WhatsApp 748 166 0295",
+            "info@asmolinas.com",
+            "asmolinas.com",
+        ], centrado=True)
+
+    def _tarjeta(self, x, y, w, h, titulo, lineas, centrado=False):
+        self.set_fill_color(*CALIDO)
+        self.rect(x, y, w, h, "F")
+        self.set_xy(x + 8, y + 6)
+        self.set_font(self.sans, "B", 8)
+        self.set_text_color(*SALVIA)
+        self.cell(w - 16, 5, titulo.upper(), align="C" if centrado else "L")
+        self.set_font(self.sans, "", 9.5)
+        self.set_text_color(*TINTA)
+        yy = y + 14
+        for l in lineas:
+            self.set_xy(x + 8, yy)
+            self.cell(w - 16, 6, l, align="C" if centrado else "L")
+            yy += 7
+        self.set_y(y + h)
+
+    def category_header(self, label):
+        self.set_font(self.serif, "B", 16)
+        self.set_text_color(*BOSQUE)
+        self.cell(0, 10, label, new_x="LMARGIN", new_y="NEXT")
+        self.set_font(self.sans, "", 8.5)
+        self.set_text_color(*GRIS)
+        self.cell(0, 5, "Precio por kg según volumen. Cotiza el precio vigente por WhatsApp; el mínimo depende del producto y la presentación.",
+                  new_x="LMARGIN", new_y="NEXT")
+        self.ln(3)
+        # Encabezado de columnas
+        self.set_font(self.sans, "B", 7.5)
+        self.set_text_color(*SALVIA)
+        self.cell(8, 6, "")
+        self.cell(112, 6, "Producto")
+        self.cell(44, 6, "Precio", align="L")
+        self.cell(20, 6, "", align="R")
+        self.ln(6)
+        self.set_draw_color(*BOSQUE)
+        self.set_line_width(0.5)
+        self.line(16, self.get_y(), 200, self.get_y())
+        self.ln(1)
+
+    def product_row(self, i, name, desc, tag):
+        y = self.get_y()
+        self.set_font(self.sans, "", 7.5)
+        self.set_text_color(*GRIS)
+        self.cell(8, 6, str(i))
+        self.set_font(self.sans, "B", 9.5)
+        self.set_text_color(*TINTA)
+        self.cell(112, 6, name)
+        self.set_font(self.sans, "", 8)
+        self.set_text_color(*TERRA)
+        self.cell(44, 6, "Cotiza precio vigente")
         if tag:
-            self.set_fill_color(*TERRA)
-            self.set_font("Helvetica", "B", 6.5)
-            self.set_text_color(*WHITE)
-            self.cell(26, 10, tag.upper(), border=1, align="C", fill=True)
-        else:
-            self.cell(26, 10, "", border=1)
-
-        self.set_text_color(0, 0, 0)
-        self.set_y(y_start + 10)
+            self.set_font(self.sans, "B", 6.5)
+            self.set_text_color(*BOSQUE)
+            self.cell(20, 6, tag, align="R")
+        self.ln(5)
+        self.set_font(self.sans, "", 7.5)
+        self.set_text_color(*GRIS)
+        self.cell(8, 5, "")
+        self.cell(0, 5, desc)
+        self.ln(6)
+        self.set_draw_color(*ARENA)
+        self.set_line_width(0.2)
+        self.line(16, self.get_y(), 200, self.get_y())
+        self.ln(1.5)
 
 
 def build_pdf(output_path):
-    pdf = CatalogPDF(orientation="P", unit="mm", format="A4")
-    pdf.set_auto_page_break(auto=True, margin=18)
-    pdf.set_margins(10, 18, 10)
+    pdf = CatalogPDF(orientation="P", unit="mm", format="Letter")
+    pdf.set_auto_page_break(auto=True, margin=20)
+    pdf.set_margins(16, 24, 16)
 
-    # Cover
     pdf.add_page()
     pdf.cover()
 
-    # Group by category
     by_cat = defaultdict(list)
     for p in products:
         by_cat[p[2]].append(p)
 
-    cat_order = ["Especias", "Superfoods", "Semillas", "Deshidratados", "Tes", "Sales"]
-
-    for cat_key in cat_order:
+    for cat_key, label in CATS.items():
         prods = by_cat.get(cat_key, [])
         if not prods:
             continue
-        color, label = CATS[cat_key]
         pdf.add_page()
-        pdf.category_header(label, color)
-        pdf.price_table_header()
-        for name, desc, _, tag in prods:
-            if pdf.get_y() > 260:
+        pdf.category_header(label)
+        for i, (name, desc, _, tag) in enumerate(prods, 1):
+            if pdf.get_y() > 245:
                 pdf.add_page()
-                pdf.category_header(label + " (cont.)", color)
-                pdf.price_table_header()
-            pdf.product_row(name, desc, tag)
+                pdf.category_header(label + " (continúa)")
+            pdf.product_row(i, name, desc, tag)
 
-    # Notas finales
+    # Notas
     pdf.add_page()
-    pdf.set_font("Helvetica", "B", 14)
-    pdf.set_text_color(*FOREST)
-    pdf.cell(0, 10, "Notas importantes", new_x="LMARGIN", new_y="NEXT")
+    pdf.set_font(pdf.serif, "B", 16)
+    pdf.set_text_color(*BOSQUE)
+    pdf.cell(0, 10, "Condiciones", new_x="LMARGIN", new_y="NEXT")
     pdf.ln(2)
-    pdf.set_font("Helvetica", "", 10)
-    pdf.set_text_color(0, 0, 0)
+    pdf.set_font(pdf.sans, "", 9.5)
+    pdf.set_text_color(*TINTA)
     notas = [
-        "- Todos los precios son por kilo (MXN) e IVA no incluido.",
-        "- Pedido minimo: 10 kg por producto. No manejamos venta menudeo por debajo de 10 kg.",
-        "- El precio por kg baja segun el rango de volumen (entrada, intermedio, bulto 25 kg, mayoreo 400 kg+).",
-        "- El bulto cerrado equivale a 25 kg. Aplica el rango 25 - 399.9 kg.",
-        "- Los precios pueden ajustarse por cosecha y tipo de cambio; tu cotizacion vigente se confirma por WhatsApp.",
-        "- Emitimos CFDI en todos los pedidos de mayoreo.",
-        "- Entrega en CDMX y Area Metropolitana en 1 a 3 dias habiles. Envios foraneos por paqueteria o transporte segun volumen.",
-        "- Puedes combinar varios productos en un mismo pedido siempre que cada uno alcance 10 kg minimo.",
+        "Los precios se cotizan por kg en MXN y no se publican en este catálogo: pide el precio vigente por WhatsApp.",
+        "El precio por kg baja con el volumen. Rangos de referencia: 10-19.9 kg, 20-24.9 kg, 25-399.9 kg (bulto cerrado de 25 kg) y 400 kg en adelante.",
+        "El pedido mínimo cambia según el producto y la presentación; se confirma al cotizar.",
+        "Disponibilidad sujeta a cosecha y existencia. Confirmamos lote y presentación al cotizar.",
+        "Presentación y origen según disponibilidad del proveedor; ficha técnica cuando exista.",
+        "Flete a cargo del cliente. Costo y tiempo de entrega se confirman en la cotización.",
+        "Pago por transferencia SPEI o depósito. Emitimos CFDI en todos los pedidos.",
+        "Puedes combinar varios productos en un mismo pedido; cada uno se cotiza en su rango de volumen.",
     ]
     for n in notas:
+        pdf.set_x(20)
+        pdf.set_text_color(*TERRA)
+        pdf.cell(5, 6, "·")
+        pdf.set_text_color(*TINTA)
         pdf.multi_cell(0, 6, n)
         pdf.ln(1)
 

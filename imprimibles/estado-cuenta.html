@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Estado de cuenta · AS Molinas</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="imprimibles.css">
+</head>
+<body>
+  <div class="barra"></div>
+  <main class="hoja"></main>
+
+  <script src="imprimibles.js"></script>
+  <script>
+    // Datos de EJEMPLO (cliente y saldos ficticios).
+    const datos = {
+      anio: 2026, mes: 9, corte: '2026-09-21', periodo: 'Septiembre 2026',
+      cliente: { numero: 42, nombre: 'Cocina Central Ejemplo, S.A. de C.V.', contacto: 'Cuentas por pagar', diasCredito: 15 },
+      documentos: [
+        { folio: 'REM 2026-0022', descripcion: 'Chiles secos', fecha: '2026-08-14', diasCredito: 15, importe: 9000,  abonos: 9000 },
+        { folio: 'REM 2026-0027', descripcion: 'Comino y orégano', fecha: '2026-08-28', diasCredito: 15, importe: 6500,  abonos: 2000 },
+        { folio: 'REM 2026-0031', descripcion: 'Chiles secos y comino', fecha: '2026-09-21', diasCredito: 15, importe: 12000, abonos: 0 },
+      ],
+    };
+    barra('EDC', datos);
+  </script>
+</body>
+</html>

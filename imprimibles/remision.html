@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Remisión · AS Molinas</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="imprimibles.css">
+</head>
+<body>
+  <div class="barra"></div>
+  <main class="hoja"></main>
+
+  <script src="imprimibles.js"></script>
+  <script>
+    // Datos de EJEMPLO (cliente, lotes y precios ficticios).
+    const datos = {
+      anio: 2026, consecutivo: 31, fecha: '2026-09-21', cotizacion: 'COT 2026-0018', diasCredito: 15,
+      cliente: {
+        numero: 42, nombre: 'Cocina Central Ejemplo, S.A. de C.V.',
+        contacto: 'Compras', telefono: '55 0000 0000',
+        direccion: 'Bodega de recepción, Iztapalapa, CDMX',
+      },
+      entrega: { lugar: 'Bodega de recepción, Iztapalapa, CDMX', fecha: '2026-09-22', transporte: 'Flete del cliente', recibe: 'Almacén', bultos: 5 },
+      entrego: 'AS Molinas',
+      partidas: [
+        { producto: 'Chile guajillo seco', presentacion: 'Saco de 25 kg', lote: 'L-2609-07', cantidad: 50, precio: 100, iva: 0 },
+        { producto: 'Chile ancho seco',    presentacion: 'Saco de 25 kg', lote: 'L-2609-03', cantidad: 25, precio: 100, iva: 0 },
+        { producto: 'Comino entero',       presentacion: 'Saco de 25 kg', lote: 'L-2608-19', cantidad: 25, precio: 100, iva: 0 },
+        { producto: 'Orégano molido',      presentacion: 'Bolsa de 10 kg', lote: 'L-2609-11', cantidad: 20, precio: 100, iva: 0 },
+      ],
+    };
+    barra('REM', datos);
+  </script>
+</body>
+</html>

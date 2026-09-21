@@ -50,6 +50,17 @@ asmolinas/
 │   ├── copy-ideas.md                 ← Notas de copywriting
 │   └── img/                          ← Imágenes locales
 │
+├── imprimibles/                      ← Documentos internos (noindex, bloqueados en robots.txt)
+│   ├── imprimibles.css               ← Identidad de papel: crema, verde bosque, terracota
+│   ├── imprimibles.js                ← Folios, clave de cliente MOL-NNNN-CC, concepto SPEI, render*()
+│   ├── cotizacion.html               ← COT 2026-0001
+│   ├── remision.html                 ← REM 2026-0001
+│   ├── recibo-pago.html              ← REC 2026-0001
+│   └── estado-cuenta.html            ← EDC 2026-09
+│
+├── docs/
+│   └── imprimibles-asmolinas.md      ← Especificación de imprimibles y referencias (y cómo portarlas al ERP)
+│
 ├── CNAME                             ← "asmolinas.com" (custom domain de Pages)
 ├── favicon.svg
 ├── robots.txt                        ← Reglas de crawl (Disallow legacy pages)
@@ -241,6 +252,21 @@ Antes de commitear cualquier cambio en HTML de las páginas de catálogo/mayoreo
 Nunca inventes teléfonos, correos ni direcciones distintas.
 
 ---
+
+## 8b. Imprimibles y referencias (carpeta `imprimibles/`)
+
+Cotización, remisión, recibo de pago y estado de cuenta tienen identidad
+propia, distinta a propósito del sistema de Grupo Abascal (que es tema
+oscuro, azul, PDF en mayúsculas y claves `AB####` por hash del nombre).
+Especificación completa en `docs/imprimibles-asmolinas.md`. Reglas fijas:
+
+- Papel crema, tinta verde bosque, acento terracota; serif en titulares; **frase normal, nunca bloques en mayúsculas**
+- Folios `COT|REM|REC 2026-0001` y `EDC 2026-09`
+- Clave de cliente `MOL-NNNN-CC` (número de cliente + dígitos de control mod 97), nunca hash del nombre
+- Concepto SPEI = folio + clave (`REM 2026-0031 MOL-0042-69`)
+- `EMPRESA` en `imprimibles.js` es el único lugar con datos de la casa; RFC y CLABE vacíos hasta que existan (nunca inventarlos)
+- Los precios sólo aparecen cuando el sistema carga un JSON real; los ejemplos son ficticios
+- El catálogo PDF (`assets/gen_catalog.py`) sigue la misma identidad y **no publica precios**
 
 ## 9. Sobre `financial-dashboard.html`
 
