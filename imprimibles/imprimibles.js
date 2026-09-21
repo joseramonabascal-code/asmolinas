@@ -4,7 +4,7 @@
    Un solo archivo con:
      1. EMPRESA        datos de la casa (lo único que se edita al configurar)
      2. Folios         COT 2026-0001 · REM 2026-0001 · REC 2026-0001 · EDC 2026-09
-     3. Clave cliente  MOL-0042-69  (número de cliente + 2 dígitos de control mod 97)
+     3. Clave cliente  MOL42  (MOL + número de cliente, 2 dígitos; 3 a partir del 100)
      4. Concepto SPEI  "<folio> <clave>"  → cada pago se casa con su documento
      5. Verificación   código corto por documento (folio + total + fecha)
      6. render*()      cotización, remisión, recibo de pago, estado de cuenta
@@ -51,27 +51,30 @@ function folioMensual(tipo, anio, mes) {
 }
 
 /* 3. Clave de cliente ----------------------------------------------------- */
-// MOL-NNNN-CC. NNNN es el número de cliente (secuencial, lo asigna el
-// sistema al darlo de alta); CC son dos dígitos de control ISO 7064 mod 97-10,
-// los mismos que usa el IBAN: detectan cualquier error de un dígito y casi
-// todas las transposiciones. No es un hash del nombre: dos clientes nunca
-// comparten clave y renombrar al cliente no la cambia.
+// MOL + número de cliente: dos dígitos (MOL01 … MOL99) y tres a partir del
+// cliente 100 (MOL100 … MOL999). Corta, fácil de dictar por teléfono y de
+// escribir en el concepto de una transferencia. El número lo asigna el
+// sistema al dar de alta al cliente; no es un hash del nombre, así que dos
+// clientes nunca comparten clave y renombrar al cliente no la cambia.
 function claveCliente(numeroCliente) {
   const n = Number(numeroCliente);
-  if (!Number.isInteger(n) || n < 1 || n > 9999) throw new Error('Número de cliente fuera de rango (1-9999)');
-  const cc = 98 - ((n * 100) % 97);
-  return `MOL-${String(n).padStart(4, '0')}-${String(cc).padStart(2, '0')}`;
+  if (!Number.isInteger(n) || n < 1 || n > 999) throw new Error('Número de cliente fuera de rango (1-999)');
+  return `MOL${String(n).padStart(2, '0')}`;
 }
 function validarClave(clave) {
-  const m = /^MOL-(\d{4})-(\d{2})$/.exec(String(clave).trim().toUpperCase());
-  if (!m) return false;
-  return (Number(m[1]) * 100 + Number(m[2])) % 97 === 1;
+  const m = /^MOL(\d{2,3})$/.exec(String(clave).trim().toUpperCase());
+  return !!m && Number(m[1]) >= 1;
+}
+// Número de cliente a partir de la clave (para casar depósitos): "MOL42" → 42
+function numeroDeClave(clave) {
+  const m = /^MOL(\d{2,3})$/.exec(String(clave).trim().toUpperCase());
+  return m ? Number(m[1]) : null;
 }
 
 /* 4. Concepto SPEI ---------------------------------------------------------- */
 // Lo que el cliente escribe en el concepto de la transferencia. Con folio y
 // clave juntos, el depósito identifica al cliente Y al documento que paga.
-// Máximo 40 caracteres (límite habitual de concepto SPEI): "REM 2026-0031 MOL-0042-69" son 25.
+// Máximo 40 caracteres (límite habitual de concepto SPEI): "REM 2026-0031 MOL42" son 19.
 function conceptoSpei(folioDoc, clave) {
   return `${folioDoc} ${clave}`.slice(0, 40);
 }
@@ -505,5 +508,5 @@ function barra(tipo, datosEjemplo) {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { EMPRESA, TIPOS, folio, folioMensual, claveCliente, validarClave, conceptoSpei, codigoVerificacion, cantidadConLetra, calcularTotales, renderCotizacion, renderRemision, renderRecibo, renderEstadoCuenta };
+  module.exports = { EMPRESA, TIPOS, folio, folioMensual, claveCliente, validarClave, numeroDeClave, conceptoSpei, codigoVerificacion, cantidadConLetra, calcularTotales, renderCotizacion, renderRemision, renderRecibo, renderEstadoCuenta };
 }

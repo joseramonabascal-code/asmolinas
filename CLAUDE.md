@@ -52,7 +52,7 @@ asmolinas/
 │
 ├── imprimibles/                      ← Documentos internos (noindex, bloqueados en robots.txt)
 │   ├── imprimibles.css               ← Identidad de papel: crema, verde bosque, terracota
-│   ├── imprimibles.js                ← Folios, clave de cliente MOL-NNNN-CC, concepto SPEI, render*()
+│   ├── imprimibles.js                ← Folios, clave de cliente MOL42, concepto SPEI, render*()
 │   ├── cotizacion.html               ← COT 2026-0001
 │   ├── remision.html                 ← REM 2026-0001
 │   ├── recibo-pago.html              ← REC 2026-0001
@@ -262,8 +262,8 @@ Especificación completa en `docs/imprimibles-asmolinas.md`. Reglas fijas:
 
 - Papel crema, tinta verde bosque, acento terracota; serif en titulares; **frase normal, nunca bloques en mayúsculas**
 - Folios `COT|REM|REC 2026-0001` y `EDC 2026-09`
-- Clave de cliente `MOL-NNNN-CC` (número de cliente + dígitos de control mod 97), nunca hash del nombre
-- Concepto SPEI = folio + clave (`REM 2026-0031 MOL-0042-69`)
+- Clave de cliente `MOL` + número de cliente: 2 dígitos (`MOL01`–`MOL99`), 3 a partir del 100 (`MOL100`–`MOL999`); nunca hash del nombre, nunca más de 3 dígitos
+- Concepto SPEI = folio + clave (`REM 2026-0031 MOL42`)
 - `EMPRESA` en `imprimibles.js` es el único lugar con datos de la casa; RFC y CLABE vacíos hasta que existan (nunca inventarlos)
 - Los precios sólo aparecen cuando el sistema carga un JSON real; los ejemplos son ficticios
 - La remisión a crédito lleva leyenda de **pagaré** (acreedor, plaza, vencimiento, importe en número y letra); la tasa moratoria sólo si está configurada en `EMPRESA.pagare`

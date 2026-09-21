@@ -35,7 +35,7 @@ enlazadas desde el sitio, llevan `noindex` y `robots.txt` las bloquea.
 | Tablas | jsPDF con rejilla completa | Sin rejilla: filetes horizontales finos y aire |
 | Composición | Membrete arriba, tabla, totales | Cinta de marca; **resumen en verde** con tipo, folio, total y vencimiento; **una sola lista** de datos del cliente; tabla; totales; **"Cómo pagar" en 3 pasos**; condiciones breves |
 | Folio | Número corrido | `COT 2026-0018`, `REM 2026-0031`, `REC 2026-0009`, `EDC 2026-09` |
-| Clave del cliente | `AB####`, hash del nombre (puede repetirse) | `MOL-0042-69`: número de cliente + 2 dígitos de control mod 97 (única y verificable) |
+| Clave del cliente | `AB####`, hash del nombre (puede repetirse) | `MOL42`: MOL + número de cliente, 2 dígitos (3 a partir del cliente 100). Corta, única y fácil de dictar |
 | Concepto de pago | Sólo la clave | **Folio + clave**: el depósito identifica cliente y documento |
 | Cantidad con letra | — | En remisión y recibo |
 | Verificación | — | Código de 6 caracteres al pie (huella de folio + total + fecha) |
@@ -83,22 +83,24 @@ y `folioMensual(tipo, año, mes)`.
 ## 4. Clave de cliente (referencia de pago)
 
 ```
-MOL-NNNN-CC
-NNNN  número de cliente (1-9999), lo asigna el sistema al dar de alta
-CC    dígitos de control: 98 − ((NNNN × 100) mod 97)
+MOL + número de cliente
+MOL01 … MOL99      clientes 1 a 99   (dos dígitos, con cero a la izquierda)
+MOL100 … MOL999    clientes 100 a 999 (tres dígitos, el máximo)
 ```
 
-Validación: `(NNNN × 100 + CC) mod 97 == 1`. Es el esquema ISO 7064 mod
-97-10 del IBAN: detecta cualquier error de un dígito y casi todas las
-transposiciones. A diferencia del hash del nombre, la clave es única por
-construcción y no cambia si el cliente se renombra.
+El número lo asigna el sistema al dar de alta al cliente y no cambia. Es
+corta a propósito: se dicta por teléfono sin error y cabe en cualquier
+concepto bancario. A diferencia del hash del nombre, es única por
+construcción y no cambia si el cliente se renombra. Si algún día se pasa de
+999 clientes, se decide entonces; el formato no admite más de tres dígitos.
 
-Funciones: `claveCliente(numero)` → `"MOL-0042-69"`, `validarClave(str)`.
+Funciones: `claveCliente(numero)` → `"MOL42"`, `validarClave(str)`,
+`numeroDeClave("MOL42")` → `42` (para casar depósitos con el cliente).
 
 ## 5. Concepto SPEI
 
 ```
-<folio> <clave>          REM 2026-0031 MOL-0042-69     (25 caracteres, límite 40)
+<folio> <clave>          REM 2026-0031 MOL42     (19 caracteres, límite 40)
 ```
 
 Con folio y clave en el concepto, el depósito llega ya casado con el cliente y
