@@ -30,7 +30,7 @@
   --ff-body: 'DM Sans', -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
-@page { size: letter; margin: 14mm; }
+@page { size: letter; margin: 11mm 13mm; }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: #ddd; }
 body {
@@ -133,6 +133,13 @@ table.partidas .fecha { white-space: nowrap; }
 .condiciones { border-top: 1px solid var(--oro); padding-top: 8px; font-size: 8.6pt; color: var(--gris); }
 .condiciones ul { margin: 0; padding-left: 14px; columns: 2; column-gap: 24px; }
 .condiciones li { margin: 0 0 3px; break-inside: avoid; }
+/* Pagaré (remisión a crédito) --------------------------------------------------------- */
+.pagare { border: 1.5px solid var(--bosque); border-radius: 8px; padding: 9px 12px; font-size: 8.8pt; }
+.pagare h2 { margin: 0 0 4px; font: 600 9pt var(--ff-body); letter-spacing: .06em; text-transform: uppercase; color: var(--bosque); }
+.pagare h2 span { text-transform: none; letter-spacing: 0; color: var(--terracota); font-weight: 600; }
+.pagare p { margin: 0; text-align: justify; line-height: 1.4; }
+.pagare .deudor { margin-top: 5px; font-size: 8.4pt; color: var(--gris); }
+
 .firmas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 18px; }
 .firma { border-top: 1px solid var(--tinta); padding-top: 4px; font-size: 8.5pt; color: var(--gris); text-align: center; }
 .firma b { display: block; color: var(--tinta); font-weight: 600; }
@@ -156,7 +163,9 @@ table.partidas .fecha { white-space: nowrap; }
   html, body { background: #fff; }
   body { font-size: 9pt; line-height: 1.35; }
   .barra { display: none !important; }
-  .hoja { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; background: var(--crema); gap: 9px; }
+  .hoja { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; background: var(--crema); gap: 7px; }
+  /* Con pagaré la remisión roza el límite: se escala un poco sólo al imprimir. */
+  .hoja.compacta { zoom: 0.92; }
   a { color: inherit; text-decoration: none; }
   .cinta .nombre { font-size: 16pt; }
   .cinta .contacto { font-size: 7.5pt; }
@@ -182,7 +191,12 @@ table.partidas .fecha { white-space: nowrap; }
   .paso h3 { font-size: 8.6pt; }
   .paso .concepto { font-size: 8.2pt; padding: 2px 6px; margin-top: 3px; }
   .condiciones { font-size: 7.4pt; padding-top: 5px; }
-  .firmas { margin-top: 10px; gap: 30px; }
+  .pagare { font-size: 7.6pt; padding: 6px 9px; }
+  .pagare h2 { font-size: 7.8pt; }
+  .pagare .deudor { font-size: 7.2pt; }
+  .firmas { margin-top: 6px; gap: 30px; }
+  table.partidas td { padding: 3px 5px; }
+  .lista dt, .lista dd { padding: 2px 0; }
   .firma { font-size: 7.4pt; }
   .pie { font-size: 7pt; padding-top: 5px; }
 }

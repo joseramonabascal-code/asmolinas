@@ -27,6 +27,9 @@ const EMPRESA = {
   horario: 'Lunes a sábado, 9 a 19 h',
   fiscal: { razonSocial: '', rfc: '', regimen: '' },
   banco:  { titular: '', banco: '', clabe: '', cuenta: '' },
+  // Pagaré que acompaña a la remisión a crédito. `lugar` es la plaza de pago;
+  // `interesMoratorioMensual` en porcentaje (ej. 3) o vacío para omitir la cláusula.
+  pagare: { lugar: 'Ciudad de México', interesMoratorioMensual: '' },
 };
 
 /* 2. Folios --------------------------------------------------------------- */
@@ -346,11 +349,35 @@ function renderRemision(d) {
       credito ? `Pago a ${d.diasCredito} días, vence el ${esc(fechaLarga(vence))}.` : 'Pagado de contado.',
       'Esta remisión no es comprobante fiscal; el CFDI se emite con los datos fiscales registrados.',
     ])}
+    ${credito ? pagare(f, d, t.total, vence) : ''}
     <div class="firmas">
       <div class="firma"><b>Entregó</b>${esc(d.entrego || EMPRESA.nombre)}</div>
-      <div class="firma"><b>Recibió de conformidad</b>Nombre y firma</div>
+      <div class="firma"><b>${credito ? 'Recibió de conformidad y acepta el pagaré' : 'Recibió de conformidad'}</b>Nombre, firma${credito ? ' y RFC' : ''}</div>
     </div>
     ${pie(f, t.total, d.fecha)}`;
+}
+
+// Leyenda del pagaré. Convierte la remisión a crédito en título de crédito:
+// deudor, acreedor, plaza, fecha de vencimiento e importe en número y letra.
+function pagare(folioDoc, d, total, vence) {
+  const acreedor = EMPRESA.fiscal.razonSocial || EMPRESA.nombre;
+  const p = EMPRESA.pagare;
+  const interes = p.interesMoratorioMensual
+    ? ` En caso de no cubrirse a su vencimiento, este pagaré causará un interés moratorio del ${esc(String(p.interesMoratorioMensual))}% mensual sobre el saldo insoluto, desde la fecha de vencimiento y hasta su total liquidación, sin perjuicio de que el acreedor exija su pago.`
+    : '';
+  return `
+    <div class="pagare">
+      <h2>Pagaré <span>· ${esc(folioDoc)} · Bueno por ${money(total)}</span></h2>
+      <p>
+        Debo(emos) y pagaré(mos) incondicionalmente por este pagaré a la orden de <b>${esc(acreedor)}</b>,
+        en <b>${esc(p.lugar)}</b> o en cualquier otro lugar donde se me requiera, el día
+        <b>${esc(fechaLarga(vence))}</b>, la cantidad de <b>${money(total)}</b> ${esc(cantidadConLetra(total))},
+        valor de la mercancía descrita en esta remisión, recibida a mi entera satisfacción.${interes}
+        Este documento es un pagaré mercantil de los regulados por los artículos 170 al 174 de la
+        Ley General de Títulos y Operaciones de Crédito.
+      </p>
+      <div class="deudor">Deudor: <b>${esc(d.cliente.razonSocial || d.cliente.nombre)}</b>${d.cliente.rfc ? ` · RFC ${esc(d.cliente.rfc)}` : ''} · Lugar y fecha de suscripción: ${esc(p.lugar)}, ${esc(fechaLarga(d.fecha))}</div>
+    </div>`;
 }
 
 function renderRecibo(d) {
@@ -451,6 +478,8 @@ const RENDER = { COT: renderCotizacion, REM: renderRemision, REC: renderRecibo, 
 function montar(tipo, datos) {
   const hoja = document.querySelector('.hoja');
   hoja.innerHTML = RENDER[tipo](datos);
+  // Remisión a crédito (con pagaré) o documentos largos: escala al imprimir.
+  hoja.classList.toggle('compacta', (tipo === 'REM' && Number(datos.diasCredito) > 0) || (datos.partidas || []).length > 6 || (datos.documentos || []).length > 8);
   const folioTxt = hoja.querySelector('.resumen .folio b')?.textContent || '';
   document.title = `${TIPOS[tipo]} ${folioTxt} · AS Molinas`;
 }

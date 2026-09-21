@@ -157,6 +157,21 @@ antigüedad se calculan al renderizar, nunca se guardan.
 5. **Nombres.** El sistema deja de hablar de "RD" de cara al cliente: en los
    documentos se imprime **lote**. Internamente puede seguir siendo RD.
 
+## 8b. Pagaré en la remisión a crédito
+
+Cuando `diasCredito > 0`, la remisión lleva un recuadro **Pagaré** antes de
+las firmas, y la firma del cliente pasa a ser "Recibió de conformidad y
+acepta el pagaré" con nombre, firma y RFC. La leyenda incluye: acreedor
+(razón social de `EMPRESA.fiscal`, o el nombre comercial mientras no exista),
+plaza de pago (`EMPRESA.pagare.lugar`), fecha de vencimiento, importe en
+número y letra, referencia a la mercancía de la remisión, y la mención a los
+artículos 170 a 174 de la Ley General de Títulos y Operaciones de Crédito.
+
+La cláusula de interés moratorio sólo aparece si se configura
+`EMPRESA.pagare.interesMoratorioMensual` (porcentaje mensual); no se inventa
+una tasa. Conviene que un contador o abogado revise la redacción final antes
+de usarla con clientes.
+
 ## 9. Lo que estos documentos no son
 
 - No son CFDI. La remisión y el recibo lo dicen expresamente; la factura se

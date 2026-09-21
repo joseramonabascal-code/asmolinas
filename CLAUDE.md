@@ -266,6 +266,7 @@ Especificación completa en `docs/imprimibles-asmolinas.md`. Reglas fijas:
 - Concepto SPEI = folio + clave (`REM 2026-0031 MOL-0042-69`)
 - `EMPRESA` en `imprimibles.js` es el único lugar con datos de la casa; RFC y CLABE vacíos hasta que existan (nunca inventarlos)
 - Los precios sólo aparecen cuando el sistema carga un JSON real; los ejemplos son ficticios
+- La remisión a crédito lleva leyenda de **pagaré** (acreedor, plaza, vencimiento, importe en número y letra); la tasa moratoria sólo si está configurada en `EMPRESA.pagare`
 - El catálogo PDF (`assets/gen_catalog.py`) sigue la misma identidad y **no publica precios**
 
 ## 9. Sobre `financial-dashboard.html`
