@@ -1944,6 +1944,17 @@
       sales: "https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?w=400&q=70",
       kits: "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?w=400&q=70",
     };
+    // Foto propia por producto; si no existe, se usa la de la categoría
+    const productImages = {
+      "Comino entero": "/assets/img/prod-comino.jpg",
+      "Ajo granulado": "/assets/img/prod-ajo.jpg",
+      "Ajo en polvo": "/assets/img/prod-ajo.jpg",
+      "Cúrcuma molida": "/assets/img/prod-curcuma.jpg",
+      "Pimienta negra entera": "/assets/img/prod-pimienta-entera.jpg",
+      "Pimienta negra molida": "/assets/img/prod-pimienta-molida.jpg",
+      "Pimentón / paprika": "/assets/img/prod-pimenton.jpg",
+      "Orégano molido": "/assets/img/prod-oregano.jpg",
+    };
 
     // ===== STATE =====
     let currentFilter = 'todos';
@@ -1970,7 +1981,7 @@
       grid.innerHTML = pageProducts.map(p => `
         <div class="product-card fade-up visible" data-cat="${p.cat}">
           <div class="product-card-img">
-            <img src="${catImages[p.cat]}" alt="${p.name}" loading="lazy" width="400" height="280">
+            <img src="${productImages[p.name] || catImages[p.cat]}" alt="${p.name}" loading="lazy" width="400" height="280">
             ${p.tag ? `<span class="product-tag">${p.tag}</span>` : ''}
           </div>
           <div class="product-card-body">
