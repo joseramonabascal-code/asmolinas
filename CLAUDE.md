@@ -126,7 +126,7 @@ Claims **prohibidos** hasta que exista documentación lote a lote:
 ### 3.5 CTAs
 
 - CTA principal: **"Solicitar cotización B2B"** por WhatsApp (secundario: "Ver productos disponibles")
-- Número: `748 166 0295` (link `https://wa.me/527481660295`)
+- Número: `55 2215 2352` (link `https://wa.me/525522152352`)
 - Nunca uses lenguaje transaccional de e-commerce ("Comprar ahora", "Añadir al carrito") — no hay tienda online, solo cotización
 
 ---
@@ -245,7 +245,7 @@ Antes de commitear cualquier cambio en HTML de las páginas de catálogo/mayoreo
 
 ## 8. Contacto del negocio (para copy y schemas)
 
-- **WhatsApp:** `748 166 0295` → `https://wa.me/527481660295`
+- **WhatsApp:** `55 2215 2352` → `https://wa.me/525522152352`
 - **Email:** `info@asmolinas.com`
 - **Instagram:** `@asmolinas_especias`
 - **Horario:** Lunes a Sábado, 9 AM – 7 PM

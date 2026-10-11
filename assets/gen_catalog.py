@@ -83,7 +83,7 @@ products = [
     ("Sal de mar gruesa",       "Grano grueso",                                    "Sales",         ""),
 ]
 
-CONTACTO = "asmolinas.com  ·  WhatsApp 748 166 0295  ·  info@asmolinas.com"
+CONTACTO = "asmolinas.com  ·  WhatsApp 55 2215 2352  ·  info@asmolinas.com"
 
 
 class CatalogPDF(FPDF):
@@ -175,7 +175,7 @@ class CatalogPDF(FPDF):
 
         # Tarjeta: contacto
         self._tarjeta(30, self.get_y(), 156, 40, "Solicita tu cotización B2B", [
-            "WhatsApp 748 166 0295",
+            "WhatsApp 55 2215 2352",
             "info@asmolinas.com",
             "asmolinas.com",
         ], centrado=True)

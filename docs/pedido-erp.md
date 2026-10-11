@@ -107,7 +107,7 @@ https://asmolinas.com` (y `www.`) y atender el `OPTIONS` previo con
    `imprimibles.css`. Es el mismo HTML que se ve en `imprimibles/cotizacion.html`.
 6. **Envío.** WhatsApp con el PDF adjunto y el texto corto (folio, total,
    vigencia, "responde a este mensaje para confirmar"), o correo con el PDF.
-   El mensaje sale del número de la casa (748 166 0295) vía proveedor
+   El mensaje sale del número de la casa (55 2215 2352) vía proveedor
    (WhatsApp Cloud API / Whapi / Twilio, el mismo que usa `agent/`).
 7. **Bitácora.** `registrarActividad('cotizacion.automatica', …)` con el
    payload recibido y el folio; los pedidos con partidas sin precio quedan

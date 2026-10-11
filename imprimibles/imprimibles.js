@@ -19,8 +19,8 @@
 const EMPRESA = {
   nombre: 'AS Molinas',
   lema: 'Especias, chiles secos y semillas al mayoreo para negocios',
-  whatsapp: '748 166 0295',
-  whatsappUrl: 'https://wa.me/527481660295',
+  whatsapp: '55 2215 2352',
+  whatsappUrl: 'https://wa.me/525522152352',
   email: 'info@asmolinas.com',
   web: 'asmolinas.com',
   ubicacion: 'CDMX y Área Metropolitana · envíos a todo México',
