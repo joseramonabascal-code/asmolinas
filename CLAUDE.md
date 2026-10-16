@@ -77,7 +77,9 @@ asmolinas/
 
 ## 3. Reglas de negocio (CRÍTICAS — respeta siempre)
 
-### 3.1 Solo mayoreo y medio mayoreo — nada de menudeo
+### 3.1 Solo mayoreo y medio mayoreo en el catálogo; menudeo solo en su sección
+
+- **Cambio del 16-oct-2026 (decisión de Juan):** `index.html` tiene una sección `#menudeo` ("Bolsas y especieros") con precio por pieza de bolsas de 50 g–1 kg y especieros, tomados de la app AS Molinas Control. Esa sección es la única excepción a esta regla: ahí sí se publican precios y presentaciones chicas. El catálogo de mayoreo (`const products`) sigue sin precios. Al pie del sitio va el aviso "Precios sujetos a cambio sin previo aviso".
 
 - **El pedido mínimo cambia según el producto y la presentación.** No existe un mínimo único: se confirma al cotizar. Frase canónica: *"mínimo según producto y presentación"*
 - **Prohibido:** afirmar un mínimo fijo ("pedido mínimo 10 kg") — fue la regla anterior y ya no aplica

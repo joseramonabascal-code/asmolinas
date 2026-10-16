@@ -157,7 +157,7 @@
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(w,d,s,l,i);
+      })(window,document,'script','dataLayer','GTM-TDZPL9W4');
     }
     window.addEventListener('scroll',  loadGTM, {once:true, passive:true});
     window.addEventListener('click',   loadGTM, {once:true});
@@ -1294,6 +1294,7 @@
       <ul class="nav-links">
         <li><a href="mayoreo.html">Mayoreo</a></li>
         <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#menudeo">Menudeo</a></li>
         <li><a href="/pedido.html">Arma tu pedido</a></li>
         <li><a href="#mayoreo">Hoteles &amp; Rest.</a></li>
         <li><a href="/calidad-y-abastecimiento.html">Calidad</a></li>
@@ -1385,7 +1386,7 @@
       <div class="section-header fade-up">
         <div class="section-label">Catálogo</div>
         <h2 class="section-title">Catálogo de Mayoreo y Precios</h2>
-        <p class="section-subtitle">Precios por kg según volumen · 4 rangos: entrada (10 kg) · intermedio (20 kg) · bulto cerrado (25 kg) · mayoreo (400 kg+)</p>
+        <p class="section-subtitle">98 productos por kg y por bulto · Cotiza precio vigente por volumen · Mínimo según producto y presentación</p>
       </div>
 
       <div class="filter-bar fade-up">
@@ -1397,6 +1398,7 @@
         <button class="filter-btn" onclick="filterProducts('tes')">Tés</button>
         <button class="filter-btn" onclick="filterProducts('deshidratados')">Deshidratados</button>
         <button class="filter-btn" onclick="filterProducts('sales')">Sales</button>
+        <button class="filter-btn" onclick="filterProducts('abarrotes')">Abarrotes</button>
       </div>
 
       <div class="products-grid" id="productsGrid">
@@ -1423,6 +1425,52 @@
   </section>
 
   <!-- ======= TRUST BADGES ======= -->
+
+  <style>
+    .retail{padding:88px 0;background:var(--c-white)}
+    .rt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:32px}
+    .rt-card{background:var(--c-cream);border:1px solid var(--c-sand);border-radius:16px;padding:22px 20px}
+    .rt-card h3{font-family:var(--ff-display,serif);color:var(--c-forest);font-size:1.15rem;margin:0 0 12px}
+    .rt-card ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+    .rt-card li{display:grid;gap:6px;padding-bottom:10px;border-bottom:1px dashed var(--c-sand)}
+    .rt-card li:last-child{border-bottom:0;padding-bottom:0}
+    .rt-name{font-weight:600;color:var(--c-text)}
+    .rt-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .rt-chip{font-size:.82rem;background:var(--c-white);border:1px solid var(--c-sand);border-radius:999px;padding:3px 10px;color:var(--c-text-light)}
+    .rt-chip b{color:var(--c-forest);font-variant-numeric:tabular-nums}
+    .rt-chip.esp{border-color:var(--c-terracotta);color:var(--c-terracotta-dark)}
+    .rt-chip.esp b{color:var(--c-terracotta-dark)}
+    .rt-esp{display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:var(--c-warm);border-radius:16px;padding:18px 22px;margin-top:28px}
+    .rt-esp b{color:var(--c-terracotta-dark)}
+    .rt-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+    .rt-note{text-align:center;color:var(--c-text-light);font-size:.85rem;margin-top:14px}
+    .price-disclaimer{background:var(--c-forest-deep);color:#E8DDD0;text-align:center;font-size:.85rem;padding:12px 16px;letter-spacing:.01em}
+  </style>
+  <!-- ======= MENUDEO ======= -->
+  <section class="retail" id="menudeo">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Menudeo</div>
+        <h2 class="section-title">Bolsas y especieros</h2>
+        <p class="section-subtitle">Precio por pieza. Pídelo por WhatsApp. Desde 10 bolsas por pedido aplica precio de medio mayoreo.</p>
+      </div>
+      <div class="rt-esp fade-up"><span style="font-size:1.6rem" aria-hidden="true">🫙</span><div><b>Especieros</b> — bote listo para la cocina, la mesa o el anaquel. En la lista van marcados en terracota.</div></div>
+      <div class="rt-grid">
+        <div class="rt-card fade-up"><h3>Especias molidas y enteras</h3><ul><li><span class="rt-name">Ajo en polvo</span><span class="rt-chips"><span class="rt-chip">100 g <b>$25</b></span><span class="rt-chip">250 g <b>$45</b></span><span class="rt-chip">500 g <b>$75</b></span><span class="rt-chip esp">Especiero <b>$39</b></span></span></li><li><span class="rt-name">Anís</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$60</b></span></span></li><li><span class="rt-name">Canela en rama</span><span class="rt-chips"><span class="rt-chip">100 g <b>$75</b></span><span class="rt-chip">250 g <b>$160</b></span><span class="rt-chip">500 g <b>$290</b></span></span></li><li><span class="rt-name">Canela molida</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$65</b></span><span class="rt-chip">500 g <b>$110</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Cebolla en polvo</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$60</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Cebolla y ajo en polvo</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$60</b></span><span class="rt-chip esp">Especiero <b>$55</b></span></span></li><li><span class="rt-name">Clavo</span><span class="rt-chips"><span class="rt-chip">100 g <b>$55</b></span><span class="rt-chip">250 g <b>$110</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Comino entero</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$60</b></span><span class="rt-chip">500 g <b>$95</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Comino molido</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span></span></li><li><span class="rt-name">Cúrcuma molida</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$60</b></span><span class="rt-chip">500 g <b>$99</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Jengibre en polvo</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$60</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Nuez moscada</span><span class="rt-chips"><span class="rt-chip">500 g <b>$145</b></span></span></li><li><span class="rt-name">Paprika (pimentón)</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$60</b></span><span class="rt-chip">500 g <b>$105</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Pimentón picante</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$60</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Pimienta chica</span><span class="rt-chips"><span class="rt-chip">100 g <b>$50</b></span><span class="rt-chip">250 g <b>$95</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Pimienta gorda</span><span class="rt-chips"><span class="rt-chip">250 g <b>$60</b></span></span></li><li><span class="rt-name">Pimienta negra entera grande</span><span class="rt-chips"><span class="rt-chip">100 g <b>$45</b></span><span class="rt-chip">250 g <b>$85</b></span><span class="rt-chip">500 g <b>$150</b></span><span class="rt-chip esp">Especiero <b>$55</b></span></span></li><li><span class="rt-name">Pimienta negra molida</span><span class="rt-chips"><span class="rt-chip">100 g <b>$45</b></span><span class="rt-chip">250 g <b>$85</b></span><span class="rt-chip">500 g <b>$150</b></span><span class="rt-chip esp">Especiero <b>$55</b></span></span></li></ul></div>
+        <div class="rt-card fade-up"><h3>Hierbas</h3><ul><li><span class="rt-name">Albahaca</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$60</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Cilantro hoja</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Laurel</span><span class="rt-chips"><span class="rt-chip">50 g <b>$25</b></span></span></li><li><span class="rt-name">Orégano</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Orégano molido</span><span class="rt-chips"><span class="rt-chip">100 g <b>$30</b></span><span class="rt-chip">250 g <b>$50</b></span><span class="rt-chip">500 g <b>$85</b></span><span class="rt-chip esp">Especiero <b>$35</b></span></span></li><li><span class="rt-name">Perejil</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$60</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Romero</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Tomillo</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li></ul></div>
+        <div class="rt-card fade-up"><h3>Tés e infusiones</h3><ul><li><span class="rt-name">Flor de manzanilla</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span></span></li><li><span class="rt-name">Té blanco</span><span class="rt-chips"><span class="rt-chip">250 g <b>$70</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Té jazmín</span><span class="rt-chips"><span class="rt-chip">250 g <b>$70</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Té matcha ceremonial</span><span class="rt-chips"><span class="rt-chip">250 g <b>$500</b></span></span></li><li><span class="rt-name">Té negro</span><span class="rt-chips"><span class="rt-chip">100 g <b>$35</b></span><span class="rt-chip">250 g <b>$70</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Té rojo</span><span class="rt-chips"><span class="rt-chip">250 g <b>$70</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li><li><span class="rt-name">Té verde gunpowder</span><span class="rt-chips"><span class="rt-chip">250 g <b>$90</b></span><span class="rt-chip esp">Especiero <b>$45</b></span></span></li></ul></div>
+        <div class="rt-card fade-up"><h3>Sales</h3><ul><li><span class="rt-name">Sal del Himalaya fina</span><span class="rt-chips"><span class="rt-chip esp">Especiero <b>$39</b></span><span class="rt-chip">1 kg <b>$50</b></span></span></li><li><span class="rt-name">Sal del Himalaya gruesa</span><span class="rt-chips"><span class="rt-chip esp">Especiero <b>$39</b></span><span class="rt-chip">1 kg <b>$50</b></span></span></li></ul></div>
+        <div class="rt-card fade-up"><h3>Otros</h3><ul><li><span class="rt-name">Alcaparras</span><span class="rt-chips"><span class="rt-chip">Frasco 950 g <b>$120</b></span></span></li><li><span class="rt-name">Almendra fileteada</span><span class="rt-chips"><span class="rt-chip">1 kg <b>$300</b></span></span></li><li><span class="rt-name">Anchoas</span><span class="rt-chips"><span class="rt-chip">Lata 50 g (c/50 pz) <b>$50</b></span></span></li><li><span class="rt-name">Bicarbonato</span><span class="rt-chips"><span class="rt-chip">100 g <b>$15</b></span><span class="rt-chip">250 g <b>$35</b></span><span class="rt-chip">500 g <b>$45</b></span></span></li><li><span class="rt-name">Nuez granillo</span><span class="rt-chips"><span class="rt-chip">1 kg <b>$250</b></span></span></li></ul></div>
+      </div>
+      <div class="rt-cta fade-up">
+        <a href="https://wa.me/525522152352?text=Hola%20AS%20MOLINAS%2C%20quiero%20hacer%20un%20pedido%20de%20menudeo" target="_blank" rel="noopener" class="btn btn-primary">💬 Pedir por WhatsApp</a>
+        <a href="#catalogo" class="btn btn-outline">Ver mayoreo por kg</a>
+      </div>
+      <p class="rt-hint">Toca una presentación para agregarla a tu lista de pedido y mándala por WhatsApp.</p>
+      <p class="rt-note">Precios en pesos mexicanos. Sujetos a cambio sin previo aviso y a existencia.</p>
+    </div>
+  </section>
+
   <section class="trust">
     <div class="container">
       <div class="section-header fade-up" style="margin-bottom:32px">
@@ -1751,6 +1799,7 @@
       </div>
     </div>
   </footer>
+  <div class="price-disclaimer" role="note">Precios sujetos a cambio sin previo aviso. Los precios de mayoreo se confirman al cotizar.</div>
 
   <!-- Floating WhatsApp -->
   <!-- ===== POPUP CAPTURA DE EMAIL ===== -->
@@ -1883,53 +1932,104 @@
   <script>
     // ===== PRODUCT DATA =====
     const products = [
-      // Prioridad del radar comercial — muy alta
       { name: "Comino entero", desc: "Semilla entera. Base de adobos, moles, guisos y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "Prioridad" },
-      { name: "Ajo granulado", desc: "Granulometría según proveedor. Comedores, sazonadores y botanas.", price: 0, unit: "kg", cat: "especias", tag: "Prioridad" },
       { name: "Ajo en polvo", desc: "Molienda fina para mezclas secas y línea industrial.", price: 0, unit: "kg", cat: "especias", tag: "Prioridad" },
-      { name: "Cúrcuma molida", desc: "Polvo. Color para mezclas, bebidas y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "Prioridad" },
-
-      // Prioridad del radar comercial — alta
+      { name: "Ajo granulado", desc: "Granulometría según proveedor. Comedores, sazonadores y botanas.", price: 0, unit: "kg", cat: "especias", tag: "Prioridad" },
+      { name: "Chile ancho", desc: "Poblano seco. Base de moles y adobos.", price: 0, unit: "kg", cat: "chiles", tag: "Prioridad" },
+      { name: "Chile guajillo", desc: "Rojo intenso, picor moderado. Salsas, caldos y moles.", price: 0, unit: "kg", cat: "chiles", tag: "Prioridad" },
+      { name: "Chile de árbol", desc: "Picor alto. Salsas embotelladas, aceites y botanas.", price: 0, unit: "kg", cat: "chiles", tag: "Prioridad" },
+      { name: "Cúrcuma en polvo", desc: "Polvo. Color para mezclas, bebidas y sazonadores.", price: 0, unit: "kg", cat: "superfoods", tag: "Prioridad" },
+      { name: "Canela en rama", desc: "Rama entera para infusión, jarabes y repostería de volumen.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Canela molida", desc: "Molienda para masas, panificación y bebidas.", price: 0, unit: "kg", cat: "especias", tag: "" },
       { name: "Pimienta negra entera", desc: "Grano entero para molino. Calibre se confirma al cotizar.", price: 0, unit: "kg", cat: "especias", tag: "" },
       { name: "Pimienta negra molida", desc: "Molienda para cocina de volumen y embutidos.", price: 0, unit: "kg", cat: "especias", tag: "" },
-      { name: "Pimentón / paprika", desc: "Dulce o picante según disponibilidad. Botanas y cárnicos.", price: 0, unit: "kg", cat: "especias", tag: "" },
-      { name: "Orégano molido", desc: "Orégano mexicano. Salsas, caldos y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
-      { name: "Chile guajillo seco", desc: "Rojo intenso, picor moderado. Salsas, caldos y moles.", price: 0, unit: "kg", cat: "chiles", tag: "Prioridad" },
-      { name: "Chile ancho seco", desc: "Poblano seco. Base de moles y adobos.", price: 0, unit: "kg", cat: "chiles", tag: "Prioridad" },
-      { name: "Chile de árbol seco", desc: "Picor alto. Salsas embotelladas, aceites y botanas.", price: 0, unit: "kg", cat: "chiles", tag: "Prioridad" },
-
-      // Resto del catálogo
-      { name: "Canela en raja", desc: "Raja entera para infusión, jarabes y repostería de volumen.", price: 0, unit: "kg", cat: "especias", tag: "" },
-      { name: "Canela molida", desc: "Molienda para masas, panificación y bebidas.", price: 0, unit: "kg", cat: "especias", tag: "" },
       { name: "Clavo de olor", desc: "Grano entero. Guisos, pan de especias y conservas.", price: 0, unit: "kg", cat: "especias", tag: "" },
-
-      { name: "Manzanilla premium", desc: "Flor entera, cosecha reciente. Infusiones y spa.", price: 0, unit: "kg", cat: "tes", tag: "Popular" },
+      { name: "Orégano molido", desc: "Orégano mexicano. Salsas, caldos y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Cebolla en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Pimentón dulce", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Pimienta gorda", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Anís", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Orégano entero", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Romero", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Tomillo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Albahaca", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Perejil", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Laurel", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Cilantro hoja", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Açaí en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Cebolla granulada", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Goji en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Camu camu en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Cassia molida", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Curry dulce", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Curry picante", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Garam masala", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Sazonador kebab", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Sazonador tandoori", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Stevia en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Fenogreco en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Limón en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Lúcuma en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Moringa en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Pimentón picante", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Almendra en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Harina de quinoa cruda", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Harina de quinoa extruida", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Tapioca en polvo", desc: "Para cocina de volumen y sazonadores.", price: 0, unit: "kg", cat: "especias", tag: "" },
+      { name: "Chile morita", desc: "Ahumado. Salsas, chipotle y adobos.", price: 0, unit: "kg", cat: "chiles", tag: "" },
+      { name: "Moringa en hoja", desc: "Hoja seca. Té y batidos wellness.", price: 0, unit: "kg", cat: "superfoods", tag: "" },
+      { name: "Flor de Jamaica", desc: "Flor entera para agua fresca y concentrados.", price: 0, unit: "kg", cat: "superfoods", tag: "" },
+      { name: "Chía", desc: "Para bebidas, bowls y línea wellness.", price: 0, unit: "kg", cat: "superfoods", tag: "" },
+      { name: "Quinoa blanca", desc: "Para bebidas, bowls y línea wellness.", price: 0, unit: "kg", cat: "superfoods", tag: "" },
+      { name: "Quinoa roja", desc: "Para bebidas, bowls y línea wellness.", price: 0, unit: "kg", cat: "superfoods", tag: "" },
+      { name: "Quinoa negra", desc: "Para bebidas, bowls y línea wellness.", price: 0, unit: "kg", cat: "superfoods", tag: "" },
+      { name: "Jengibre entero", desc: "Para bebidas, bowls y línea wellness.", price: 0, unit: "kg", cat: "superfoods", tag: "" },
+      { name: "Jengibre molido", desc: "Para bebidas, bowls y línea wellness.", price: 0, unit: "kg", cat: "superfoods", tag: "" },
+      { name: "Almendra natural", desc: "Entera con cutícula. Repostería y botana.", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Almendra fileteada", desc: "Corte fino para repostería.", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Almendra sin cutícula", desc: "Pelada, para mazapán y harina de almendra.", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Nuez de la India", desc: "Entera. Botana y repostería.", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Avellana", desc: "Entera con cutícula.", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Ajonjolí natural", desc: "Semilla limpia, panadería y moles.", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Coco rallado", desc: "Rallado fino, sin azúcar añadida.", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Nuez granillo", desc: "Repostería, panadería y botana.", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Nuez en mitades", desc: "Repostería, panadería y botana.", price: 0, unit: "kg", cat: "semillas", tag: "" },
+      { name: "Arándano", desc: "Fruta entera, sabor dulce-ácido.", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Mango en rodaja", desc: "Snack, granola y repostería.", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Mango en cubo", desc: "Snack, granola y repostería.", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Fresa deshidratada", desc: "Snack, granola y repostería.", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Piña en rodaja", desc: "Snack, granola y repostería.", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Piña en cubo", desc: "Snack, granola y repostería.", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Papaya deshidratada", desc: "Snack, granola y repostería.", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Manzana en rodaja", desc: "Snack, granola y repostería.", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Cereza deshidratada", desc: "Snack, granola y repostería.", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Orejón de chabacano", desc: "Snack, granola y repostería.", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
+      { name: "Flor de manzanilla", desc: "Flor entera para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
       { name: "Hierbabuena", desc: "Hojas secas, aroma refrescante para té y coctelería.", price: 0, unit: "kg", cat: "tes", tag: "" },
-      { name: "Té de limón", desc: "Hojas de limón natural, infusión digestiva.", price: 0, unit: "kg", cat: "tes", tag: "" },
-      { name: "Flor de Jamaica", desc: "Flor entera para agua fresca y concentrados.", price: 0, unit: "kg", cat: "tes", tag: "" },
-      { name: "Mezcla relajante", desc: "Manzanilla, lavanda y pasiflora para infusión.", price: 0, unit: "kg", cat: "tes", tag: "Nuevo" },
-      { name: "Moringa", desc: "Hoja seca de alto valor nutricional. Té y batidos wellness.", price: 0, unit: "kg", cat: "superfoods", tag: "Popular" },
-      { name: "Cúrcuma en polvo", desc: "El oro de la cocina saludable — color, sabor y bienestar en un ingrediente.", price: 0, unit: "kg", cat: "superfoods", tag: "" },
-      { name: "Arándano deshidratado", desc: "Fruta entera, sabor dulce-ácido", price: 0, unit: "kg", cat: "deshidratados", tag: "Popular" },
-      { name: "Mango rodaja", desc: "Rodajas deshidratadas, sin azúcar", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Mango cubo", desc: "Cubos deshidratados, snack natural", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Fresa deshidratada", desc: "Rodaja entera, color intenso", price: 0, unit: "kg", cat: "deshidratados", tag: "Premium" },
-      { name: "Piña rodaja", desc: "Rodajas naturales deshidratadas", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Piña cubo", desc: "Cubos prácticos para granola", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Papaya deshidratada", desc: "Trozos dulces y suaves", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Manzana rodaja", desc: "Rodajas crujientes, sin azúcar", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Cereza deshidratada", desc: "Sabor intenso, ideal repostería", price: 0, unit: "kg", cat: "deshidratados", tag: "" },
-      { name: "Orejón (chabacano)", desc: "Chabacano deshidratado premium", price: 0, unit: "kg", cat: "deshidratados", tag: "Premium" },
-      { name: "Almendra natural", desc: "Crocante, fresca y versátil — de repostería a botana. Calidad que se muerde.", price: 0, unit: "kg", cat: "semillas", tag: "Popular" },
-      { name: "Almendra fileteada", desc: "Corte fino para repostería", price: 0, unit: "kg", cat: "semillas", tag: "" },
-      { name: "Almendra sin cutícula", desc: "Pelada, lista para usar", price: 0, unit: "kg", cat: "semillas", tag: "" },
-      { name: "Nuez de la India", desc: "Cashew entero, tostado natural", price: 0, unit: "kg", cat: "semillas", tag: "" },
-      { name: "Avellana", desc: "Entera con cutícula, grado premium", price: 0, unit: "kg", cat: "semillas", tag: "Premium" },
-      { name: "Ajonjolí natural", desc: "Semilla limpia, ideal para pan", price: 0, unit: "kg", cat: "semillas", tag: "" },
-      { name: "Coco rallado", desc: "Rallado fino, sin azúcar", price: 0, unit: "kg", cat: "semillas", tag: "" },
-      { name: "Sal del Himalaya fina", desc: "Sal rosa molida fina, 84 minerales", price: 0, unit: "kg", cat: "sales", tag: "Popular" },
-      { name: "Sal del Himalaya gruesa", desc: "Grano grueso, ideal para molino", price: 0, unit: "kg", cat: "sales", tag: "" },
-      { name: "Sal de mar gruesa", desc: "Cosechada naturalmente, sin refinar", price: 0, unit: "kg", cat: "sales", tag: "" },
+      { name: "Té de limón", desc: "Hoja seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Tila", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Hoja de pingüica", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té blanco", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té jazmín", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té matcha", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té negro", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té negro Yunnan", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té oolong durazno", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té rojo", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té sencha", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té verde gunpowder", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té verde", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Té verde xiangulo", desc: "Hoja o flor seca para infusión.", price: 0, unit: "kg", cat: "tes", tag: "" },
+      { name: "Sal del Himalaya", desc: "Sal rosa fina o gruesa.", price: 0, unit: "kg", cat: "sales", tag: "" },
+      { name: "Arroz", desc: "Granel para cocina de volumen.", price: 0, unit: "kg", cat: "abarrotes", tag: "" },
+      { name: "Frijol negro", desc: "Granel para cocina de volumen.", price: 0, unit: "kg", cat: "abarrotes", tag: "" },
+      { name: "Frijol pinto", desc: "Granel para cocina de volumen.", price: 0, unit: "kg", cat: "abarrotes", tag: "" },
+      { name: "Frijol peruano", desc: "Granel para cocina de volumen.", price: 0, unit: "kg", cat: "abarrotes", tag: "" },
+      { name: "Alubia", desc: "Granel para cocina de volumen.", price: 0, unit: "kg", cat: "abarrotes", tag: "" },
+      { name: "Lenteja", desc: "Granel para cocina de volumen.", price: 0, unit: "kg", cat: "abarrotes", tag: "" },
+      { name: "Aceituna verde sin hueso", desc: "Granel para cocina de volumen.", price: 0, unit: "kg", cat: "abarrotes", tag: "" },
+      { name: "Alcaparras La Pasiega 950 g", desc: "Se vende por caja.", price: 0, unit: "kg", cat: "abarrotes", tag: "" },
+      { name: "Anchoas Pelazza 50 g", desc: "Se vende por caja.", price: 0, unit: "kg", cat: "abarrotes", tag: "" },
     ];
 
     // ===== PRODUCT IMAGE MAPPING =====
@@ -1941,6 +2041,7 @@
       deshidratados: "https://images.unsplash.com/photo-1622480916113-9000ac49b79d?w=400&q=70",
       semillas: "/assets/img/cat-semillas.jpg",
       sales: "https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?w=400&q=70",
+      abarrotes: "/assets/img/cat-semillas.jpg",
       kits: "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?w=400&q=70",
     };
     // Foto propia por producto; si no existe, se usa la de la categoría
@@ -1958,7 +2059,7 @@
     // ===== STATE =====
     let currentFilter = 'todos';
     let currentPage = 1;
-    const perPage = 8;
+    const perPage = 12;
 
     // ===== RENDER PRODUCTS =====
     function filterProducts(cat) {
@@ -1987,6 +2088,7 @@
             <h4>${p.name}</h4>
             <p class="product-desc">${p.desc}</p>
             <a href="https://wa.me/525522152352?text=Hola%20AS%20MOLINAS%2C%20quiero%20cotizar%20mayoreo%20de%20${encodeURIComponent(p.name)}" target="_blank" rel="noopener" class="product-cta">💬 Cotizar mayoreo</a>
+            <button type="button" class="add-may" data-name="${p.name}">+ Agregar a mi lista</button>
           </div>
         </div>
       `).join('');
@@ -2142,6 +2244,115 @@
         renderProducts();
       } catch (e) { /* sin conexión al intranet: catálogo estático completo */ }
     })();
+  </script>
+
+  <!-- ===== MI LISTA DE PEDIDO ===== -->
+  <style>
+    .rt-chip{cursor:pointer;transition:background .15s,border-color .15s}
+    .rt-chip:hover,.rt-chip:focus-visible{background:var(--c-forest);color:#fff;border-color:var(--c-forest);outline:none}
+    .rt-chip:hover b,.rt-chip:focus-visible b{color:#fff}
+    .rt-chip.added{background:var(--c-sage-light);border-color:var(--c-sage)}
+    .rt-hint{text-align:center;color:var(--c-forest);font-weight:600;font-size:.9rem;margin-top:18px}
+    .add-may{margin-top:8px;margin-left:6px;background:none;border:1px solid var(--c-sand);border-radius:8px;padding:8px 12px;font:inherit;font-size:.85rem;font-weight:600;color:var(--c-forest);cursor:pointer}
+    .add-may:hover{border-color:var(--c-forest)}
+    .ml-btn{position:fixed;left:20px;bottom:24px;z-index:9998;background:var(--c-terracotta);color:#fff;border:0;border-radius:999px;padding:13px 18px;font:inherit;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer;display:none}
+    .ml-btn.show{display:inline-flex;gap:8px;align-items:center}
+    .ml-bg{position:fixed;inset:0;background:rgba(20,30,25,.45);z-index:10000;display:none}
+    .ml-bg.open{display:block}
+    .ml-panel{position:fixed;right:0;top:0;bottom:0;width:min(420px,100%);background:var(--c-cream);z-index:10001;transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column}
+    .ml-panel.open{transform:none}
+    .ml-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--c-sand)}
+    .ml-head h3{margin:0;font-family:var(--ff-display,serif);color:var(--c-forest)}
+    .ml-x{background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--c-text-light);line-height:1}
+    .ml-body{flex:1;overflow:auto;padding:16px 20px}
+    .ml-sec{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c-text-light);margin:14px 0 8px;font-weight:700}
+    .ml-item{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:10px 0;border-bottom:1px dashed var(--c-sand)}
+    .ml-item .n{font-weight:600}
+    .ml-item .s{font-size:.82rem;color:var(--c-text-light)}
+    .ml-qty{display:flex;align-items:center;gap:6px;grid-row:1/3;grid-column:2}
+    .ml-qty button{width:30px;height:30px;border-radius:8px;border:1px solid var(--c-sand);background:#fff;cursor:pointer;font-size:1rem}
+    .ml-qty input{width:56px;padding:5px;border:1px solid var(--c-sand);border-radius:8px;text-align:center;font:inherit}
+    .ml-empty{color:var(--c-text-light);text-align:center;padding:30px 0}
+    .ml-foot{padding:16px 20px;border-top:1px solid var(--c-sand);display:grid;gap:10px;background:#fff}
+    .ml-tot{display:flex;justify-content:space-between;font-weight:700;color:var(--c-forest)}
+    .ml-foot input{width:100%;padding:10px;border:1px solid var(--c-sand);border-radius:8px;font:inherit}
+    .ml-send{background:#25D366;color:#fff;border:0;border-radius:10px;padding:13px;font:inherit;font-weight:700;cursor:pointer}
+    .ml-send:disabled{opacity:.5;cursor:not-allowed}
+    .ml-note{font-size:.78rem;color:var(--c-text-light);margin:0}
+    .ml-toast{position:fixed;left:50%;top:80px;transform:translateX(-50%);background:var(--c-forest-deep);color:#fff;padding:9px 16px;border-radius:8px;z-index:10002;font-size:.9rem;display:none}
+  </style>
+  <button class="ml-btn" id="mlBtn" type="button" aria-haspopup="dialog">🧾 Mi lista <span id="mlCount">0</span></button>
+  <div class="ml-bg" id="mlBg"></div>
+  <aside class="ml-panel" id="mlPanel" role="dialog" aria-modal="true" aria-label="Mi lista de pedido">
+    <div class="ml-head"><h3>Mi lista de pedido</h3><button class="ml-x" id="mlClose" aria-label="Cerrar">×</button></div>
+    <div class="ml-body" id="mlBody"></div>
+    <div class="ml-foot">
+      <div class="ml-tot"><span>Subtotal menudeo</span><span id="mlTot">$0</span></div>
+      <p class="ml-note" id="mlMay"></p>
+      <input id="mlName" placeholder="Nombre o negocio — obligatorio" autocomplete="name" required aria-required="true">
+      <input id="mlTel" type="tel" inputmode="tel" placeholder="Tu WhatsApp (10 dígitos) — obligatorio" autocomplete="tel" required aria-required="true">
+      <p class="ml-note" id="mlTelErr" style="color:#A85A38;display:none">Para enviar tu pedido escribe tu nombre, tu dirección de entrega y tu WhatsApp a 10 dígitos.</p>
+      <input id="mlWhere" placeholder="Dirección de entrega (calle, número, colonia, CP) — obligatoria" autocomplete="street-address" required aria-required="true">
+      <button class="ml-send" id="mlSend" type="button">Enviar pedido por WhatsApp</button>
+      <p class="ml-note">Te confirmamos existencia, envío y precio final por WhatsApp. Precios sujetos a cambio sin previo aviso.</p>
+    </div>
+  </aside>
+  <div class="ml-toast" id="mlToast" role="status"></div>
+  <script>
+  (function(){
+    const KEY='asm-lista';let L=[];
+    try{L=JSON.parse(localStorage.getItem(KEY)||'[]')||[]}catch(e){L=[]}
+    const $=id=>document.getElementById(id);
+    const money=n=>'$'+(Math.round(n*100)/100).toLocaleString('es-MX');
+    const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    function save(){try{localStorage.setItem(KEY,JSON.stringify(L))}catch(e){}}
+    function toast(t){const e=$('mlToast');e.textContent=t;e.style.display='block';clearTimeout(e._t);e._t=setTimeout(()=>e.style.display='none',1600)}
+    function add(it){const k=it.tipo+'|'+it.prod+'|'+it.pres;const f=L.find(x=>x.k===k);if(f)f.q+=it.tipo==='may'?25:1;else L.push({...it,k,q:it.tipo==='may'?25:1});save();render();toast('Agregado: '+it.prod+(it.pres?' '+it.pres:''))}
+    function render(){
+      const n=L.length;$('mlCount').textContent=n;$('mlBtn').classList.toggle('show',n>0);
+      const men=L.filter(x=>x.tipo==='men'),may=L.filter(x=>x.tipo==='may');
+      const row=(x,i)=>`<div class="ml-item"><span class="n">${esc(x.prod)}${x.pres?' · '+esc(x.pres):''}</span><span class="s">${x.tipo==='men'?money(x.precio)+' c/u · '+money(x.precio*x.q):'kg · se cotiza'}</span><span class="ml-qty"><button type="button" data-d="-1" data-i="${i}" aria-label="Quitar uno">−</button><input type="number" min="0" step="${x.tipo==='may'?'1':'1'}" value="${x.q}" data-i="${i}" aria-label="Cantidad"><button type="button" data-d="1" data-i="${i}" aria-label="Agregar uno">+</button></span></div>`;
+      let h='';
+      if(!n)h='<div class="ml-empty">Tu lista está vacía.<br>Toca una bolsa o especiero en <b>Menudeo</b>, o “Agregar a mi lista” en el catálogo de mayoreo.</div>';
+      if(men.length)h+='<div class="ml-sec">Menudeo · piezas</div>'+men.map(x=>row(x,L.indexOf(x))).join('');
+      if(may.length)h+='<div class="ml-sec">Mayoreo · kilos (se cotiza)</div>'+may.map(x=>row(x,L.indexOf(x))).join('');
+      $('mlBody').innerHTML=h;
+      $('mlTot').textContent=money(men.reduce((a,x)=>a+x.precio*x.q,0));
+      const bolsas=men.reduce((a,x)=>a+x.q,0);
+      $('mlMay').textContent=bolsas>=10?'Llevas '+bolsas+' piezas: aplica precio de medio mayoreo, te lo confirmamos por WhatsApp.':(may.length?'Los productos de mayoreo se cotizan por WhatsApp.':'');
+      $('mlSend').disabled=!n||!formOk();
+      document.querySelectorAll('.rt-chip').forEach(c=>c.classList.toggle('added',L.some(x=>x.tipo==='men'&&x.prod===c.dataset.prod&&x.pres===c.dataset.pres)));
+    }
+    const formOk=()=>telOk()&&$('mlName').value.trim().length>=2&&$('mlWhere').value.trim().length>=8;
+    const telOk=()=>{const d=($('mlTel').value||'').replace(/\D/g,'');return d.length===10||(d.length===12&&d.startsWith('52'))};
+    function setQ(i,q){q=Math.max(0,Math.round(+q||0));if(!q)L.splice(i,1);else L[i].q=q;save();render()}
+    $('mlBody').addEventListener('click',e=>{const b=e.target.closest('button[data-d]');if(!b)return;const i=+b.dataset.i;setQ(i,L[i].q+(+b.dataset.d)*(L[i].tipo==='may'?5:1))});
+    $('mlBody').addEventListener('change',e=>{if(e.target.matches('input[data-i]'))setQ(+e.target.dataset.i,e.target.value)});
+    const open=v=>{$('mlPanel').classList.toggle('open',v);$('mlBg').classList.toggle('open',v)};
+    $('mlBtn').onclick=()=>open(true);$('mlClose').onclick=()=>open(false);$('mlBg').onclick=()=>open(false);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')open(false)});
+    // chips de menudeo
+    document.querySelectorAll('.rt-card li').forEach(li=>{const prod=li.querySelector('.rt-name').textContent.trim();
+      li.querySelectorAll('.rt-chip').forEach(c=>{const pres=c.firstChild.textContent.trim();const precio=parseFloat(c.querySelector('b').textContent.replace(/[$,]/g,''));
+        c.dataset.prod=prod;c.dataset.pres=pres;c.setAttribute('role','button');c.tabIndex=0;c.title='Agregar a mi lista';
+        const go=()=>add({tipo:'men',prod,pres,precio});c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}})});
+    // botones de mayoreo (catálogo se vuelve a pintar, por eso delegación)
+    document.addEventListener('click',e=>{const b=e.target.closest('.add-may');if(b)add({tipo:'may',prod:b.dataset.name,pres:'',precio:0})});
+    $('mlSend').onclick=()=>{
+      const men=L.filter(x=>x.tipo==='men'),may=L.filter(x=>x.tipo==='may');
+      const t=['Hola AS MOLINAS, quiero hacer este pedido:'];
+      if(men.length){t.push('','*Menudeo*');men.forEach(x=>t.push('• '+x.q+' × '+x.prod+' '+x.pres+' — '+money(x.precio*x.q)));t.push('Subtotal: '+money(men.reduce((a,x)=>a+x.precio*x.q,0)))}
+      if(may.length){t.push('','*Mayoreo (cotizar)*');may.forEach(x=>t.push('• '+x.prod+': '+x.q+' kg'))}
+      if(!formOk()){$('mlTelErr').style.display='block';return}
+      const tel=$('mlTel').value.replace(/\D/g,'').slice(-10);try{localStorage.setItem('asm-tel',tel)}catch(e){}
+      const nm=$('mlName').value.trim(),wh=$('mlWhere').value.trim();
+      t.push('','Nombre: '+nm,'Dirección de entrega: '+wh,'WhatsApp: '+tel);
+      window.open('https://wa.me/525522152352?text='+encodeURIComponent(t.join('\n')),'_blank','noopener');
+    };
+    ['mlTel','mlName','mlWhere'].forEach(id=>$(id).addEventListener('input',()=>{$('mlTelErr').style.display=($('mlTel').value&&!telOk())?'block':'none';render()}));
+    try{$('mlTel').value=localStorage.getItem('asm-tel')||''}catch(e){}
+    render();
+  })();
   </script>
 
   <!-- ===== BOTÓN FLOTANTE WHATSAPP ===== -->
