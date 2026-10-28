@@ -275,6 +275,8 @@ Especificación completa en `docs/imprimibles-asmolinas.md`. Reglas fijas:
 
 ## 8c. Pedido en la web → cotización automática (`pedido.html`)
 
+- **Cambio del 28-oct-2026 (decisión de Juan):** `pedido.html` ya NO manda el pedido al ERP. El botón "Enviar pedido por WhatsApp" abre WhatsApp al 55 2215 2352 con el pedido escrito (empresa, contacto, WhatsApp, dirección de entrega obligatorios). Lo de abajo describe el flujo anterior con el ERP.
+
 - La página arma un JSON (cliente, partidas en kg, entrega, canal) y lo manda a `ERP_API + /api/public/pedidos`; el ERP cotiza con precio vigente por volumen, crea `COT AAAA-NNNN`, renderiza el PDF con `imprimibles/` y lo envía por WhatsApp o correo. Contrato y ruta de referencia en `docs/pedido-erp.md`.
 - Si el ERP no responde en 9 s, la página abre WhatsApp con el pedido redactado. **Nunca dejar al cliente sin salida.**
 - La lista de productos de `pedido.html` es la misma que `const products` de `index.html`: si cambia una, cambia la otra.

@@ -151,7 +151,7 @@
         <!-- Paso 2: datos -->
         <section class="card">
           <h2><span class="paso-num">2</span>Datos de tu negocio</h2>
-          <p class="ayuda">Con estos datos el sistema genera tu cotización a nombre de tu negocio y te la envía. Sólo vendemos a negocios.</p>
+          <p class="ayuda">Con estos datos armamos tu cotización. Al enviar, se abre tu WhatsApp con el pedido ya escrito para mandárnoslo.</p>
           <div class="grid">
             <label class="campo"><span>Empresa o negocio <em>*</em></span><input type="text" name="empresa" required autocomplete="organization" placeholder="Nombre comercial"></label>
             <label class="campo"><span>Giro <em>*</em></span>
@@ -165,7 +165,7 @@
             <label class="campo"><span>Persona de contacto <em>*</em></span><input type="text" name="contacto" required autocomplete="name" placeholder="Nombre y apellido"></label>
             <label class="campo"><span>WhatsApp (10 dígitos) <em>*</em></span><input type="tel" name="whatsapp" required inputmode="numeric" pattern="[0-9\s]{10,14}" autocomplete="tel" placeholder="55 1234 5678"></label>
             <label class="campo"><span>Correo electrónico</span><input type="email" name="correo" autocomplete="email" placeholder="compras@tunegocio.com"></label>
-            <label class="campo"><span>Ciudad y CP <em>*</em></span><input type="text" name="ciudad" required placeholder="Ej. CDMX, 06700"></label>
+            <label class="campo full"><span>Dirección de entrega <em>*</em></span><input type="text" name="ciudad" required minlength="8" autocomplete="street-address" placeholder="Calle, número, colonia, ciudad y CP"></label>
             <label class="campo"><span>RFC (si requieres CFDI)</span><input type="text" name="rfc" maxlength="13" style="text-transform:uppercase" placeholder="Opcional"></label>
             <label class="campo"><span>Frecuencia de compra</span>
               <select name="frecuencia"><option value="">Selecciona…</option><option>Única vez / prueba</option><option>Semanal</option><option>Quincenal</option><option>Mensual</option><option>Por temporada</option></select></label>
@@ -188,8 +188,8 @@
       <div class="kpi"><span>Volumen total</span><b id="rKilos">0 kg</b></div>
       <ul id="rLista"></ul>
       <div class="como">Precio por kg según volumen; el mínimo depende del producto y la presentación. Disponibilidad sujeta a existencia. Pago por SPEI o depósito, con CFDI.</div>
-      <button type="submit" form="formPedido" class="btn-main" id="btnEnviar">Solicitar cotización B2B</button>
-      <div class="legal">Al enviar aceptas nuestro <a href="/aviso-de-privacidad.html">aviso de privacidad</a>. Si el sistema no está disponible, tu pedido se envía por WhatsApp y te cotizamos personalmente.</div>
+      <button type="submit" form="formPedido" class="btn-main" id="btnEnviar">Enviar pedido por WhatsApp</button>
+      <div class="legal">Al enviar aceptas nuestro <a href="/aviso-de-privacidad.html">aviso de privacidad</a>. Tu pedido se envía por WhatsApp al 55 2215 2352 y te confirmamos precio y disponibilidad. Precios sujetos a cambio sin previo aviso.</div>
     </aside>
   </main>
 
@@ -299,7 +299,7 @@
       };
     }
     function textoWhatsApp(p) {
-      const l = ['Solicitud de cotización B2B — AS MOLINAS', '', `Empresa: ${p.cliente.empresa}`, `Giro: ${p.cliente.giro}`, `Contacto: ${p.cliente.contacto}`, `Ciudad y CP: ${p.cliente.ciudad}`];
+      const l = ['Solicitud de cotización B2B — AS MOLINAS', '', `Empresa: ${p.cliente.empresa}`, `Giro: ${p.cliente.giro}`, `Contacto: ${p.cliente.contacto}`, `WhatsApp: ${p.cliente.whatsapp}`, `Dirección de entrega: ${p.cliente.ciudad}`];
       if (p.cliente.rfc) l.push(`RFC: ${p.cliente.rfc} (requiero CFDI)`);
       if (p.cliente.correo) l.push(`Correo: ${p.cliente.correo}`);
       l.push('', 'Productos:');
@@ -326,34 +326,16 @@
       if (f.elements.sitio_web.value) return; // honeypot: bots lo llenan, personas no
       if (!validar(f)) return;
       const payload = armarPayload(f);
-      const btn = $('#btnEnviar'); btn.disabled = true; btn.textContent = 'Enviando…';
+      const btn = $('#btnEnviar'); btn.disabled = true; btn.textContent = 'Abriendo WhatsApp…';
       medir('envio_pedido', { productos: payload.partidas.length, kilos: payload.partidas.reduce((s, p) => s + p.cantidad, 0), giro: payload.cliente.giro, canal: payload.canal });
-      let res = null;
-      try {
-        const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 9000);
-        const r = await fetch(ERP_API + '/api/public/pedidos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: ctrl.signal });
-        clearTimeout(t);
-        if (r.ok) res = await r.json();
-      } catch (err) { res = null; }
-      btn.disabled = false; btn.textContent = 'Solicitar cotización B2B';
+      const url = WA + '?text=' + encodeURIComponent(textoWhatsApp(payload));
+      btn.disabled = false; btn.textContent = 'Enviar pedido por WhatsApp';
       const out = $('#resultado');
-      if (res && res.ok) {
-        const canales = (res.canal || [payload.canal]).map((c) => ({ whatsapp: 'WhatsApp', correo: 'correo', ambos: 'WhatsApp y correo' }[c] || c)).join(' y ');
-        out.innerHTML = `<h2>Recibimos tu pedido</h2><div class="folio">${esc(res.folio || '')}</div>
-          <p>Tu cotización va en camino por <b>${esc(canales)}</b> a nombre de <b>${esc(payload.cliente.empresa)}</b>. Guarda el folio para cualquier aclaración.</p>
-          ${res.ajustes && res.ajustes.length ? `<div class="aviso">Algunas partidas se ajustaron al mínimo por producto: ${res.ajustes.map(esc).join('; ')}.</div>` : ''}
-          ${res.mensaje ? `<p>${esc(res.mensaje)}</p>` : ''}`;
-        partidas = []; pintarPartidas(); pintarLista(); f.reset(); try { localStorage.removeItem('asm_pedido'); } catch (x) {}
-        medir('pedido_confirmado', { folio: res.folio || '' });
-      } else {
-        const url = WA + '?text=' + encodeURIComponent(textoWhatsApp(payload));
-        out.innerHTML = `<h2>Tu pedido está listo para enviarse</h2>
-          <p>En este momento el sistema de cotización automática no está disponible. Envíanos el pedido por WhatsApp: ya va con todos los datos, y te cotizamos personalmente.</p>
-          <a class="wa" href="${url}" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
-          <div class="aviso" style="margin-top:14px">Tu selección queda guardada en este navegador por si quieres intentarlo de nuevo más tarde.</div>`;
-        window.open(url, '_blank', 'noopener');
-        medir('pedido_fallback_whatsapp', {});
-      }
+      out.innerHTML = `<h2>Tu pedido está listo</h2>
+          <p>Se abrió tu WhatsApp con el pedido ya escrito. Solo dale <b>Enviar</b> en WhatsApp para que nos llegue. Te confirmamos precio vigente y disponibilidad.</p>
+          <a class="wa" href="${url}" target="_blank" rel="noopener">Si no se abrió, toca aquí para enviarlo por WhatsApp</a>`;
+      window.open(url, '_blank', 'noopener');
+      medir('pedido_whatsapp', {});
       out.classList.add('ok'); out.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
